@@ -1,36 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-<title>테스트</title>
+<title>제목</title>
 </head>
 <body>
-<div id = "root">
-<!-- S: Index(Home).jsp 의 div 총괄 시작 -->
+<div id = "root"> <!-- S: Index(Home).jsp 의 div 총괄 시작 -->
 <!-- S: 헤더 부분 시작 -->
    <header id= "header">
       <div id = "header_box">
          <jsp:include page="/WEB-INF/views/include/header.jsp"/>
+         <link rel="stylesheet" href="resources/css/map.css">
       </div>
    </header>
    <!-- E: 헤더 부분 끝 -->
+   
+   
    <!-- S: 본문 영역 시작 -->
-<body>
-<!-- 지도를 출력할 div 선언 -->
-<div id="map" style="width:800px;height:500px;"></div>
-<p id="current"><p>
-<p id="result"></p>
-<p id="distance"></p>
+   
+   <section id = "container">
+      <div id = "container_box">
+     <main>
+    <!--? Hero Area Start-->
+    <div class="slider-area hero-bg2 hero-overly">
+        <div class="single-slider hero-overly  slider-height4 d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-10">
+                        <!-- Hero Caption -->
+                        <div class="hero__caption hero__caption2 pt-200">
+                            <h1>주변 매장 정보</h1>
+                        </div>
+                        <!--Hero form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
 
-<input type="text" id="lat1"><input type="text" id="lon1">
-<input type="text" id="lat2"><input type="text" id="lon2">
-<br>
+
+  <!-- listing Area Start -->
+  
+        
+                <!--? Popular Directory Start -->
+              <!-- 지도를 출력할 div 선언 -->
+              <section class="section section-shop">
+<div id="map" style="height: 564px; position: relative; overflow: hidden;"></div>
 <!-- 매장 위도 경도 찍는 임시 버튼 -->
-<input type="button" value="이마트신도림점" onclick="storeMarker(this)"/>
-<input type="button" value="롯데마트구로점" onclick="storeMarker(this)"/>
-<input type="button" value="이마트구로점" onclick="storeMarker(this)"/>
+<div class="float">
+<form name="search_form" id="search_form" class="form">
+					<input type="hidden" name="lat" id="lat" value="37.4730836">
+					<input type="hidden" name="lng" id="lng" value="126.8788276">
+					<h3>매장찾기</h3>
+					<div class="shop_search">
+						<input type="text" name="search_text" id="search_text" value="">
+						<button type="button" onclick="textSearch()" style="display: block;
+    position: absolute; right: 0; top: 0; overflow: visible; padding: 0px; border: 0px; font-weight: normal;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;"><img src="resources/img/map/btn_shop_search.gif" alt="검색" style="border: none;
+    vertical-align: middle;"></button>
+					</div>
+					<p class="ex">- 서초동, 대치, 판교</p>
+				</form>
+<div class="shop_sort">
+					<div class="area on" id="shopArea1" style="overflow: hidden; outline: none;" tabindex="1">
+					<a href="#" class="box" onclick="loadTabList(7202301,37.472723,126.868675);">
+					<p class="subject">광명철산푸르지오</p>
+					<p class="add">경기도 광명시 디지털로 24 (철산동, 철산푸르지오하늘채아파트) 113동B125호</p><p class="tel">02-2619-9288</p></a>
+					</div>
+
+</div>
+</div>
+</section>
    <!-- E: 본문 영역 끝 -->
    
    
@@ -59,23 +107,13 @@ if (navigator.geolocation) {
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
         
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
+        var lat = sessionStorage.getItem("lat"); // 위도 저장
+        var lon = sessionStorage.getItem("lon"); // 위도
         
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
         // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition);
-            
-        var message = '접속한 위치의 위도는 ' + lat + ' 이고, ';
-        message += '경도는 ' + lon + ' 입니다';
-        
-        var currentDiv = document.getElementById('current'); 
-        currentDiv.innerHTML = message;
-        
-        document.getElementById('lat1').value = lat;
-        document.getElementById('lon1').value = lon;
-        
+        displayMarker(locPosition);     
         
       });
     
@@ -136,47 +174,19 @@ function displayStoreMarker(locPosition, val) {
 	// setMarkers에 null을 입력하여 기존 마커 삭제
 	setMarkers(null);
 	
-	function setInfowindows(map) {
-	    for (var i = 0; i < infowindows.length; i++) {
-	    	infowindows[i].setMap(map);
-	    }            
-	}
-	
-	// setInfowindows에 null을 입력하여 기존 인포 윈도우 삭제
-	setInfowindows(null);
-	
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({  
         map: map, 
         position: locPosition
     }); 
 
-    var message = '<div style="padding:5px;">' + val +'</div>'	// 인포 윈도우에 표시할 메시지 입력
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-     
-    var infowindow = new kakao.maps.InfoWindow({
-        content : val,
-        removable : iwRemoveable
-    });
-    
-    
-    // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
     
     // 지도 중심좌표를 매장위치로 변경합니다
     map.setCenter(locPosition);
     map.setLevel(7)
- // 마커에 마우스클릭 이벤트를 등록합니다
-    kakao.maps.event.addListener(marker, 'click', function() {
-      // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-        infowindow.open(map, marker);
-    });
  
  	// 생성된 마커를 배열에 추가합니다
     markers.push(marker);
-    infowindows.push(infowindow);
-    
     
 }    
 // 지도에 클릭 이벤트를 등록합니다
@@ -201,21 +211,6 @@ function storeMarker(objButton) {
     }
     
     var locPosition = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
-    
-    var message = val + '의 위도는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
-    
-    var resultDiv = document.getElementById('result'); 
-    resultDiv.innerHTML = message;
-    
-    document.getElementById('lat2').value = latlng.getLat();
-    document.getElementById('lon2').value = latlng.getLng();
-    
-    var distance = getDistanceFromLatLonInKm(document.getElementById('lat1').value, document.getElementById('lon1').value, latlng.getLat(), latlng.getLng())
-    
-    var distanceMessage = '두 위치의 거리는 ' + Math.round(distance) + 'Km 입니다'
-     
-    document.getElementById('distance').innerHTML = distanceMessage;
       
     displayStoreMarker(locPosition, val)
     
@@ -236,5 +231,79 @@ function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) {
     return d;
 }
 </script>
+                <!--? Popular Directory End -->
+                <!--Pagination Start  -->
+                <!--Pagination End  -->
+            
+
+</div>
+<!-- listing-area Area End -->
+	
+    <!--? Want To work 02-->
+    <section class="wantToWork-area">
+        <div class="container">
+            <div class="wants-wrapper w-padding2">
+                <div class="row justify-content-between">
+                    <div class="col-xl-8 col-lg-8 col-md-7">
+                        <div class="wantToWork-caption wantToWork-caption2">
+                            <img src="resources/img/logo/logo2_footer.png" alt="" class="mb-20">
+                            <p>Users and submit their own items. You can create different packages and by connecting with your
+                                PayPal or Stripe account charge users for registration to your directory portal.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-5">
+                        <div class="footer-social f-right sm-left">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Want To work End -->
+    <!--? Want To work 01-->
+    <section class="wantToWork-area">
+        <div class="container">
+            <div class="wants-wrapper">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-xl-7 col-lg-9 col-md-8">
+                        <div class="wantToWork-caption wantToWork-caption2">
+                            <div class="main-menu2">
+                                <nav>
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="explore.html">Explore</a></li> 
+                                        <li><a href="pages.html">Pages</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <a href="#" class="btn f-right sm-left">Add Listing</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Want To work End -->
+    </main>
+     </div>
+   </section>
+   <!-- E: 본문 영역 끝 -->
+   
+   
+   <!-- S: 푸터 영역 시작 -->
+   <footer id = "footer">
+      <div id = "footer_box">
+         <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+      </div>
+   </footer>
+</div> <!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>
 </html>

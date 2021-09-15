@@ -59,8 +59,8 @@
                                 <ul id="navigation">
                                     <li><a href="#">최저가 매장 찾기</a>
                                         <ul class="submenu">
-                                            <li><a href="directory_details.html">상품별 최저가</a></li>
-                                            <li><a href="listing.html">매장별 최저가</a></li> 
+                                            <li><a href="#">상품별 최저가</a></li>
+                                            <li><a href="map.do">매장별 최저가</a></li> 
                                         </ul>
                                     </li>
                                     <li><a href="productList.do">데이터 센터</a>
@@ -98,7 +98,7 @@
 								<c:when test="${sessionScope.userId != null }">
 									<a href="#" class="mr-40"><i class="ti-user">${sessionScope.memberName } 님</i></a>
 									<a href="logout.do" class="mr-40"><i class="fas fa-sign-out-alt"></i></a>	
-									<a href="map.do" class="btn">Add Listing</a>
+									<a href="#" class="btn">Add Listing</a>
 								</c:when> 
 							</c:choose>
                         </div>
@@ -156,5 +156,21 @@
     <!-- Jquery Plugins, main Jquery -->	
     <script src="./resources/js/plugins.js"></script>
     <script src="./resources/js/main.js"></script>
+    <script type="text/javascript">
+  //HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+    if (navigator.geolocation) {
+        
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function(position) {
+            
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
+            
+    	sessionStorage.setItem("lat", lat ); // 위도 저장
+    	sessionStorage.setItem("lon", lon ); // 경도 저장
+          });
+        
+    }
+    </script> 
 </body>
 </html>
