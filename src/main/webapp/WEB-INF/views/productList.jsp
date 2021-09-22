@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-<title>제목</title>
+<title>물품 리스트</title>
 </head>
 <body>
 <div id = "root"> <!-- S: Index(Home).jsp 의 div 총괄 시작 -->
@@ -15,6 +15,7 @@
    <header id= "header">
       <div id = "header_box">
          <jsp:include page="/WEB-INF/views/include/header.jsp"/>
+         <script src="./resources/js/productList.js"></script>
       </div>
    </header>
    <!-- E: 헤더 부분 끝 -->
@@ -36,28 +37,66 @@
                             <h1>원하는 상품을 검색하세요</h1>
                         </div>
                         <!--Hero form -->
-                        <form action="#" class="search-box mb-100">
+                        <form name="form1" method="get" action="productList.do" class="search-box mb-100">
                             <div class="input-form">
-                                <input type="text" placeholder="What are you finding?">
+                                <input name="keyword" value = "${map.keyword }" placeholder="What are you finding?">
                             </div>
                             <div class="select-form">
                                 <div class="select-itms">
                                     <select name="select" id="select1">
-                                        <option value="">상품명</option>
-                                        <option value="">가격</option>
+                                        <option value="title"<c:if test="${map.search_option == 'title'}">selected</c:if>>상품명</option>
+                                        <option value="">내용</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="search-form">
-                                <a href="#"><i class="ti-search"></i> Search</a>
-                            </div>	
-                        </form>	
+                            <input type = "submit" value="search">
+                            <!-- 모달 버튼 -->
+                            <a href='#' id='imageSearch' ><i class="ti-camera"></i> 이미지 검색</a>
+                            <c:if test="${sessionScope.userId != null }">
+					<input type="hidden" value="${sessionScope.userId}" id="memberName"/>
+					</c:if>
+                            
+                               <!--  <a href="#"><i class="ti-search"></i>Search</a> -->
+                            </div>   
+                        </form>   
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
+    <!-- 모달 영역 -->
+   <div class="modal fade" id="imageSearchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">이미지 검색</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				검색할 이미지를 첨부해주세요</div>
+				<div class="modal-footer" style="justify-content: center;">
+				
+				 <form id="imageSearchForm" action="imageSearch.do" method="post" enctype="multipart/form-data">
+				 <table style="width: 100%;box-sizing: border-box;">
+				 <tbody>
+				 <tr>
+        			<td id="okTable"><input type="file" id="imageUpload" name="imageUpload" style="width: 100%;"/></td>
+        			<td id="resetTable"><a class="btn" id="modalSubmit" href="#">이미지 업로드</a></td>
+        			</tr>
+        			</tbody>
+        			</table>
+    			</form>
+					
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
 
 
   <!-- listing Area Start -->
@@ -177,7 +216,7 @@
                     <div class="col-lg-12">
                
                         <div class="count mb-35">
-                            <span>441개의 상품목록이 존재합니다.</span>
+                            <span>${pageMap.maxNum }개의 상품목록이 존재합니다.</span>
                         </div>
                      
                     </div>
@@ -200,7 +239,7 @@
                                                 <span>Closed</span> -->
                                             </div>
                                             <div class="icon">
-                                                <img src="resources/img/gallery/categori_icon1.png" alt=""> 
+                                                <!-- <img src="resources/img/gallery/categori_icon1.png" alt=""> -->
                                             </div>
                                         </div>
                                         <div class="properties__caption">
@@ -269,7 +308,7 @@
     </div>
 </div>
 <!-- listing-area Area End -->
-	
+   
     <!--? Want To work 02-->
     <section class="wantToWork-area">
         <div class="container">

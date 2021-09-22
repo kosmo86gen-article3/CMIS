@@ -22,4 +22,20 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.userLogin(vo);
 	}
 	
+	
+	// 회원가입 아이디 중복 체크
+	public MemberVO idCheck_join(MemberVO vo) {
+		return memberDAO.idCheck_join(vo);
+	}
+	
+	public MemberVO getMember(String user_id) throws Exception {
+		return memberDAO.getMember(user_id);
+	}
+
+	@Override
+	public void updateMember(MemberVO vo) {
+		memberDAO.updateMember(vo);
+	}
+	
+	
 }

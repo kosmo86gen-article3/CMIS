@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapDAO">
+
+	<resultMap type="HashMap" id="StoreMap">
+		<id column="SHOP_NAME" property="shopName"/>
+		<id column="SHOP_CODE" property="shopCode"/>
+		<id column="SHOP_TELNUM" property="shopTelnum"/>
+		<id column="ADDRESS" property="address"/>
+		<id column="DISTANCE" property="distance"/>
+		<id column="LAT" property="lat"/>
+		<id column="LON" property="lon"/>
+	</resultMap>
+	
+	<select id="getStoreList" resultMap="StoreMap" parameterType="hashmap">
+		SELECT SHOP_NAME,
+		SHOP_CODE,
+		SHOP_TELNUM,
+		ADDRESS,
+		ST_DISTANCE_SPHERE(LOCATION, ST_GEOMFROMTEXT(<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) AS DISTANCE,
+		ST_X(ST_VALIDATE(LOCATION)) AS LAT,
+		ST_Y(ST_VALIDATE(LOCATION)) AS LON
+		FROM CMIS_STORE
+		WHERE ST_DISTANCE_SPHERE(LOCATION, ST_GEOMFROMTEXT(<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) <![CDATA[<=]]> 5000
+		ORDER BY DISTANCE
+	</select>
+	
+	<resultMap type="HashMap" id="StoreProductMap">
+		<id column="PRODUCT_CODE" property="productCode"/>
+		<id column="PRODUCT_NAME" property="productName"/>
+		<id column="PRODUCT_DETAIL" property="productDetail"/>
+		<id column="SALE_PRICE" property="salePrice"/>
+	</resultMap>
+	
+	<select id="getStoreProductList" resultMap="StoreProductMap" parameterType="String">
+	SELECT CMIS_PRO.PRODUCT_CODE, CMIS_PRO.PRODUCT_NAME, CMIS_PRO.PRODUCT_DETAIL, CMIS_PRICES.SALE_PRICE
+	FROM CMIS_PRICES JOIN CMIS_PRO ON CMIS_PRICES.PRODUCT_NAME = CMIS_PRO.PRODUCT_NAME
+	WHERE SHOP_NAME = #{shopName} AND CMIS_PRICES.RESEARCH_DATE = '2021-08-27' AND CMIS_PRICES.SALE_PRICE <![CDATA[<=]]> CMIS_PRO.PRODUCT_HOT_SALE_PRICE
+	</select>
+	
+	<resultMap type="HashMap" id="ProductMap">
+		<id column="PRODUCT_CODE" property="productCode"/>
+		<id column="PRODUCT_NAME" property="productName"/>
+		<id column="PRODUCT_LAST_AVERAGE_PRICE" property="productLastAveragePrice"/>
+	</resultMap>
+	
+	<select id="getMapProductList" parameterType="String" resultMap="ProductMap">
+		select PRODUCT_CODE, PRODUCT_NAME, PRODUCT_LAST_AVERAGE_PRICE from CMIS_PRO where product_name like '%${value}%'
+	</select>
+	
+	<resultMap type="HashMap" id="ProductStoreMap">
+		<id column="PRODUCT_CODE" property="productCode"/>
+		<id column="PRODUCT_NAME" property="productName"/>
+		<id column="SALE_PRICE" property="salePrice"/>
+		<id column="SHOP_NAME" property="shopName"/>
+		<id column="ADDRESS" property="address"/>
+		<id column="DISTANCE" property="distance"/>
+		<id column="LNG" property="lng"/>
+		<id column="LON" property="lon"/>
+	</resultMap>
+	
+	<select id="getProductStoreList" parameterType="hashmap" resultMap="ProductStoreMap">
+	SELECT CMIS_PRO.PRODUCT_CODE, CMIS_PRO.PRODUCT_NAME, CMIS_PRICES.SALE_PRICE, CMIS_STORE.SHOP_NAME,CMIS_STORE.SHOP_CODE,CMIS_STORE.SHOP_TELNUM,CMIS_STORE.ADDRESS, ST_DISTANCE_SPHERE(CMIS_STORE.LOCATION, ST_GEOMFROMTEXT(<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) AS DISTANCE, ST_X(ST_VALIDATE(LOCATION)) AS LNG, ST_Y(ST_VALIDATE(LOCATION)) AS LON
+	FROM CMIS_PRICES JOIN CMIS_STORE ON CMIS_PRICES.SHOP_NAME = CMIS_STORE.SHOP_NAME
+	JOIN CMIS_PRO ON CMIS_PRICES.PRODUCT_NAME = CMIS_PRO.PRODUCT_NAME
+	WHERE ST_DISTANCE_SPHERE(LOCATION, ST_GEOMFROMTEXT(<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) <![CDATA[<=]]> 5000
+	AND CMIS_PRO.PRODUCT_NAME LIKE '%${productName}%' 
+	AND CMIS_PRICES.RESEARCH_DATE = '2021-08-27'
+	ORDER BY CMIS_PRICES.SALE_PRICE	
+	</select>
+	
+</mapper>

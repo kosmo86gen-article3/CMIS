@@ -12,7 +12,35 @@
 	</insert>
 	
 	<select id="userLogin" parameterType="member" resultType="member">
-		SELECT user_id,member_pw,member_name FROM CMIS_MEM WHERE user_id=#{user_id} AND member_pw=#{member_pw}
+		SELECT user_id,member_pw,member_name,member_lv FROM CMIS_MEM WHERE user_id=#{user_id} AND member_pw=#{member_pw}
 	</select>
 	
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" parameterType="member" resultType="member">
+		SELECT * FROM CMIS_MEM WHERE user_id=#{user_id}
+	</select>
+	
+	<!-- 회원 정보 조회 (Form에 값 받아오기 ) SELECT -->
+	
+	<select id="getMember" parameterType="member" resultType="member">
+		SELECT * from CMIS_MEM WHERE user_id=#{user_id} 
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="member">
+		UPDATE CMIS_MEM set 
+		user_id=#{user_id}, 
+		member_name=#{member_name},
+		member_pw=#{member_pw}, 
+		member_address=#{member_address}, 
+		member_age=#{member_age}, 
+		member_phone=#{member_phone}
+		where user_id= #{user_id}
+	</update>
+	
+	<!-- 회원가입의 유효성 검사 -->
+	<select id="idCheck1" resultType="int">
+	SELECT count(*)
+	FROM CMIS_MEM WHERE user_id = #{user_id} 
+	</select>
 </mapper>

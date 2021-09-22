@@ -322,7 +322,7 @@ hr {
 
 .owl-carousel .owl-nav div.owl-next {
 	left: auto;
-	right: -30px
+	right: 20px
 }
 
 .owl-carousel .owl-nav div.owl-next i {
@@ -1116,7 +1116,9 @@ hr {
 }
 
 .mr-40 {
-	margin-right: 40px
+	margin-right: 40px;
+	color : black;
+	
 }
 
 .mr-45 {
@@ -2796,8 +2798,8 @@ keyframes zoom { 0%{
 	padding-left: 13px !important
 }
 
-.header-btns a i{
-	color: #000;
+.header-btns a i {
+	color: black;
 	font-size: 18px;
 	padding-right: 9px
 }
@@ -2906,10 +2908,6 @@ keyframes zoom { 0%{
 
 .slider-height3 {
 	height: 440px
-}
-
-.slider-height4 {
-	min-height: 200px
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {

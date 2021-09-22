@@ -10,21 +10,13 @@ import com.cmis.domain.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 
 	@Autowired
-	private SqlSessionTemplate mybatis;
+	private SqlSessionTemplate mybatis; 
 
 	// 회원가입 작동
 	public void userReg(MemberVO vo) { 
 		System.out.println("daoimpl - 회원가입 작동 호출");
-//		System.out.println(vo.getMember_address());
-//		System.out.println(vo.getMember_age());
-//		System.out.println(vo.getMember_lv());
-//		System.out.println(vo.getMember_name());
-//		System.out.println(vo.getMember_phone());
-//		System.out.println(vo.getMember_pw());
-//		System.out.println(vo.getMember_sex());
-//		System.out.println(vo.getMember_sns());
-//		System.out.println(vo.getUser_id());
-		mybatis.insert("MemberDAO.insertMember", vo);
+
+		mybatis.insert("MemberDAO.insertMember", vo); 
 	}
 	
 	// 로그인
@@ -36,4 +28,24 @@ public class MemberDAOImpl implements MemberDAO {
 		return mybatis.selectOne("MemberDAO.userLogin", vo);
 	}
 
+	public MemberVO idCheck_join(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.idCheck", vo);
+	}
+	
+	public MemberVO getMember(String user_id) throws Exception {
+		//테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
+		MemberVO vo = mybatis.selectOne("MemberDAO.getMember", user_id);
+		return vo;
+	}
+
+	
+	public void updateMember(MemberVO vo) {
+		System.out.println("Mybatis updateMember() 호출");
+		mybatis.update("MemberDAO.updateMember", vo);
+	}
+
+	
+
+	
+	
 }

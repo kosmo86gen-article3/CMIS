@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QnaDAO">
+
+<insert id="insertQnaBoard" parameterType="qnaboard">
+	INSERT INTO CMIS_QNA_BOARD(USER_ID, QNA_BOARD_CONTENT, QNA_BOARD_DATE) VALUES(#{user_id},#{qna_board_content},DATE_ADD(current_timestamp(), INTERVAL 9 HOUR))
+</insert>
+
+<select id="getQnaBoardList" resultType="qnaboard">
+	SELECT * FROM CMIS_QNA_BOARD
+</select>
+
+<delete id="deleteQnaBoard" parameterType="qnaboard">
+	DELETE FROM CMIS_QNA_BOARD WHERE QNA_BOARD_NUM = #{qna_board_num} AND USER_ID = #{user_id} 
+</delete>
+		
+<update id="updateQnaBoard" parameterType="qnaboard">
+	UPDATE CMIS_QNA_BOARD SET QNA_BOARD_CONTENT = #{qna_board_content} WHERE USER_ID = #{user_id} AND QNA_BOARD_NUM = #{qna_board_num}
+</update>
+
+<insert id="insertQnaReply" parameterType="qnareply">
+	INSERT INTO CMIS_QNA_REPLY(USER_ID, QNA_REPLY_CONTENT, QNA_REPLY_DATE, QNA_BOARD_NUM) VALUES(#{user_id},#{qna_reply_content},DATE_ADD(current_timestamp(), INTERVAL 9 HOUR),#{qna_board_num}) 
+</insert>
+		
+</mapper>

@@ -10,7 +10,7 @@
 
 /* 매장찾기 */
 .section-shop {position:relative; margin-bottom:150px; padding-right:400px;}
-.section-shop .float {position:absolute; right:0; top:0; overflow:hidden; width:400px; height:100%; padding-top:226px; background:#ffa800; box-shadow:-8px 0 0 rgba(0,0,0,0.2); z-index:100;}
+.section-shop .float {position:absolute; right:0; top:0; overflow:hidden; width:400px; height:100%; padding-top:226px; background:#B367FF; box-shadow:-8px 0 0 rgba(0,0,0,0.2); z-index:100;}
 .section-shop .float .form {position:absolute; left:0; top:0; width:100%; height:226px; padding:35px 30px 0; border-bottom: 1px solid #111111;}
 .section-shop .float .form h3 {height:65px; color:#000; font-size:32px;}
 .section-shop .float .form .shop_search {position:relative; padding-right:64px;}
@@ -33,7 +33,16 @@
 .section-shop .float .shop_sort .box .tel {margin-top:5px; font-size:20px;}
 .section-shop .float .shop_sort .box.on,
 .section-shop .float .shop_sort .box:hover,
-.section-shop .float .shop_sort .box:focus {background:#cc8600;}
+.section-shop .float .shop_sort .box:focus {background:#8B44D7;}
+.section-shop .float .shop_sort .area::-webkit-scrollbar { width: 5.2px; } /* 스크롤 바 */
+.section-shop .float .shop_sort .area::-webkit-scrollbar-track { background-color:#5D5D5D; } /* 스크롤 바 밑의 배경 */
+.section-shop .float .shop_sort .area::-webkit-scrollbar-thumb { background: #303030; } /* 실질적 스크롤 바 */
+.section-shop .float .shop_sort .area::-webkit-scrollbar-thumb:hover { background: #404040; } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+.section-shop .float .shop_sort .area::-webkit-scrollbar-thumb:active { background: #808080; } /* 실질적 스크롤 바를 클릭할 때 */
+.section-shop .float .shop_sort .area::-webkit-scrollbar-button { display: none; } /* 스크롤 바 상 하단 버튼 */
+
+.container .popular-directorya-area .row .col-lg-6 .properties .properties__card .properties__img a img{max-width: 360px; max-height: 360px;}
+.container .popular-directorya-area .row .col-lg-6{max-width: 360px;}
 
 /* 매장찾기 팝업 */
 .lp-popShop {display:none; position:absolute; left:0; top:0; overflow-y:auto; width:100%; height:100%; padding-bottom:30px; background:#fff; z-index:1000;}
@@ -532,7 +541,7 @@
 .menu-list .box .info .name {color:#111; font-size:20px; font-family:'NanumSquareOTFR';}
 .menu-list .box .info .sum {margin:7px 0 15px; color:#666; font-size:14px; font-family:'NanumSquareOTFR'; line-height:20px; letter-spacing:-0.05em; word-break:keep-all;}
 .menu-list .box .info .pay {color:#333; font-size:18px; font-family:'NanumSquareOTFB';}
-.menu-list .box .img:hover {border-color:#ffa800;}
+.menu-list .box .img:hover {border-color:#8B44FF;}
 .menu-list .box .img:hover .over {opacity:1; transform:translate3d(0,0,0);}
 .menu-list .box .img > a {position:relative;display:block;width:100%;height:100%;}
 .menu-list .box .img:hover > a:after {position:absolute;top:104px;left:134px;display:block;content:'';width:64px;height:64px;background:url('/images/menu/bg_linkcycle_more.png') no-repeat center center;}
@@ -896,7 +905,6 @@ span.min {
 
 
 ::-webkit-scrollbar { width: 5.2px; } /* 스크롤 바 */
-::-webkit-scrollbar-track { background-color:#5D5D5D; } /* 스크롤 바 밑의 배경 */
 ::-webkit-scrollbar-thumb { background: #303030; } /* 실질적 스크롤 바 */
 ::-webkit-scrollbar-thumb:hover { background: #404040; } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
 ::-webkit-scrollbar-thumb:active { background: #808080; } /* 실질적 스크롤 바를 클릭할 때 */

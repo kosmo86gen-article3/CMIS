@@ -4,10 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	
+	
 	<!-- Alias 설정 -->
  	<typeAliases>
 		<typeAlias alias="product" type="com.cmis.domain.ProductVO" />		
-		<typeAlias alias="member" type="com.cmis.domain.MemberVO" />		
+		<typeAlias alias="member" type="com.cmis.domain.MemberVO" />
+		<typeAlias alias="qnaboard" type="com.cmis.domain.QnaBoardVO"/>
+		<typeAlias alias="qnareply" type="com.cmis.domain.QnaReplyVO"/>			
 	</typeAliases>
 
 

@@ -4,8 +4,34 @@
 <mapper namespace="ProductDAO">
 
 	
-	<select id="getProductList" resultType="product">
-		select * from CMIS_PRO order by product_code
-	</select>
+	<select id="getProductList" resultType="product" parameterType="hashmap">
+      
+      select * from CMIS_PRO
+      <choose>
+         <when test="product_name != null">
+            where product_name like '%${keyword}%'
+         </when>
+         <when test="product_hot_sale_price != null">
+            where product_hot_sale_price like '%${keyword}%'
+         </when>
+      </choose>
+      order by product_last_average_price
+   </select>
+
+
+   <!-- 카운트  -->
+   <select id="getCountProduct" resultType="int" parameterType="hashmap">
+   select count(*) from CMIS_PRO
+      <choose>
+         <when test="product_name != null">
+            where product_name like '%${keyword}%'
+         </when>
+         <when test="product_hot_sale_price != null">
+            where title like '%${keyword}%'
+         </when>
+      </choose>
+      order by product_last_average_price
+   </select>
+   
 	
 </mapper>
