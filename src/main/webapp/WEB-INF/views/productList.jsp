@@ -80,7 +80,7 @@
 					<!-- 모달 영역 -->
 					<div class="modal fade" id="imageSearchModal" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
-						aria-hidden="true">
+						aria-hidden="true" style="z-index: 1050;">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 

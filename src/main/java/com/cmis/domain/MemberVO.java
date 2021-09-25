@@ -10,7 +10,15 @@ public class MemberVO {
 	private String member_address;
 	private String member_sns;
 	private int member_lv;
+	private String regdate;
+	   
+	public String getRegdate() {
+	      return regdate;
+	}
 	
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	public String getMember_name() {
 		return member_name;
 	}

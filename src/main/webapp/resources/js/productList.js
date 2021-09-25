@@ -23,6 +23,8 @@ $(document).ready(function(){
 		loader.show();
 	});
 	
+	
+	
 	// 파라미터값 가져와서 변수로 저장
 	var keyword = getUrlParameter('keyword');
 	var select = getUrlParameter('select');
@@ -111,7 +113,7 @@ $(document).ready(function(){
 		        	})
 	        	}
 	        	
-	        	var okTable = "<a class='btn' id='modalOk' href='productdetails.do?product_code=" + data.product_code + "&lat=" + lat +"&lon=" + lon + "'>네</a>";
+	        	var okTable = "<a class='btn' id='modalOk' href='productdetails.do?product_code=" + data.product_code + "&lat=" + lat +"&lon=" + lon + "' onclick='loader()'>네</a>";
 	        	var	resetTable = "<a class='btn' id='modalNo' href='#' onclick='resetModal();'>아니요</a>";
 	        			
 	        	$('#okTable').append(okTable);
@@ -134,6 +136,9 @@ function sleep(ms) {
 	  while (Date.now() < wakeUpTime) {}
 	}
 
+function loader(){
+	$("div.loaderbase").show();
+}
 
 function resetModal(){
 	
