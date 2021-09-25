@@ -20,11 +20,18 @@ public class QnaController {
    @Autowired QnaService qnaService;
 
 
+//   @RequestMapping("qna_board.do")
+//   public String qnaBoard(Model m) {
+//      m.addAttribute("qnaBoardList", qnaService.getQnaBoardList());
+//      return "qnaBoard";
+//   }
+   
    @RequestMapping("qna_board.do")
    public String qnaBoard(Model m) {
       m.addAttribute("qnaBoardList", qnaService.getQnaBoardList());
       return "qnaBoard";
    }
+
 
    @RequestMapping("insert_qna.do")
    public String insertQna(QnaBoardVO vo) {
@@ -66,7 +73,7 @@ public class QnaController {
       HashMap map = new HashMap();
       System.out.println(vo.getQna_board_num());
       System.out.println(vo.getQna_reply_content());
-      System.out.println(vo.getUser_id());
+      System.out.println(vo.getReply_user_id());
       int result = qnaService.insertQnaReply(vo);
       System.out.println(result);
       if(result > 0) {

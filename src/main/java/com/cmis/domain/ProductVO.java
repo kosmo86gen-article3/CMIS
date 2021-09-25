@@ -24,6 +24,9 @@ public class ProductVO {
 	private String main_category; //상품 메인 카테고리
 	private String sub_category; //상품 서브 카테고리
 	private float product_last_average_price;//상품 마지막 평균가
+	private float product_last_hot_sale_price; //상품 마지막 핫딜가격
+	private float product_last_min_price; // 상품 마지막 최저가
+	private float product_last_max_price; // 상품 마지막 최대가
 	
 	private int product_capacity_division;
 	private String product_capacity_division_code;

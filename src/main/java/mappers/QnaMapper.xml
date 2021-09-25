@@ -4,12 +4,56 @@
 
 <mapper namespace="QnaDAO">
 
+	<resultMap type="qnaboard" id="qnaboardMap">
+		<id property="qna_board_num" column="QNA_BOARD_NUM"/>
+		<result property="user_id" column="USER_ID" />
+		<result property="qna_board_content" column="QNA_BOARD_CONTENT" />
+		<result property="qna_board_date" column="QNA_BOARD_DATE" />
+		<result property="qna_reply_count" column="QNA_REPLY_COUNT"/>
+		<collection property="qnaReplyVO" ofType="qnareply">
+			<id property="qna_reply_num" column="QNA_REPLY_NUM"/>
+			<result property="reply_user_id" column="REPLY_USER_ID"/>
+			<result property="qna_reply_content" column="QNA_REPLY_CONTENT"/>
+			<result property="qna_reply_date" column="QNA_REPLY_DATE"/>
+		</collection>
+	</resultMap>
+
 <insert id="insertQnaBoard" parameterType="qnaboard">
-	INSERT INTO CMIS_QNA_BOARD(USER_ID, QNA_BOARD_CONTENT, QNA_BOARD_DATE) VALUES(#{user_id},#{qna_board_content},DATE_ADD(current_timestamp(), INTERVAL 9 HOUR))
+	INSERT INTO CMIS_QNA_BOARD(
+		USER_ID
+		, QNA_BOARD_CONTENT
+		, QNA_BOARD_DATE
+	) VALUES(
+		#{user_id}
+		,#{qna_board_content}
+		,DATE_ADD(current_timestamp(), INTERVAL 9 HOUR)
+	)
 </insert>
 
-<select id="getQnaBoardList" resultType="qnaboard">
-	SELECT * FROM CMIS_QNA_BOARD
+<!-- <select id="getQnaBoardList" resultType="qnaboard"> -->
+<!-- 	SELECT -->
+<!-- 		QNA_BOARD_NUM -->
+<!-- 		,USER_ID -->
+<!-- 		,QNA_BOARD_CONTENT -->
+<!-- 		,QNA_BOARD_DATE -->
+<!-- 	FROM	CMIS_QNA_BOARD -->
+<!-- </select> -->
+
+<select id="getQnaBoardList" resultMap="qnaboardMap">
+	SELECT
+		A.QNA_BOARD_NUM				AS	QNA_BOARD_NUM
+		, A.USER_ID					AS	USER_ID
+		, A.QNA_BOARD_CONTENT		AS	QNA_BOARD_CONTENT
+		, A.QNA_BOARD_DATE			AS	QNA_BOARD_DATE
+		, B.QNA_REPLY_NUM			AS	QNA_REPLY_NUM
+		, B.REPLY_USER_ID			AS	REPLY_USER_ID
+		, B.QNA_REPLY_CONTENT		AS	QNA_REPLY_CONTENT
+		, B.QNA_REPLY_DATE			AS	QNA_REPLY_DATE
+		, (SELECT COUNT(QNA_REPLY_NUM) FROM CMIS_QNA_REPLY C WHERE C.QNA_BOARD_NUM = A.QNA_BOARD_NUM)	AS QNA_REPLY_COUNT
+	FROM
+		CMIS_QNA_BOARD A
+		LEFT OUTER JOIN CMIS_QNA_REPLY B
+		ON A.QNA_BOARD_NUM = B.QNA_BOARD_NUM
 </select>
 
 <delete id="deleteQnaBoard" parameterType="qnaboard">
@@ -21,7 +65,7 @@
 </update>
 
 <insert id="insertQnaReply" parameterType="qnareply">
-	INSERT INTO CMIS_QNA_REPLY(USER_ID, QNA_REPLY_CONTENT, QNA_REPLY_DATE, QNA_BOARD_NUM) VALUES(#{user_id},#{qna_reply_content},DATE_ADD(current_timestamp(), INTERVAL 9 HOUR),#{qna_board_num}) 
+	INSERT INTO CMIS_QNA_REPLY(REPLY_USER_ID, QNA_REPLY_CONTENT, QNA_REPLY_DATE, QNA_BOARD_NUM) VALUES(#{reply_user_id},#{qna_reply_content},DATE_ADD(current_timestamp(), INTERVAL 9 HOUR),#{qna_board_num}) 
 </insert>
-		
+		 
 </mapper>

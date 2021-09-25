@@ -3,35 +3,151 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ProductDAO">
 
-	
-	<select id="getProductList" resultType="product" parameterType="hashmap">
-      
-      select * from CMIS_PRO
-      <choose>
-         <when test="product_name != null">
-            where product_name like '%${keyword}%'
-         </when>
-         <when test="product_hot_sale_price != null">
-            where product_hot_sale_price like '%${keyword}%'
-         </when>
-      </choose>
-      order by product_last_average_price
-   </select>
+
+	<select id="getProductList" resultType="product"
+		parameterType="hashmap">
+
+		select * from CMIS_PRO
+		<choose>
+			<when test="product_name != null">
+				where product_name like '%${keyword}%'
+			</when>
+			<when test="product_hot_sale_price != null">
+				where product_hot_sale_price like '%${keyword}%'
+			</when>
+		</choose>
+		order by product_last_average_price
+	</select>
 
 
-   <!-- 카운트  -->
-   <select id="getCountProduct" resultType="int" parameterType="hashmap">
-   select count(*) from CMIS_PRO
-      <choose>
-         <when test="product_name != null">
-            where product_name like '%${keyword}%'
-         </when>
-         <when test="product_hot_sale_price != null">
-            where title like '%${keyword}%'
-         </when>
-      </choose>
-      order by product_last_average_price
-   </select>
-   
+	<!-- 카운트 -->
+	<select id="getCountProduct" resultType="int"
+		parameterType="hashmap">
+		select count(*) from CMIS_PRO
+		<choose>
+			<when test="product_name != null">
+				where product_name like '%${keyword}%'
+			</when>
+			<when test="product_hot_sale_price != null">
+				where title like '%${keyword}%'
+			</when>
+		</choose>
+		order by product_last_average_price
+	</select>
+
+	<!-- 상품 상세 페이지 입장시 -->
+	<select id="getProductDetail" parameterType="product"
+		resultType="product">
+		select * from CMIS_PRO where product_code=${product_code}
+	</select>
+
+	<!-- 지역별 상품 가격 -->
+	<resultMap type="HashMap" id="productLocationPriceMap">
+		<id column="PRODUCT_NAME" property="productName" />
+		<id column="LOCATION_NAME" property="locationName" />
+		<id column="LOCATION_MIN_PRICE" property="locationMinPrice" />
+		<id column="LOCATION_AVG_PRICE" property="locationAvgPrice" />
+		<id column="LOCATION_MAX_PRICE" property="locationMaxPrice" />
+	</resultMap>
+
+	<select id="getProductLocationPrice" parameterType="product"
+		resultMap="productLocationPriceMap">
+		SELECT CMIS_PRICES.PRODUCT_NAME,
+		CMIS_AR.LOCATION_NAME,MIN(CMIS_PRICES.SALE_PRICE) AS
+		LOCATION_MIN_PRICE, AVG(CMIS_PRICES.SALE_PRICE) AS
+		LOCATION_AVG_PRICE,MAX(CMIS_PRICES.SALE_PRICE) AS LOCATION_MAX_PRICE
+		FROM CMIS_PRICES JOIN CMIS_STORE ON CMIS_PRICES.SHOP_NAME =
+		CMIS_STORE.SHOP_NAME JOIN CMIS_AR ON CMIS_STORE.DISTRIC_CODE =
+		CMIS_AR.LOCATION_CODE
+		WHERE CMIS_PRICES.RESEARCH_DATE = (SELECT
+		MAX(RESEARCH_DATE) FROM
+		CMIS_PRICES)
+		AND PRODUCT_NAME = #{product_name}
+		GROUP BY CMIS_PRICES.PRODUCT_NAME, CMIS_AR.LOCATION_NAME
+		ORDER BY LOCATION_CODE
+	</select>
+
+	<!-- 업태별 상품 가격 -->
+	<resultMap type="HashMap" id="productStorePriceMap">
+		<id column="PRODUCT_NAME" property="productName" />
+		<id column="SHOP_KIND_NAME" property="shopKindName" />
+		<id column="MIN_PRICE" property="minPrice" />
+		<id column="AVG_PRICE" property="avgPrice" />
+		<id column="MAX_PRICE" property="maxPrice" />
+	</resultMap>
+
+	<select id="getProductStorePrice" parameterType="product"
+		resultMap="productStorePriceMap">
+		SELECT PRODUCT_NAME, SHOP_KIND_NAME, MIN(SALE_PRICE) AS
+		MIN_PRICE,
+		AVG(SALE_PRICE) AS AVG_PRICE, MAX(SALE_PRICE) AS MAX_PRICE
+		FROM
+		CMIS_PRICES JOIN CMIS_STORE ON CMIS_PRICES.SHOP_NAME =
+		CMIS_STORE.SHOP_NAME JOIN CMIS_BU ON CMIS_STORE.SHOP_KIND_CODE =
+		CMIS_BU.SHOP_KIND_CODE
+		WHERE CMIS_PRICES.RESEARCH_DATE = (SELECT
+		MAX(RESEARCH_DATE) FROM
+		CMIS_PRICES)
+		AND PRODUCT_NAME = #{product_name}
+		GROUP BY PRODUCT_NAME, SHOP_KIND_NAME
+	</select>
+
+	<!-- 주간별 상품 평균 가격 -->
+	<resultMap type="HashMap" id="productPricesMap">
+		<id column="RESEARCH_DATE" property="researchDate" />
+		<id column="SALE_PRICE" property="salePrice" />
+	</resultMap>
+
+	<select id="getProductPrices" resultMap="productPricesMap"
+		parameterType="product">
+		SELECT DATE_FORMAT(RESEARCH_DATE,'%Y,%m-1,%d') AS
+		RESEARCH_DATE, AVG(SALE_PRICE) AS SALE_PRICE FROM CMIS_PRICES
+		WHERE
+		PRODUCT_NAME = #{product_name}
+		GROUP BY RESEARCH_DATE
+		ORDER BY
+		RESEARCH_DATE
+	</select>
+
+	<!-- 접속 위치 기반 조회 상품 최저가 매장 출력 -->
+	<resultMap type="HashMap" id="lowestPriceStoreMap">
+		<id column="PRODUCT_NAME" property="productName" />
+		<id column="SALE_PRICE" property="salePrice" />
+		<id column="SHOP_NAME" property="shopName" />
+		<id column="ADDRESS" property="address" />
+		<id column="DISTANCE" property="distance" />
+	</resultMap>
+
+	<select id="getLowestPriceStore" resultMap="lowestPriceStoreMap"
+		parameterType="hashmap">
+		SELECT CMIS_PRICES.PRODUCT_NAME, CMIS_PRICES.SALE_PRICE
+		,CMIS_STORE.SHOP_NAME, CMIS_STORE.ADDRESS,
+		ST_DISTANCE_SPHERE(LOCATION, ST_GEOMFROMTEXT(
+		<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>
+		)) AS DISTANCE
+
+		FROM CMIS_STORE JOIN CMIS_PRICES ON CMIS_STORE.SHOP_NAME
+		=
+		CMIS_PRICES.SHOP_NAME
+
+		WHERE ST_DISTANCE_SPHERE(LOCATION,
+		ST_GEOMFROMTEXT(
+		<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) <![CDATA[<=]]>
+		5000
+
+		AND CMIS_PRICES.RESEARCH_DATE = (SELECT MAX(RESEARCH_DATE) FROM
+		CMIS_PRICES)
+
+		AND PRODUCT_NAME = #{productName}
+
+		ORDER BY
+		CMIS_PRICES.SALE_PRICE
+
+		LIMIT 3
+	</select>
 	
+	<select id="getProductCateList" parameterType="product" resultType="product">
+		SELECT * FROM CMIS_PRO WHERE SUB_CATEGORY = #{sub_category} and product_name != #{product_name} ORDER BY RAND() LIMIT 3
+	</select>
+
 </mapper>

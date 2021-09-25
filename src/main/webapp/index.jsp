@@ -33,6 +33,7 @@
                                 <h1>테스트 적용 페이지 입니다 인덱스 아니에요</h1>
                                 <p>Let's uncover the best places to eat, drink, and shop nearest to you.</p>
                             </div>
+                               
                             <!--Hero form -->
                             <form action="#" class="search-box mb-100">
                                 <div class="input-form">

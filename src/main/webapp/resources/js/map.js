@@ -16,6 +16,13 @@ $(document).ready(function(){
             $('#lat').val(lat);
             $('#lon').val(lon);
             
+            
+            $('[href^="productdetails.do"]').each(function (index, item){
+                // 상품 상세 링크 가져오기
+                var details = $(item).prop('href')
+                $(item).prop('href',details + '&lat=' + lat + '&lon=' + lon);
+            })
+            
      });
     }
     
@@ -23,7 +30,7 @@ $(document).ready(function(){
     $('a.box').click(function(){
        
        // 매장명
-       var shopName = $(this).children().first().text();
+       var shopName = $(this).children('.storeName').val();
        
        // 상품 리스트 출력하는 div 내용 삭제
        $(".productlist").empty();

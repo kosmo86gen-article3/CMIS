@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardDAO">
+	
+	<select id="getBoardList" resultType="board">
+		SELECT * 
+		FROM CMIS_BOARD
+		ORDER BY board_num DESC
+	</select>
+	
+	<select id="getBoardDetail" parameterType="board" resultType="board">
+		SELECT * 
+		FROM CMIS_BOARD 
+		WHERE board_num = #{board_num}
+	</select>
+	
+	<insert id="writeBoard" parameterType="board">
+		INSERT INTO CMIS_BOARD (board_title, board_content, board_writer, board_date, board_img_name, board_hits) 
+		VALUES (#{board_title}, #{board_content}, 'ttester', sysdate(), #{board_img_name}, 0)
+	</insert>
+	
+	<update id="modifyBoard" parameterType="board">
+		UPDATE CMIS_BOARD 
+		SET board_title = #{board_title}, board_content = #{board_content}, board_img_name = #{board_img_name} 
+		WHERE board_num = #{board_num}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="board">
+		DELETE FROM CMIS_BOARD 
+		WHERE board_num = #{board_num}
+	</delete>
+	
+	<insert id="writeComment" parameterType="comment">
+		INSERT INTO CMIS_COMMENT (board_num, comment_content, comment_writer, comment_date) 
+		VALUES (#{board_num}, #{comment_content}, 'ttester', sysdate())
+	</insert>
+	
+	<select id="selectComment" parameterType="comment"  resultType="hashmap">
+		SELECT board_num, comment_num, comment_content, comment_writer, date_format(comment_date, '%y-%m-%d %H:%i') comment_date 
+		FROM CMIS_COMMENT
+		WHERE board_num = #{board_num}
+		ORDER BY comment_num DESC 
+	</select>
+	
+	<delete id="deleteComment" parameterType="comment">
+		DELETE FROM CMIS_COMMENT 
+		WHERE board_num = #{board_num} AND comment_num = #{comment_num} AND comment_writer = #{comment_writer}
+	</delete>
+	
+</mapper>

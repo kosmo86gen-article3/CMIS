@@ -44,10 +44,14 @@ $(document).ready(function(){
       			// 검색결과 상품리스트 반복 입력
       			 for(var i = 0; i < data.length; i++){
 
+      				var price = data[i].productLastAveragePrice.toString();
+               	 
+      				price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+               	 
   				 	 content += "<a href='#' class='box' onclick='searchProductStoreList(\"" +data[i].productName+"\");return false;'><div style='height:100px;'>";
   				 	 content += "<div id='left' style='height: 150px;float:left;'><img src='resources/img/images/" + data[i].productCode +".jpg' alt='' style='max-width: 100px;max-height: 150px;'></div><div id='right' style='height:150px;'>"
   					 content += "<p class='subject'>"+data[i].productName+"</p>";
-  					 content += "<p class='tel'> 평균 가격 - "+data[i].productLastAveragePrice+"원</p></div></div><hr/></a>";
+  					 content += "<p class='tel'> 평균 가격 - "+price+"원</p></div></div><hr/></a>";
   	
       			 }
       		    

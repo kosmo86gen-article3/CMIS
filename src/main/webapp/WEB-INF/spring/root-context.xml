@@ -17,7 +17,7 @@
 
 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 	<property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
-	<property value="jdbc:mysql://c-mis.c0vb0dx4togj.us-east-2.rds.amazonaws.com/project" name="url"/>
+	<property value="jdbc:mysql://c-mis.c3kq47xdfoyw.ap-northeast-2.rds.amazonaws.com/project" name="url"/>
 	<property value="admin" name="username"/>
 	<property value="3whdhkdkdlemf!" name="password"/>
 </bean>

@@ -12,6 +12,9 @@
 		<typeAlias alias="member" type="com.cmis.domain.MemberVO" />
 		<typeAlias alias="qnaboard" type="com.cmis.domain.QnaBoardVO"/>
 		<typeAlias alias="qnareply" type="com.cmis.domain.QnaReplyVO"/>			
+		<typeAlias type="com.cmis.domain.WishVO" alias="wish"/>
+		<typeAlias alias="board" type="com.cmis.domain.BoardVO" />
+		<typeAlias alias="comment" type="com.cmis.domain.CommentVO" />
 	</typeAliases>
 
 

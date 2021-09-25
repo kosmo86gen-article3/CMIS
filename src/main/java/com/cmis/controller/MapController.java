@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cmis.domain.ProductVO;
 import com.cmis.service.MapService;
+import com.google.protobuf.Parser;
 
 @Controller
 public class MapController {

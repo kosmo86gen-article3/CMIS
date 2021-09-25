@@ -7,13 +7,14 @@
 <head>
 <meta charset="utf-8">
 <title>wishList</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
 	$(function() {
-		$('#navList').hover(function() {
-			$(this).css("color", "gray");
+		$('.memberListID').hover(function() {
+			$(this).css("color", "#717D7E");
 		}, function() {
-			$(this).css("color", "white");
+			$(this).css("color", "black");
 		});
 	})
 </script>
@@ -37,11 +38,23 @@ body {
 	display: flex;
 }
 
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
+#navList {
+	margin-bottom: 10px;
+	background-color: #050d15;
 }
+tbody a img{
+	max-width: 100px; 
+	max-height: 100px;
+}
+tbody a:hover { color: #8c59b9; }
+a:link { color:#4b70fd; }
+a:visited { color: #8c59b9; }
 
+.buttons-cart a:hover{
+	color: #ffffff;
+	background-color:#8c59b9;
+
+}
 
 </style>
 
@@ -70,37 +83,61 @@ body {
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
 						<div class="col-sm-4">
-							<h3 style="text-align:center">Menu</h3>
+							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active" id="navList"
-									href="modifyMember.do">회원정보수정</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showBoard.do">등록글
-										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">등록댓글보기</a>
-								</li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
-								</li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="adminMemberList.do">회원 목록</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="adminShowBoard.do">전체 글 목록 조회</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="adminShowReply.do">전체 댓글 목록</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="wishList.do">관심 물품</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
 						<div class="col-sm-8">
-							<h2>관심 물품</h2>
-							<h5>Title description, Dec 7, 2017</h5>
-							<div class="fakeimg">Fake Image</div>
-							<p>Some text..</p>
-							<p>Sunt in culpa qui officia deserunt mollit anim id est
-								laborum consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco.</p>
-							<br>
-							<h2>TITLE HEADING</h2>
-							<h5>Title description, Sep 2, 2017</h5>
-							<div class="fakeimg">Fake Image</div>
-							<p>Some text..</p>
-							<p>Sunt in culpa qui officia deserunt mollit anim id est
-								laborum consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco.</p>
+							<h2 style="text-align: center">관심 물품 조회</h2>
+
+							<hr style="height: 5px;">
+							<div id="container_box">
+
+								<table class="table"  style="text-align: center; " >
+									<thead class="thead-dark">
+										<tr>
+											<th>상품 이미지</th>
+											<th>상품명</th>
+											<th>평균 가격</th>
+											<th>최저 가격</th>
+											<th>삭제</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:if test="${not empty wishList }">
+											<c:forEach items="${wishList}" var="wish">
+											<input type="hidden" value="${wish.member_id}" name="member_id"/>
+											<input type="hidden" value="${wish.wish_num}" name="wish_num"/>
+												<tr>
+													<td class="product-thumbnail"><a
+														href="product.do?product_code=${wish.product_code }"><img
+															src="resources/img/images/${wish.product_code}.jpg"
+															alt="${wish.product_name }"  /></a></td>
+													<td class="product-name"><a
+														href="product.do?product_code=${wish.product_code }">${wish.product_name }</a></td>
+													<td class="product-price"><span class="amount">${wish.product_last_average_price}원</span></td>
+													<td class="product-min-price"><span class="amount">${wish.product_last_min_price}원</span></td>
+													<td class="product-remove"><a href="#" class="remove"
+														id="${wish.wish_num }">X</a></td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</tbody>
+								</table>
+								<div class="buttons-cart" style="text-align: right">
+									<a href="#" onclick="drop_wishlist()">전체 삭제</a>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>

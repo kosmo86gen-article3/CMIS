@@ -16,6 +16,13 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 $(document).ready(function(){
 	
+	var loader = $("div.loaderbase");
+	loader.hide();
+	
+	$('.properties__card a').click(function(){
+		loader.show();
+	});
+	
 	// 파라미터값 가져와서 변수로 저장
 	var keyword = getUrlParameter('keyword');
 	var select = getUrlParameter('select');
@@ -37,30 +44,36 @@ $(document).ready(function(){
 		});
 	}
 	
+	// 이미지 검색 클릭시 모달 호출
 	$('#imageSearch').click(function(e){
 		e.preventDefault();
 		$('#imageSearchModal').modal("show");
 	});
 	
+	// 이미지 업로드 버튼 클릭시 이벤트
 	$('#modalSubmit').on('click',function (event) {
 		
 		event.preventDefault();
 		
+		// 회원 아이디
 	    var memberName = $('#memberName').val()
+	    // 이미지
 	    var imageUpload = $('#imageUpload').val();
-	    
+	    // 로그인 유효성
 	    if(memberName == null || memberName == ''){
 	    	alert("로그인 후 이미지 검색이 가능합니다")
 	    	return false;
-	    }
+	    }// 이미지 유효성
 	    else if(imageUpload == null || imageUpload == ''){
 	        alert("파일을 선택해주세요");
 	        return false;
 	      }
 	    else{
-	    		    
+	    // 폼 데이터를 json 형식으로 저장 		    
 	    var form = new FormData(document.getElementById('imageSearchForm'));
+	    // 이미지 검색중 출력
 	    $('#modalSubmit').text("이미지 검색중입니다");
+	    // 검색 이미지랑 텍스트 출력
 	    $(".modal-body").empty();
 	    $(".modal-body").append("<img src='resources/img/elements/loading-buffering.gif' style='width: 100px;height: 100px; display: block; margin: 0px auto;'>");
 		
@@ -81,14 +94,24 @@ $(document).ready(function(){
 	        	var src = data.userId + ".jpg?time=" + time 
 
 	        	var content = "<img src='resources/img/searchImage/" + src +" alt='' style='max-width: 100%;max-height: 100%;'>"
-	        		content += "<p/><p class='subject'> 검색 결과는 "+data.result +" 입니다</p>"
+	        		content += "<p/><p class='subject'> 검색 결과는 "+data.keyword +" 입니다</p>"
 	        		
 	        	$(".modal-body").append(content);
 
 	        	$("#modalSubmit").hide();
 	        	$("#imageUpload").hide();
 	        	       	
-	        	var okTable = "<a class='btn' id='modalOk' href='productList.do?keyword=" + data.result + "&select=title'>네</a>";
+	        	
+	        	if (navigator.geolocation) {
+	        			        	
+		        	navigator.geolocation.getCurrentPosition(function(position) {
+		                
+		                lat = position.coords.latitude; // 위도
+		                lon = position.coords.longitude; // 경도
+		        	})
+	        	}
+	        	
+	        	var okTable = "<a class='btn' id='modalOk' href='productdetails.do?product_code=" + data.product_code + "&lat=" + lat +"&lon=" + lon + "'>네</a>";
 	        	var	resetTable = "<a class='btn' id='modalNo' href='#' onclick='resetModal();'>아니요</a>";
 	        			
 	        	$('#okTable').append(okTable);

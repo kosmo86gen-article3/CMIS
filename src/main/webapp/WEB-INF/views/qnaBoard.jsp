@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -310,14 +315,12 @@
 
 							<c:forEach items="${qnaBoardList }" var="list">
 								<div class="comment-wrap" style="padding-bottom: 15px">
-									<div class="comment-block"
-										style="width: 50%; resize: none; border-color: black; border: double;">
-										<input type="hidden" value="${list.qna_board_num }"
-											class="qnaNum" />
+									<div class="comment-block" style="width: 50%; resize: none; border-color: black; border: double;">
+										<input type="hidden" value="${list.qna_board_num }" class="qnaNum" />
 										<p class="comment-writer">${list.user_id }</p>
 										<p class="comment-text">${list.qna_board_content }</p>
 										<div class="bottom-comment">
-											<div class="comment-date">${list.qna_board_date }</div>
+										<div class="comment-date">${list.qna_board_date }</div>
 											<ul class="comment-actions">
 
 												<c:if test="${sessionScope.userId == list.user_id }">
@@ -333,14 +336,14 @@
 												</c:if>
 
 											</ul>
-
-											<a href="#" onclick="return false;"
-												class="replyQna genric-btn primary radius modify">댓글</a>
-
+											
+											<a href="#" onclick="return false;" class="replyQna genric-btn primary radius modify">댓글(${list.qna_reply_count})</a>
+											
 											<div class="replyArea" style="margin: 10px auto;">
 												<table>
 													<tr>
-														<td><c:choose>
+														<td>
+															<c:choose>
 																<c:when test="${sessionScope.userId != null }">
 																	<label for="reply_writer"
 																		style="color: black; margin-right: 10px; margin-left: 10px; width: 10%">${sessionScope.userId }</label>
@@ -362,6 +365,20 @@
 															style="margin-left: 10px; float: rigth;">등록</a></td>
 												</table>
 											</div>
+											<c:if test="${fn:length(list.qnaReplyVO) >= 1}">
+											<table>
+												<c:forEach items="${list.qnaReplyVO}" var="reply">
+													<tr>
+														<td>
+															<label for="reply_writer">${reply.reply_user_id}</label>
+														</td>
+														<td>
+															<input type="text" value="${reply.qna_reply_content}" style="border-color: black; border: solid; width: 100%;" disabled>
+														</td>
+													</tr>
+												</c:forEach>
+											</table>
+											</c:if>
 										</div>
 
 

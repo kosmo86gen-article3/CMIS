@@ -1,6 +1,7 @@
 package com.cmis.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDAO.insertQnaBoard(vo);
 	}
 
+//	public List<QnaBoardVO> getQnaBoardList() {
+//		return qnaDAO.getQnaBoardList();
+//	}
+	
 	public List<QnaBoardVO> getQnaBoardList() {
 		return qnaDAO.getQnaBoardList();
 	}

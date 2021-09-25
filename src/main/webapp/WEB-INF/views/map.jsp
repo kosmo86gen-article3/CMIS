@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!doctype html>
@@ -56,7 +57,10 @@
 								tabindex="1">
 								<c:forEach items="${storeList}" var="storeList">
 									<a href="#" class="box"
-										onclick="storeMarker(${storeList.lon},${storeList.lat });return false;">
+										onclick="storeMarker(${storeList.lon},${storeList.lat },&#39${storeList.shopName}&#39);return false;">
+										<input type="hidden" class="storeLon" value="${storeList.lon}"/>
+										<input type="hidden" class="storeLat" value="${storeList.lat}"/>
+										<input type="hidden" class="storeName" value="${storeList.shopName}"/>
 										<p class="subject">${storeList.shopName }</p>
 										<p class="add">${storeList.address }</p> <c:if
 											test="${not empty storeList.shopTelnum}">
@@ -92,7 +96,6 @@
 		<!-- E: 본문 영역 끝 -->
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
-
 	<footer id="footer">
 		<div id="footer_box">
 			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
@@ -141,6 +144,19 @@ if (navigator.geolocation) {
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition);     
         
+        
+        var storeLons = document.getElementsByClassName("storeLon");
+		var storeLats = document.getElementsByClassName("storeLat");
+		var storeNames = document.getElementsByClassName("storeName");
+
+		for( var i = 0; i < storeLons.length; i++ ){
+			var storeLon = storeLons.item(i).value;
+			var storeLat = storeLats.item(i).value;
+			var storeName = storeNames.item(i).value;
+			storeMarkers(storeLon, storeLat, storeName);  
+		}
+        
+        
       });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -151,6 +167,7 @@ if (navigator.geolocation) {
     displayMarker(locPosition, message);
 }
 
+//현재 위치 찍는 마커 함수
 //지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition) {
 
@@ -163,28 +180,43 @@ function displayMarker(locPosition) {
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);
     map.setLevel(7)
+    
+    var infowindow = new kakao.maps.InfoWindow({
+        content : "<div style='text-align:center;min-width:150px;max-width:100%;'>현재 위치</div>"
+    });
+    
+ // 마커에 마우스오버 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+      // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+        infowindow.open(map, marker);
+    });
 
+    // 마커에 마우스아웃 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+        infowindow.close();
+    });
     
 }    
 
+function storeMarkers(lat,lng,storeName) {        
+    
+	
+    // 기본 위도 경도 설정
+    var latlng = new kakao.maps.LatLng(lat, lng);
+    
+    // 매장명으로 DB검색하여 위도 경도 받아올 예정
+    // DB에 위도 경도가 없으면 주소값으로 위도 경도 찾는 함수 사용하면 됨
+    var locPosition = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
+      
+    displayStoreMarkers(locPosition, storeName)
+    
+};
 
-// 새로 찍는 마커와 인포윈도우를 받을 배열 선언
-var markers = [];
-var infowindows = [];
-//매장 위치 마커를 생성하는 함수
-function displayStoreMarker(locPosition) {
+// 모든 매장 위치 마커를 생성하는 함수
+function displayStoreMarkers(locPosition, storeName) {
 	
-	
-	function setMarkers(map) {
-	    for (var i = 0; i < markers.length; i++) {
-	        markers[i].setMap(map);
-	    }            
-	}
-	
-	// setMarkers에 null을 입력하여 기존 마커 삭제
-	setMarkers(null);
-	
-	var imageSrc = 'resources/img/map/map-marker-icon.png';
+	var imageSrc = 'resources/img/map/map-marker-icon-red.png';
 	var imageSize = new kakao.maps.Size(42, 42); // 마커이미지의 크기입니다
 	var imageOption = {offset: new kakao.maps.Point(27, 69)};
 
@@ -199,17 +231,95 @@ function displayStoreMarker(locPosition) {
         
     }); 
     
+    var infowindow = new kakao.maps.InfoWindow({
+        content : "<div style='text-align:center;min-width:150px;max-width:100%;'>" + storeName + "</div>"
+    });
+    
+ // 마커에 마우스오버 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+      // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+        infowindow.open(map, marker);
+    });
+
+    // 마커에 마우스아웃 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+        infowindow.close();
+    });
+    
+    
+}    
+
+// 새로 찍는 마커와 인포윈도우를 받을 배열 선언
+// 기존 매장 마커 제거를 위해 배열 선언
+var markers = [];
+var infowindows = [];
+
+//매장 위치 마커를 생성하는 함수
+function displayStoreMarker(locPosition,shopName) {
+	
+	
+	function setMarkers(map) {
+	    for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(map);
+	    }            
+	}
+	
+	// setMarkers에 null을 입력하여 기존 마커 삭제
+	setMarkers(null);
+	
+	function setInfowindows(map) {
+	    for (var i = 0; i < infowindows.length; i++) {
+	    	infowindows[i].setMap(map);
+	    }            
+	}
+	
+	// setMarkers에 null을 입력하여 기존 마커 삭제
+	setInfowindows(null);	
+	
+	var imageSrc = 'resources/img/map/map-marker-icon-green.png';
+	var imageSize = new kakao.maps.Size(42, 42); // 마커이미지의 크기입니다
+	var imageOption = {offset: new kakao.maps.Point(27, 69)};
+
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition,
+        image: markerImage
+        
+    }); 
+    
+    var infowindow = new kakao.maps.InfoWindow({
+        content : "<div style='text-align:center;min-width:150px;max-width:100%;'>" + shopName + "</div>"
+    });
+    
+ // 마커에 마우스오버 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+      // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+        infowindow.open(map, marker);
+    });
+
+    // 마커에 마우스아웃 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+        infowindow.close();
+    });
+    
     // 지도 중심좌표를 매장위치로 변경합니다
     map.setCenter(locPosition);
     map.setLevel(7);
  
  	// 생성된 마커를 배열에 추가합니다
-    markers.push(marker);	
+    markers.push(marker);
+    infowindows.push(infowindow);
     
 }    
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-function storeMarker(lat,lng) {        
+function storeMarker(lat,lng,shopName) {        
     
 	
     // 기본 위도 경도 설정
@@ -219,7 +329,7 @@ function storeMarker(lat,lng) {
     // DB에 위도 경도가 없으면 주소값으로 위도 경도 찾는 함수 사용하면 됨
     var locPosition = new kakao.maps.LatLng(latlng.getLat(), latlng.getLng());
       
-    displayStoreMarker(locPosition)
+    displayStoreMarker(locPosition,shopName);
     
 };
 

@@ -29,6 +29,10 @@
 <link rel="stylesheet" href="resources/css/slick.css">
 <link rel="stylesheet" href="resources/css/nice-select.css">
 <link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/custom.css">
+<style media="(min-width:512px)">
+.hideDesk{display:none;}
+</style>
 </head>
 <body>
 
@@ -63,28 +67,51 @@
                         <ul id="navigation">
                            <li><a href="#">최저가 매장 찾기</a>
                               <ul class="submenu">
-                                 <li><a href="map_product.do">상품별 최저가</a></li>
-                                 <li><a href="map.do">매장별 최저가</a></li>
+                                 <li><a href="mapProduct.do">상품별 최저가</a></li>
+                                 <li><a href="map.do" id="mapdo">매장별 최저가</a></li> 
                               </ul></li>
                            <li><a href="productList.do">데이터 센터</a>
                               <ul class="submenu">
                                  <li><a href="productList.do">상품 목록</a></li>
-                                 <li><a href="listing.html">상품 상세 정보 </a></li>
                               </ul></li>
                            <li><a href="#">커뮤니티</a>
                               <ul class="submenu">
                                  <li><a href="board.do">자유 게시판</a></li>
                                  <li><a href="listing.html">뉴스 / Hot issue</a></li>
                                  <li><a href="listing.html">실시간 채팅</a></li>
-                                 <li><a href="qna_board.do">Q/A</a></li>
+                                 <li><a href="qnaBoard.do">Q/A</a></li>
                               </ul></li>
-                           <li><a href="myPage.do">마이페이지</a>
+                          <!--  <li><a href="myPage.do">마이페이지</a>
                               <ul class="submenu">
                                  <li><a href="modifyMember.do">회원 정보 수정</a></li>
-                                 <li><a href="blog_details.html">등록글 조회</a></li>
+                                 <li><a href="showBoard.do">등록글 조회</a></li>
+                                 <li><a href="showReply.do">등록댓글 조회</a></li>
                                  <li><a href="elements.html">관심물품 조회</a></li>
-                              </ul></li>
-                           <li><a href="contact.html">Contact</a></li>
+                              </ul></li> -->
+                           <li><a href="error.do">Contact</a></li>
+                           
+                           <li class="hideDesk">
+                           <c:if test="${sessionScope.userId != null && sessionScope.memberLv == 1}">
+                           <a href="myPage.do" class="mr-40"><i class="ti-user"></i>${sessionScope.memberName } 님</a>
+                           <a href="logout.do" class="mr-40"><i class="ti-shift-right"></i>로그아웃</a>   
+                           <a href="wishList.do" class="btn">관심 물품</a>
+                           
+                           </c:if>
+                           </li>
+                           
+                           <li class="hideDesk">
+                           <c:if test="${sessionScope.userId == null }">
+                           <a href="loginPage.do" class="mr-40"><i class="ti-user"></i>로그인</a>
+                           </c:if>
+                           </li>
+                           
+                           <%-- <li class="hideDesk">
+                           <c:if test="${sessionScope.userId != null }">
+                              <a href="logout.do" class="mr-40"><i class="ti-shift-right"></i>로그아웃</a>   
+                              </c:if>
+                           </li> --%>
+                           
+                           
                         </ul>
                      </nav>
                   </div>
@@ -93,22 +120,25 @@
                            <c:choose> 
                         <c:when test="${sessionScope.userId == null }"> <!-- 로그인 세션이 없을 때 (비 회원) -->
                            <a href="loginPage.do" class="mr-40"><i class="ti-user"></i></a>
-                                  <a href="map.do" class="btn">관심 물품</a>
+                                  <a href="wishList.do" class="btn">관심 물품</a>
                         </c:when>
                       
-                        <c:when test="${sessionScope.userId != null}"> <!-- 회원 세션이 있으면서 일반 회원인 경우 -->
+                        <c:when test="${sessionScope.userId != null && sessionScope.memberLv == 1}"> <!-- 회원 세션이 있으면서 일반 회원인 경우 -->
                            <a href="myPage.do" class="mr-40"><i class="ti-user"></i>${sessionScope.memberName } 님</a>
                            <a href="logout.do" class="mr-40"><i class="ti-shift-right"></i>로그아웃</a>   
-                           <a href="map.do" class="btn">관심 물품</a>
+                           <a href="wishList.do" class="btn">관심 물품</a>
                         </c:when>
                      
                         <c:when test="${sessionScope.userId != null && sessionScope.memberLv == 9 }"> <!-- 회원 세션이 있으면서 관리자인 경우  -->
-                                <!-- <a href="#" class="mr-40"><i class="ti-user"></i>관리자 님</a> -->
+                           <a href="adminMemberList.do" class="mr-40"><i class="ti-crown"></i>${sessionScope.memberName } 님</a>
                            <a href="logout.do" class="mr-40"><i class="ti-shift-right"></i>로그아웃</a>   
-                           <a href="map.do" class="btn">관심 물품</a>
-                           </c:when>
+                           <a href="adminPage.do" class="btn">Only Admin</a>
+                        </c:when>
+                        
                      </c:choose>
+                     
                         </div>
+                        
                   <!-- Mobile Menu -->
                   <div class="col-12">
                      <div class="mobile_menu d-block d-lg-none">
@@ -135,7 +165,7 @@
 
    <!-- Jquery Slick , Owl-Carousel Plugins -->
    <script src="./resources/js/owl.carousel.min.js"></script>
-   <script src="./resources/js/slick.min.js"></script>
+   <script src="./\\resources/js/slick.min.js"></script>
    <!-- One Page, Animated-HeadLin -->
    <script src="./resources/js/wow.min.js"></script>
    <script src="./resources/js/animated.headline.js"></script>
@@ -165,6 +195,44 @@
    <!-- Jquery Plugins, main Jquery -->
    <script src="./resources/js/plugins.js"></script>
    <script src="./resources/js/main.js"></script>
-  <script src="./resources/js/map.js"></script>
+   <script src="./resources/js/map.js"></script>
+   	<script src="./resources/js/wish.js"></script>
+   
+<!-- S: Google FireBase & Analytics -->
+   <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDzY2mBhNbIggaoDccNblTUQodHLRWVOUE",
+    authDomain: "cmis-430ec.firebaseapp.com",
+    projectId: "cmis-430ec",
+    storageBucket: "cmis-430ec.appspot.com",
+    messagingSenderId: "636226969812",
+    appId: "1:636226969812:web:608e8311e0ff2754781b41",
+    measurementId: "G-BFS844XTQ1"
+  };
+ 
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>;
+<!-- E: Google FireBase & Analytics -->
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N9JKC4D');</script>
+<!-- End Google Tag Manager -->
+
+
 </body>
 </html>

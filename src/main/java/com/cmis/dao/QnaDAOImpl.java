@@ -1,6 +1,7 @@
 package com.cmis.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class QnaDAOImpl implements QnaDAO {
 	     return mybatis.insert("QnaDAO.insertQnaBoard",vo);
 	}
 
+//	public List<QnaBoardVO> getQnaBoardList() {
+//		System.out.println("===> Mybatis QnaDAO getQnaBoardList() 호출");
+//		return mybatis.selectList("QnaDAO.getQnaBoardList");
+//	}
+	
 	public List<QnaBoardVO> getQnaBoardList() {
 		System.out.println("===> Mybatis QnaDAO getQnaBoardList() 호출");
 		return mybatis.selectList("QnaDAO.getQnaBoardList");
@@ -26,8 +32,8 @@ public class QnaDAOImpl implements QnaDAO {
 
 	@Override
 	public void deleteQnaBoard(QnaBoardVO vo) {
-		System.out.println("===> Mybatis QnaDAO delteQnaBoardList() 호출");
-		mybatis.delete("QnaDAO.delteQnaBoard",vo);
+		System.out.println("===> Mybatis QnaDAO deleteQnaBoardList() 호출");
+		mybatis.delete("QnaDAO.deleteQnaBoard",vo);
 	}
 	
 	@Override
@@ -39,5 +45,9 @@ public class QnaDAOImpl implements QnaDAO {
 	public int insertQnaReply(QnaReplyVO vo) {
 		System.out.println("===> Mybatis QnaDAO updateQnaBoardList() 호출");
 		return mybatis.insert("QnaDAO.insertQnaReply",vo);
+	}
+	
+	public int getQnaBoardListCount() {
+		return mybatis.selectOne(null);
 	}
 }

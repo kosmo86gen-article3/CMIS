@@ -4,7 +4,7 @@ public class QnaReplyVO {
 	
 	private int qna_board_num;
 	private int qna_reply_num;
-	private String user_id;
+	private String reply_user_id;
 	private String qna_reply_content;
 	private String qna_reply_date;
 	
@@ -20,11 +20,11 @@ public class QnaReplyVO {
 	public void setQna_reply_num(int qna_reply_num) {
 		this.qna_reply_num = qna_reply_num;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getReply_user_id() {
+		return reply_user_id;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setReply_user_id(String reply_user_id) {
+		this.reply_user_id = reply_user_id;
 	}
 	public String getQna_reply_content() {
 		return qna_reply_content;
@@ -38,5 +38,4 @@ public class QnaReplyVO {
 	public void setQna_reply_date(String qna_reply_date) {
 		this.qna_reply_date = qna_reply_date;
 	}
-	
 }
