@@ -130,7 +130,7 @@ function textSearch(){
    // 매장 리스트를 하나씩 확인
    $('a.box').each(function (index, item){
       // 매장명 가져오기
-      var shopName = $(item).children(":first").text();
+      var shopName = $(item).children("p.subject").text();
       // 매장명에 검색 텍스트가 포함되어있으면 매장명 출력
       if(shopName.indexOf(text) != -1){
          $(item).css("display","block")
