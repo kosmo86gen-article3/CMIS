@@ -76,9 +76,9 @@ body {
 									id="navList" href="adminMemberList.do">회원 목록</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									id="navList" href="adminShowBoard.do">전체 글 목록 조회</a></li>
-								<li class="nav-item"><a target="_blank" class="nav-link active"
+								<li class="nav-item"><a class="nav-link active"
 									id="navList" href="adminShowReply.do">전체 댓글 목록</a></li>
-									<li class="nav-item"><a class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
+									<li class="nav-item"><a target="_blank" class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
 								</li>
 							</ul>
 							<hr class="d-sm-none">
