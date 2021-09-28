@@ -42,11 +42,10 @@ public class AdminController {
 	@RequestMapping("adminPage.do")
 	public String adminPage(HttpSession session, Model model) throws Exception {
 		// 세션 IF문으로 세션 보안 처리
-		String returPage = "";
+		String returnPage = "";
 		if (session.getAttribute("memberLv") != null) {
-			if (session.getAttribute("userId") == null
-					&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
-				returPage = "loginPage";
+			if ((Integer)session.getAttribute("memberLv") == 1) {
+				returnPage = "loginPage";
 			} else {
 				System.out.println("adminPage 세션 통과");
 				// 회원 가입 건수
@@ -66,13 +65,13 @@ public class AdminController {
 				// 상품 카테고리 비율
 				model.addAttribute("categoryRatio", adminService.getCategoryRatio());
 				
-				returPage = "adminPage";
+				returnPage = "adminPage";
 
 			}
 		} else {
-			returPage = "error";
+			returnPage = "error";
 		}
-		return returPage;
+		return returnPage;
 	}
 
 	// 관리자의 회원 목록 페이지
@@ -80,15 +79,15 @@ public class AdminController {
 	public String memberList(MemberVO vo, Model model, HttpSession session) {
 		// 관리자 세션 IF문으로 세션 보안 처리
 		String returnPage = "";
+		
 		if (session.getAttribute("memberLv") != null) {
-			if (session.getAttribute("userId") == null
-					&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
+			if ((Integer)session.getAttribute("memberLv") == 1) {
 				returnPage = "loginPage";
 			} else {
 				System.out.println("adminMemberList 세션 통과");
 				model.addAttribute("memberList", adminService.getMemberList(vo));
 				returnPage = "adminMemberList";
-
+				System.out.println(session.getAttribute("memberLv"));
 			}
 		} else {
 			returnPage = "error";
@@ -102,8 +101,7 @@ public class AdminController {
 		// 관리자 세션 IF문으로 세션 보안 처리
 		String returnPage = "";
 		if (session.getAttribute("memberLv") != null) {
-			if (session.getAttribute("userId") == null
-					&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
+			if ((Integer)session.getAttribute("memberLv") == 1) {
 				returnPage = "loginPage";
 			} else {
 				System.out.println("adminGetMember 세션 통과");
@@ -122,8 +120,7 @@ public class AdminController {
 		// 관리자 세션 IF문으로 세션 보안 처리
 		String returnPage = "";
 		if (session.getAttribute("memberLv") != null) {
-			if (session.getAttribute("userId") == null
-					&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
+			if ((Integer)session.getAttribute("memberLv") == 1) {
 				returnPage = "loginPage";
 			} else {
 				System.out.println("adminMemberUpdate 세션 통과");
@@ -144,8 +141,7 @@ public class AdminController {
 		// 관리자 세션 IF문으로 세션 보안 처리
 		String returnPage = "";
 		if (session.getAttribute("memberLv") != null) {
-			if (session.getAttribute("userId") == null
-					&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
+			if ((Integer)session.getAttribute("memberLv") == 1) {
 				returnPage = "loginPage";
 			} else {
 				System.out.println("adminMemberList 세션 통과");
@@ -189,8 +185,7 @@ public class AdminController {
 			// 관리자 세션 IF문으로 세션 보안 처리
 			String returnPage = "";
 			if (session.getAttribute("memberLv") != null) {
-				if (session.getAttribute("userId") == null
-						&& Integer.parseInt((String) session.getAttribute("memberLv")) == 1) {
+				if ((Integer)session.getAttribute("memberLv") == 1) {
 					returnPage = "loginPage";
 				} else {
 					System.out.println("adminMemberList 세션 통과");

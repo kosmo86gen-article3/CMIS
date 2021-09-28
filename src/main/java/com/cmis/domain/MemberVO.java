@@ -11,7 +11,16 @@ public class MemberVO {
 	private String member_sns;
 	private int member_lv;
 	private String regdate;
+	private String member_email;
 	   
+	public String getMember_email() {
+		return member_email;
+	}
+
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
+
 	public String getRegdate() {
 	      return regdate;
 	}

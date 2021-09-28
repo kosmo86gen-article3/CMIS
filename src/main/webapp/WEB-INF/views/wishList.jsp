@@ -85,14 +85,14 @@ a:visited { color: #8c59b9; }
 						<div class="col-sm-4">
 							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminMemberList.do">회원 목록</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminShowBoard.do">전체 글 목록 조회</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminShowReply.do">전체 댓글 목록</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="wishList.do">관심 물품</a></li>
+							<li class="nav-item"><a class="nav-link active" id="navList"
+									href="modifyMember.do">회원정보수정</a></li>
+								<li class="nav-item"><a class="nav-link active" id="navList" href="showBoard.do">등록글
+										조회</a></li>
+								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">등록댓글보기</a>
+								</li>
+								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
+								</li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>

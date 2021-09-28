@@ -133,7 +133,7 @@
                         <c:when test="${sessionScope.userId != null && sessionScope.memberLv == 9 }"> <!-- 회원 세션이 있으면서 관리자인 경우  -->
                            <a href="adminMemberList.do" class="mr-40"><i class="ti-crown"></i>${sessionScope.memberName } 님</a>
                            <a href="logout.do" class="mr-40"><i class="ti-shift-right"></i>로그아웃</a>   
-                           <a href="adminPage.do" class="btn">Only Admin</a>
+                           <a href="wishList.do" class="btn">관심 물품</a>
                         </c:when>
                         
                      </c:choose>
