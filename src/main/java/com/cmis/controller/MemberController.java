@@ -1,5 +1,7 @@
 package com.cmis.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,15 +57,24 @@ public class MemberController {
 
 	// 로그인 요청이 들어왔을 때
 	@RequestMapping("login.do")
-	public String userLogin(MemberVO vo, HttpSession session) {
+	public String userLogin(MemberVO vo, HttpSession session,HttpServletResponse response) throws IOException {
 		System.out.println("로그인 작동 호출");
 
 		MemberVO result = memberService.userLogin(vo);
 
+		// 정지된 회원일 경우 로그인 불가능
+		if(result != null && result.getMember_lv() == 0) {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('정지된 아이디입니다'); </script>");
+			out.flush();
+
+			return "loginPage";
+		}
 		// 만약 가져온 result 값이 null 이거나 id값이 없거나 그 아이디 값이 result에 있는 값과 같지 않거나 Password값이
 		// TRUE!!! 이면 if문 안의 구문 실행
 		// TRUE이면 성공했으며 return이 마지막으로 실행되어 test.do로 리다이렉트
-		if (result != null && vo.getUser_id().equals(result.getUser_id())
+		else if (result != null && vo.getUser_id().equals(result.getUser_id())
 				&& vo.getMember_pw().equals(result.getMember_pw())) {
 
 			// 로그인 시 session에 set, "userID" key값에 MemberVO result.getUser_id 값을 (즉 로그인 한 회원
@@ -79,6 +90,10 @@ public class MemberController {
 
 			return "redirect:/test.do";
 		} else {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 로그인 정보입니다'); </script>");
+			out.flush();
 			return "redirect:/loginPage.do";
 		}
 	}

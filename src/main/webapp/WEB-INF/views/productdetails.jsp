@@ -335,8 +335,9 @@
 							<c:forEach items="${lowestPriceStore}" var="lowestPriceStoreList">
 								<div class="col-md-4">
 									<div class="single-defination">
-										<h2 class="mb-20">${lowestPriceStoreList.shopName }</h4>
+										<h2 class="mb-20"><a href="https://www.google.com/maps/search/${lowestPriceStoreList.shopName }" target="_blank">${lowestPriceStoreList.shopName }</a></h4>
 											<p>주소 : ${lowestPriceStoreList.address }</p>
+											<div style="float: left;">
 											<p>가격 : ${lowestPriceStoreList.salePrice }원</p>
 											<p>
 												거리 :
@@ -344,6 +345,12 @@
 													value="${lowestPriceStoreList.distance }" />
 												m
 											</p>
+											</div>
+											<div style="float: right;margin-right: 100px;">
+											<a href="#" id="${lowestPriceStoreList.shopName }" class="route_map" target="_blank">
+										<img src="resources/img/elements/route_map_icon.png" style="max-width: 50px;">
+										</a>
+										</div>
 									</div>
 								</div>
 							</c:forEach>

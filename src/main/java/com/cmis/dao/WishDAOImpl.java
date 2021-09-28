@@ -15,20 +15,26 @@ public class WishDAOImpl implements WishDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis; 
 	
-	
-	public void addWishList(WishVO wishVO) { 
-		mybatis.insert("WishDAO.addWishList",wishVO);
+	//찜 추가
+	public int addWishList(WishVO wishVO) { 
+		System.out.println("아이디 : " + wishVO.getMember_id());
+		System.out.println("상품 번호 : " +  wishVO.getProduct_code());
+		System.out.println("찜 번호 : " + wishVO.getWish_num());
+		return mybatis.insert("WishDAO.addWishList",wishVO);
 	}
-	
+	//찜 목록
 	public List<WishVO> getWishList(String userId){ 
 		System.out.println("==> Mybatis getWishList() 호출");
 		return mybatis.selectList("WishDAO.getWishList",userId);	
 	}
-	// 찜 추가
-	public int insertWish(WishVO wishVO) {
-		System.out.println("==> Mybatis insertWish() 호출");
-		return mybatis.insert("WishDAO.insertWish", wishVO);
-	}
+	/*
+	 * // 찜 추가 public int insertWish(WishVO wishVO) {
+	 * System.out.println("==> Mybatis insertWish() 호출"); return
+	 * mybatis.insert("WishDAO.insertWish", wishVO); }
+	 */
+	
+	//찜목록 추가
+		
 	
 	// 찜 삭제
 	public int deleteWish(WishVO wishVO) {

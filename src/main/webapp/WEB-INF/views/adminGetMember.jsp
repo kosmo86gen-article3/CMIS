@@ -41,7 +41,9 @@ body {
 	margin-bottom : 10px;
 	background-color : #050d15;
 }
-
+.InputArea *{
+	padding: 7px;
+}
 
 </style>
 
@@ -69,7 +71,7 @@ body {
 
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<h3 style="text-align:center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
 								<li class="nav-item"><a class="nav-link active" id="navList"
@@ -78,42 +80,66 @@ body {
 										조회</a></li>
 								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">전체 댓글 목록</a>
 								</li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
+								<li class="nav-item"><a target="_blank" class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
 								</li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-9" style="padding-bottom: 40px;">
 							<div id="container_box">
 				<!-- S :회원 수정 폼  -->
-				<div class="InputArea" id="memberUpdateform" style="margin: auto;">
+				<div class="InputArea" id="memberUpdateform" style="display:flex;justify-content: center;">
 					<form method="post" action="adminMemberUpdate.do">
+					<table>
+					<tr>
 						<input name ="user_id" class="hidden" type="hidden" value="${member.user_id }"/>
-						<div class = "inputArea">
-							<label for ="user_id">회원 ID</label>
-							<label>${member.user_id }</label>
-						</div>
-						<div class = "inputArea">
-							<label for ="member_name">회원 이름 </label>
-							<input type="text" id="member_name" name="member_name"
-							value = "${member.member_name }"/>
-						</div>
-						<div class = "inputArea">
-							<label for ="member_age">회원 나이</label>
-							<input type="text" id="member_age" name="member_age"
-							value = "${member.member_age }"/>
-						</div>
-						<div class = "inputArea">
-							<label for ="member_phone">회원 연락처</label>
-							<input type="text" id="member_phone" name="member_phone"
-							value = "${member.member_phone }"/>
-						</div>
-						<div class = "inputArea">
-							<label for ="regdate">회원 가입일</label>
-							<label>${member.regdate }</label>
-						</div>	
-							<input type="submit"class="btn btn-warning" value="수정">
-							
+						
+							<td><label for ="user_id">ID</label></td>
+							<td><label>${member.user_id }</label></td>
+						
+						</tr>
+						<tr>
+						
+							<td><label for ="member_name">이름 </label></td>
+							<td><input type="text" id="member_name" name="member_name"
+							value = "${member.member_name }"/></td>
+						
+						</tr>
+						<tr>
+						
+							<td><label for ="member_age">나이</label></td>
+							<td><input type="text" id="member_age" name="member_age"
+							value = "${member.member_age }"/></td>
+				
+						</tr>
+						<tr>
+					
+							<td><label for ="member_phone">연락처</label></td>
+							<td><input type="text" id="member_phone" name="member_phone"
+							value = "${member.member_phone }"/></td>
+				
+						</tr>
+						<tr>
+	
+							<td><label for ="regdate">가입일</label></td>
+							<td><label>${member.regdate }</label></td>
+	
+						</tr>
+						<tr>
+						
+							<td><label for="member_lv">권한</label></td>
+							<td><select id="member_lv" name="member_lv">
+							    <option value="0" <c:if test="${member.member_lv eq '0'}">selected="selected"</c:if>>회원 정지</option>
+							    <option value="1" <c:if test="${member.member_lv eq '1'}">selected="selected"</c:if>>일반 회원</option>
+							    <option value="9" <c:if test="${member.member_lv eq '9'}">selected="selected"</c:if>>관리자</option>
+							</select>
+							</td>
+		
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;"><input type="submit"class="btn btn-warning" value="수정"></td>
+							</tr>
+						</table>	
 					</form>
 					<!-- E :회원 수정 폼 -->
 				</div>
@@ -134,6 +160,8 @@ body {
 				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 			</div>
 		</footer>
+		
+		
 		
 		<!-- S: 파이어 베이스 스크립트 -->
 

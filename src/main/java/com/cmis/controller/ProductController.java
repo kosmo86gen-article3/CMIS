@@ -131,13 +131,16 @@ public class ProductController {
 	public void productdetails(ProductVO vo, String lat, String lon, Model model) throws IOException {
 
 		// 위도 경도가 없을 경우 학원 위도 경도로 설정
-		if(lat.isEmpty()) {
+		if(lat == null || lat == "") {
 			lat = "37.478687034753904";
 			lon = "126.87865557160939";
 		}
 		// 상품 코드로 상품 상세 정보 받아옴
 		vo = productService.getProductDetail(vo);
 
+		// 상품 상세페이지 조회수 증가
+		productService.productViewCount(vo);
+		
 		// 상품 코드로 지역별 /업태별 상품 가격 받아옴
 		model.addAttribute("productLocationPrice", productService.getProductLocationPrice(vo));
 		model.addAttribute("productStorePrice", productService.getProductStorePrice(vo));

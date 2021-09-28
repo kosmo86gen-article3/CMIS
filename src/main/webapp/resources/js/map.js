@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+	$("div.loaderbase").hide();
  
     if (navigator.geolocation) {
         
@@ -16,6 +17,9 @@ $(document).ready(function(){
             $('#lat').val(lat);
             $('#lon').val(lon);
             
+            var price = $('[href="price.do"]')
+            var pricedo = "price.do?lat=" + lat +"&lon=" +lon;
+            price.prop('href', pricedo);
             
             $('[href^="productdetails.do"]').each(function (index, item){
                 // 상품 상세 링크 가져오기
@@ -23,12 +27,45 @@ $(document).ready(function(){
                 $(item).prop('href',details + '&lat=' + lat + '&lon=' + lon);
             })
             
+
+         // 주소-좌표 변환 객체를 생성합니다
+         var geocoder = new kakao.maps.services.Geocoder();
+
+         var callback = function(result, status){
+        	    if(status === daum.maps.services.Status.OK){
+        	    	
+        	        var addr = result[0].address.address_name
+        	        
+        	        var url = "https://google.com/maps/dir/" + addr
+        	        
+        	        $('a.route_map').each(function (index, item){
+                        // 상품 상세 링크 가져오기
+                        var shopName = $(item).attr('id');
+                        $(item).prop('href', url + "/" + shopName + "/");
+                    })
+                    
+        	    }
+        	};
+
+        	geocoder.coord2Address(lon, lat, callback);
+
+
+            
      });
     }
     
     // 매장명 클릭 했을시 함수 실행
     $('a.box').click(function(){
        
+    	if (navigator.geolocation) {
+        	
+        	navigator.geolocation.getCurrentPosition(function(position) {
+                
+                lat = position.coords.latitude; // 위도
+                lon = position.coords.longitude; // 경도
+        	})
+    	}
+    	
        // 매장명
        var shopName = $(this).children('.storeName').val();
        
@@ -63,11 +100,11 @@ $(document).ready(function(){
                    content += "<div class='properties properties2 mb-30'>";
                    content += "<div class='properties__card'>";
                    content += "<div class='properties__img overlay1'>";
-                   content += "<a href='#'><img src='resources/img/images/"+ data[i].productCode + ".jpg' alt='' style='background-color: white'></a>";
+                   content += "<a href='productdetails.do?product_code=" + data[i].productCode + "&lat=" + lat +"&lon=" + lon + "' onclick='showLoader();'><img src='resources/img/images/"+ data[i].productCode + ".jpg' alt='' style='background-color: white'></a>";
                    content += "<div class='img-text'></div>";
                    content += "<div class='icon'></div></div>";
                    content += "<div class='properties__caption'>";
-                   content += "<h3><a href='productdetails.do?product_code=" + data[i].productCode + "'>" + data[i].productName + "</a></h3>";
+                   content += "<h3><a href='productdetails.do?product_code=" + data[i].productCode + "&lat=" + lat +"&lon=" + lon + "'' onclick='showLoader();'>" + data[i].productName + "</a></h3>";
                    content += "<p>" + data[i].productDetail + "</p></div>";
                    content += "<div class='properties__footer d-flex justify-content-between align-items-center'>";
                    content += "<div class='restaurant-name'>";
@@ -139,3 +176,8 @@ function textSearch(){
    
    
 }
+
+function showLoader(){
+	$("div.loaderbase").show();
+};
+

@@ -69,4 +69,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getProductCateList(vo);
 	}
 
+	@Override
+	public void productViewCount(ProductVO vo) {
+		System.out.println("productViewCount");
+		productDAO.productViewCount(vo);
+	}
+
 }

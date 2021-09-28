@@ -21,8 +21,11 @@ public class WishServiceImpl implements WishService {
 	private WishDAOImpl wishDAO;
 	
 	//찜목록 추가
-	public void addWishList(WishVO wishVO) {
-		wishDAO.addWishList(wishVO);
+	public int addWishList(WishVO wishVO) {
+		int result = wishDAO.addWishList(wishVO);
+		System.out.println(result+"서비스 출력");
+		return result;
+		
 	}
 	
 	//찜목록 출력

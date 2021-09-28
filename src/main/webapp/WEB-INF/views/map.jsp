@@ -11,6 +11,12 @@
 <title>제목</title>
 </head>
 <body>
+<div class="loaderbase">
+	<div class="loader"></div>
+	<div class="loaderText"><h1 style="color: white;">상품 데이터를 분석중입니다</h4>
+	
+	</div>
+</div>
 	<div id="root">
 		<!-- S: Index(Home).jsp 의 div 총괄 시작 -->
 		<!-- S: 헤더 부분 시작 -->
@@ -56,6 +62,9 @@
 							<div class="area on" id="shopArea1" style="outline: none;overflow:scroll;height: 231.4px;"
 								tabindex="1">
 								<c:forEach items="${storeList}" var="storeList">
+								<a href="#" id="${storeList.shopName }" class="route_map" target="_blank">
+										<img src="resources/img/elements/route_map_icon.png" style="float: right;margin-right: 25px;max-width: 50px;">
+										</a>
 									<a href="#" class="box"
 										onclick="storeMarker(${storeList.lon},${storeList.lat },&#39${storeList.shopName}&#39);return false;">
 										<input type="hidden" class="storeLon" value="${storeList.lon}"/>
@@ -66,8 +75,11 @@
 											test="${not empty storeList.shopTelnum}">
 											<p class="tel">${storeList.shopTelnum }</p>
 										</c:if>
-										<hr/>
+										
+										
 									</a>
+									
+										<hr/>
 								</c:forEach>
 							</div>
 						</div>

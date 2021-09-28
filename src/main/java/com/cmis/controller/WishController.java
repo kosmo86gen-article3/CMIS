@@ -15,7 +15,6 @@ import com.cmis.service.WishService;
 
 
 
-// jsp -> 컨트롤러 -> 서비스 -> DAO -> mybatis -> Mapper
 
 
 @Controller
@@ -23,23 +22,25 @@ public class WishController {
 
 	@Autowired 
 	private WishService wishService;
-	
 	@ResponseBody //비동기 처리 (ajax)일 때 꼭 추가
-	
 	@RequestMapping(value="ajaxHeartList",produces="application/text;charset=UTF-8")
-	
 	
 	public String ajaxHeartList(String product_name,String product_imgSrc, HttpSession session) {
 			
+
+		
+		String userId = (String)session.getAttribute("userId"); 
+		
+		if(userId == null) {
+			return  "찜 기능을 사용하기 위해서는 로그인이 필요합니다.";
+		}
+		
+		System.out.println(userId);
 		
 		String message = "찜목록에 담겼습니다.";
-		String userId = (String)session.getAttribute("userId"); 
-		System.out.println(userId);
 		
 		//이미지이름에서 product_code를 추출하기 위한 절차
 		String productCodeSrc = product_imgSrc.split("/")[3];
-		//resources/img/images/821.jpg 에서 "/"로 나누고 0부터 3번째에 있는 값을 변수에 저장
-		// productCodeSrc => 821.jpg
 		int productCodePos = productCodeSrc.lastIndexOf(".");
 		String productCode = productCodeSrc.substring(0,productCodePos);
 		
@@ -49,9 +50,21 @@ public class WishController {
 		wishVO.setProduct_code(Integer.parseInt(productCode)); //wishVO의 product_code가 int형이기 때문에 형변환
 		wishVO.setProduct_name(product_name);
 		
-		wishService.addWishList(wishVO);
 		
-		return message;
+		
+		int result = wishService.addWishList(wishVO);
+		
+		System.out.println(result+"add result");
+		if (result == 1){
+			return message;			
+		}
+		else {	
+			result = wishService.deleteWish(wishVO);	
+			if(result == 1) {
+				return "삭제 되었습니다.";
+			}
+		return "에러가 발생했습니다.";
+		}
 	}
 	
 	//관심물품(찜목록) 조회
@@ -61,6 +74,7 @@ public class WishController {
 		System.out.println(userId);
 		
 		if(userId== null) {
+			
 			return "loginPage";
 		}
 		m.addAttribute("wishList", wishService.getWishList(userId));

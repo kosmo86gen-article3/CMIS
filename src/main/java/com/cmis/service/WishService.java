@@ -8,7 +8,7 @@ import com.cmis.domain.WishVO;
 public interface WishService {
 	
 	//찜목록에 추가
-	public void addWishList(WishVO wishVO); 
+	public int addWishList(WishVO wishVO); 
 	
 	//찜목록 조회
 	public List<WishVO> getWishList(String userId);

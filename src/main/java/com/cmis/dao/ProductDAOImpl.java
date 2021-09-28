@@ -71,4 +71,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return mybatis.selectList("ProductDAO.getProductCateList", vo);
 	}
 
+	@Override
+	public void productViewCount(ProductVO vo) {
+		System.out.println("===> Mybatis productDAO productViewCount() 호출");
+		mybatis.update("ProductDAO.productViewCount", vo);
+	}
+
 }

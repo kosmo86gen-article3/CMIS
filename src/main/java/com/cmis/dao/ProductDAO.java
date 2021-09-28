@@ -27,4 +27,6 @@ public interface ProductDAO {
 	public List<HashMap> getLowestPriceStore(HashMap lowestMap);
 
 	public List<ProductVO> getProductCateList(ProductVO vo);
+
+	public void productViewCount(ProductVO vo);
 }

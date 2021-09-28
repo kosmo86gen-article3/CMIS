@@ -40,7 +40,9 @@
 	<select id="selectComment" parameterType="comment"  resultType="hashmap">
 		SELECT board_num, comment_num, comment_content, comment_writer, date_format(comment_date, '%y-%m-%d %H:%i') comment_date 
 		FROM CMIS_COMMENT
+		 <if test="board_num != null and board_num != ''">
 		WHERE board_num = #{board_num}
+		</if>
 		ORDER BY comment_num DESC 
 	</select>
 	

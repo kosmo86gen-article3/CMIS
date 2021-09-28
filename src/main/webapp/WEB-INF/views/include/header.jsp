@@ -73,6 +73,7 @@
                            <li><a href="productList.do">데이터 센터</a>
                               <ul class="submenu">
                                  <li><a href="productList.do">상품 목록</a></li>
+                                 <li><a href="price.do">상품 가격 비교</a></li>
                               </ul></li>
                            <li><a href="#">커뮤니티</a>
                               <ul class="submenu">
@@ -165,7 +166,7 @@
 
    <!-- Jquery Slick , Owl-Carousel Plugins -->
    <script src="./resources/js/owl.carousel.min.js"></script>
-   <script src="./\\resources/js/slick.min.js"></script>
+   <script src="./resources/js/slick.min.js"></script>
    <!-- One Page, Animated-HeadLin -->
    <script src="./resources/js/wow.min.js"></script>
    <script src="./resources/js/animated.headline.js"></script>
@@ -195,6 +196,7 @@
    <!-- Jquery Plugins, main Jquery -->
    <script src="./resources/js/plugins.js"></script>
    <script src="./resources/js/main.js"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f8a16e73608a4a6a4fe93cd542e3eb76&libraries=services"></script>
    <script src="./resources/js/map.js"></script>
    	<script src="./resources/js/wish.js"></script>
    
@@ -232,7 +234,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-N9JKC4D');</script>
 <!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BFS844XTQ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-BFS844XTQ1');
+</script>
 
 </body>
 </html>

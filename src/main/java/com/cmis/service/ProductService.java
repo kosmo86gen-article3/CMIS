@@ -26,4 +26,6 @@ public interface ProductService {
 
 	List<ProductVO> getProductCateList(ProductVO vo);
 
+	void productViewCount(ProductVO vo);
+
 }

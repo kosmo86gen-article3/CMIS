@@ -7,8 +7,9 @@
 <head>
 <meta charset="utf-8">
 <title>adminGetMember</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
 	$(function() {
 		$('.memberListID').hover(function() {
 			$(this).css("color", "#ff8d1e");
@@ -38,13 +39,10 @@ body {
 	display: flex;
 }
 
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
+#navList {
+	margin-bottom: 10px;
+	background-color: #050d15;
 }
-
-
-
 </style>
 
 
@@ -72,62 +70,53 @@ body {
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
 						<div class="col-sm-3">
-							<h3 style="text-align:center">Menu</h3>
+							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active" id="navList"
-									href="adminMemberList.do">회원 목록</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="adminShowBoard.do">전체 글 목록
-										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="adminShowReply.do">전체 댓글 목록</a>
-								</li>
-								<li class="nav-item"><a target="_blank" class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="adminMemberList.do">회원 목록</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="adminShowBoard.do">전체 글 목록 조회</a></li>
+								<li class="nav-item"><a target="_blank" class="nav-link active"
+									id="navList" href="adminShowReply.do">전체 댓글 목록</a></li>
+									<li class="nav-item"><a class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
 								</li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
 						<div class="col-sm-9">
-							<h2>관리자 권한으로 회원의 개인정보를 관리하는 공간입니다.</h2>
 
-							<hr style="height: 5px;">
-							<div id="container_box">
+							<div class="whole-wrap">
+								<div class="container box_1170">
 
-				<table class="table">
-					<thead class="thead-dark">
-						<tr style="text-align: center;">
-							<th>아이디</th>
-							<th>이름</th>
-							<th>나이</th>
-							<th>연락처</th>
-							<th>가입일</th>
-							<th>권한</th>
-							<th>관리</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${memberList }" var="member">
-							<tr style="text-align: center;">
-								<td>${member.user_id}</td>
-								<td>${member.member_name}</td>
-								<td>${member.member_age}</td>
-								<td>${member.member_phone}</td>
-								<td>${member.regdate}</td>
-								<c:if test="${member.member_lv == 0}">
-								<td>정지된 회원</td>
-								</c:if>
-								<c:if test="${member.member_lv == 1}">
-								<td>일반 회원</td>
-								</c:if>
-								<c:if test="${member.member_lv == 9}">
-								<td>관리자</td>
-								</c:if>
-								<td><a href="adminGetMember.do?user_id=${member.user_id}" style="color:black" class="memberListID">회원 관리</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+									<div class="section-top-border">
+										<h3 class="mb-30">자유게시판 글 목록</h3>
+											<div class="progress-table">
+											<table style="width: 100%;text-align: center;">
+												<tr>
+													<th>글 번호</th>
+													<th>댓글 번호</th>
+													<th>내용</th>
+													<th>작성자</th>
+													<th>관리</th>
+												</tr>
+												<c:forEach items="${replyList }" var="replyList">
+													<tr>
+														<td><a class="freeboardAtag"
+																href="boardDetail.do?board_num=${replyList.board_num}"  style="color:black;">${replyList.board_num }</a></td>
+														<td>${replyList.comment_num}</td>
+														<td>${replyList.comment_content}</td>
+														<td><a href="adminGetMember.do?user_id=${replyList.comment_writer}" style="color:black" class="memberListID">${replyList.comment_writer }</a></td>
+														<td><a href="#" class="genric-btn primary-border radius delete-btn2">댓글 삭제</a></td>
+												</c:forEach>
+												</table>
+											</div>
+										</div>
+									</div>
 
-			</div>
-							
+								</div>
+							</div>
+
+
 						</div>
 					</div>
 				</div>
@@ -144,11 +133,11 @@ body {
 				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 			</div>
 		</footer>
-		
-		
-		
-		
-		
+
+
+
+
+
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>
