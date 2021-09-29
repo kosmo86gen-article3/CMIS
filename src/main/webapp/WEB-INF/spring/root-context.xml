@@ -18,6 +18,8 @@
 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 	<property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
 	<property value="jdbc:mysql://c-mis.c3kq47xdfoyw.ap-northeast-2.rds.amazonaws.com/project" name="url"/>
+	<!-- <property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" name="driverClassName"/> -->
+	<!-- <property value="jdbc:log4jdbc:mysql://c-mis.c3kq47xdfoyw.ap-northeast-2.rds.amazonaws.com/project" name="url"/> -->
 	<property value="admin" name="username"/>
 	<property value="3whdhkdkdlemf!" name="password"/>
 </bean>

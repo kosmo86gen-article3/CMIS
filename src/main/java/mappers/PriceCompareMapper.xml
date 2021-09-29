@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PriceCompareDAO">
+
+	<select id="getCompareStoreList" parameterType="hashmap"
+		resultType="String">
+		SELECT A.shop_name from(
+		SELECT CMIS_STORE.shop_name,
+		SUM(IF(CMIS_PRICES.product_name in(
+		<foreach collection="array" item="item" separator=",">
+			#{item}
+		</foreach>
+		),CMIS_PRICES.sale_price,null)) AS price_sum
+		FROM CMIS_STORE join CMIS_PRICES on CMIS_STORE.shop_name =
+		CMIS_PRICES.shop_name
+
+		WHERE ST_Distance_Sphere(location,
+		ST_GeomFromText(<trim prefix="'Point(" suffix=")'">${lon} ${lat}</trim>)) <![CDATA[<=]]> 5000
+
+		and CMIS_PRICES.research_date = (SELECT max(research_date) from
+		CMIS_PRICES)
+
+		group by CMIS_STORE.shop_name
+
+		having NOT price_sum IS NULL
+
+		and count(IF(CMIS_PRICES.product_name in(
+		<foreach collection="array" item="item" separator=",">
+			#{item}
+		</foreach>
+		),CMIS_PRICES.sale_price,null)) =
+		<bind name="arrayCnt" value="array.length" />
+		#{arrayCnt}
+		order by price_sum
+		limit 5) as A
+	</select>
+	
+	<select id="getCompareStore" resultType="hashmap" parameterType="String">
+		select shop_name, product_name, sale_price from CMIS_PRICES where shop_name = #{shop_name} and CMIS_PRICES.research_date = (SELECT max(research_date) from CMIS_PRICES)
+		and product_name in(
+		<foreach collection="array" item="item" separator=",">
+			#{item}
+		</foreach>
+		)
+	</select>
+
+</mapper>

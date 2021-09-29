@@ -73,7 +73,7 @@
                            <li><a href="productList.do">데이터 센터</a>
                               <ul class="submenu">
                                  <li><a href="productList.do">상품 목록</a></li>
-                                 <li><a href="price.do">상품 가격 비교</a></li>
+                                 <li><a href="price_compare.do">상품 가격 비교</a></li>
                               </ul></li>
                            <li><a href="#">커뮤니티</a>
                               <ul class="submenu">

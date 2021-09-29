@@ -17,8 +17,8 @@ $(document).ready(function(){
             $('#lat').val(lat);
             $('#lon').val(lon);
             
-            var price = $('[href="price.do"]')
-            var pricedo = "price.do?lat=" + lat +"&lon=" +lon;
+            var price = $('[href="price_compare.do"]')
+            var pricedo = "price_compare.do?lat=" + lat +"&lon=" +lon;
             price.prop('href', pricedo);
             
             $('[href^="productdetails.do"]').each(function (index, item){
