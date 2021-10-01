@@ -107,6 +107,10 @@ height: 75px;
 								<h3 class="mb-30">최저가 비교 결과</h3>
 								<div class="progress-table">
 									<table style="width: 100%; text-align: center;">
+									<c:if test="${empty compareList && not empty productList}">
+									<h3 class="text-heading">담은 상품을 전부 판매하는 매장이 없습니다</h3>
+									<a href='#' class="genric-btn primary-border radius" onclick='removeAllProductCompare();'>전체 삭제</a>
+									</c:if>
 									<c:if test="${empty compareList }">
 									<h3 class="text-heading">비교할 상품을 담아주세요</h3>
 									</c:if>

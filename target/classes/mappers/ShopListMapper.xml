@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ShopListDAO">
+
+	
+	<select id= "getShopList" parameterType= "hashmap" resultType = "hashmap">
+	 SELECT STORE.shop_name, AR.location_name, BU.shop_kind_name, STORE.address, 
+	 	ST_X(ST_VALIDATE(LOCATION)) AS lat, ST_Y(ST_VALIDATE(LOCATION)) AS lng
+         FROM CMIS_STORE AS STORE 
+         INNER JOIN CMIS_BU AS BU 
+         ON STORE.shop_kind_code = BU.shop_kind_code 
+         INNER JOIN CMIS_AR AS AR 
+         ON STORE.distric_code = AR.location_code
+         <where>
+			<if test='distric_code != "" and distric_code !="*"'>AND STORE.distric_code = #{distric_code}</if>
+			<if test='shop_kind_code != "" and shop_kind_code !="*"'>AND BU.shop_kind_code = #{shop_kind_code}</if>
+		 </where> 
+    <!-- shop_name :매장명 , location_name : 지역명,  shop_kind_name: 업태, address:주소-->
+	</select>  
+	 
+</mapper>

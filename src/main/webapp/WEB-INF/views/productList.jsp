@@ -12,7 +12,7 @@
 <body>
 <div class="loaderbase">
 	<div class="loader"></div>
-	<div class="loaderText"><h1 style="color: white;">상품 데이터를 분석중입니다</h4>
+	<div class="loaderText"><h1 style="color: white;">상품 데이터를 분석중입니다</h1>
 	
 	</div>
 </div>

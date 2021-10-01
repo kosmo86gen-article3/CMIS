@@ -74,6 +74,7 @@
                               <ul class="submenu">
                                  <li><a href="productList.do">상품 목록</a></li>
                                  <li><a href="price_compare.do">상품 가격 비교</a></li>
+                                 <li><a href="shopList.do">전국 매장 정보</a></li>
                               </ul></li>
                            <li><a href="#">커뮤니티</a>
                               <ul class="submenu">
