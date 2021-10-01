@@ -79,7 +79,7 @@
                            <li><a href="#">커뮤니티</a>
                               <ul class="submenu">
                                  <li><a href="board.do">자유 게시판</a></li>
-                                 <li><a href="listing.html">뉴스 / Hot issue</a></li>
+                                 <li><a href="newsBoard.do">뉴스 / Hot issue</a></li>
                                  <li><a href="listing.html">실시간 채팅</a></li>
                                  <li><a href="qnaBoard.do">Q/A</a></li>
                               </ul></li>

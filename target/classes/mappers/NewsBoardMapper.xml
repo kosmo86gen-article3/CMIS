@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NewsBoardDAO">
+	
+	<select id="getNewsBoardList" resultType="newsboard">
+		SELECT * 
+		FROM CMIS_NEWS
+		ORDER BY news_num DESC
+	</select>
+	
+	<update id="newsBoardCnt" parameterType="newsboard">
+		UPDATE CMIS_NEWS 
+		SET news_hits = news_hits + 1 
+		WHERE news_num = #{news_num}
+	</update>
+	
+	<!-- <select id="getNewsBoardList" resultType="newsboard">
+		SELECT * 
+		FROM CMIS_NEWS
+		ORDER BY news_hits DESC LIMIT 5
+	</select> -->
+	
+</mapper>
