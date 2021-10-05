@@ -8,14 +8,9 @@
 		parameterType="hashmap">
 
 		select * from CMIS_PRO where not product_last_average_price is null
-		<choose>
-			<when test="product_name != null">
+			<if test="keyword != null">
 				and product_name like '%${keyword}%'
-			</when>
-			<when test="product_hot_sale_price != null">
-				and product_hot_sale_price like '%${keyword}%'
-			</when>
-		</choose>
+			</if>
 		order by product_last_average_price
 	</select>
 
@@ -24,14 +19,9 @@
 	<select id="getCountProduct" resultType="int"
 		parameterType="hashmap">
 		select count(*) from CMIS_PRO where not product_last_average_price is null
-		<choose>
-			<when test="product_name != null">
-				and product_name like '%${keyword}%'
-			</when>
-			<when test="product_hot_sale_price != null">
-				and title like '%${keyword}%'
-			</when>
-		</choose>
+		<if test="keyword != null">
+			and product_name like '%${keyword}%'
+		</if>
 		order by product_last_average_price
 	</select>
 

@@ -11,8 +11,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" type="image/x-icon"
-   href="resources/img/favicon.ico">
+<link rel="icon" href="resources/img/favicon.ico" type="image/x-icon" sizes="16x16">
 
 <!-- CSS here -->
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
@@ -29,7 +28,7 @@
 <link rel="stylesheet" href="resources/css/slick.css">
 <link rel="stylesheet" href="resources/css/nice-select.css">
 <link rel="stylesheet" href="resources/css/style.css">
-<link rel="stylesheet" href="resources/css/custom.css">
+
 <style media="(min-width:512px)">
 .hideDesk{display:none;}
 </style>
@@ -58,7 +57,7 @@
                   class="menu-wrapper d-flex align-items-center justify-content-between">
                   <!-- Logo -->
                   <div class="logo">
-                     <a href="index.jsp"><img src="resources/img/logo/logo.png"
+                     <a href="index.jsp"><img src="resources/img/logo/logo.png" style="height: 36px;"
                         alt=""></a>
                   </div>
                   <!-- Main-menu -->
@@ -81,7 +80,7 @@
                                  <li><a href="board.do">자유 게시판</a></li>
                                  <li><a href="newsBoard.do">뉴스 / Hot issue</a></li>
                                  <li><a href="listing.html">실시간 채팅</a></li>
-                                 <li><a href="qnaBoard.do">Q/A</a></li>
+                                 <li><a href="qna_board.do">Q/A</a></li>
                               </ul></li>
                           <!--  <li><a href="myPage.do">마이페이지</a>
                               <ul class="submenu">

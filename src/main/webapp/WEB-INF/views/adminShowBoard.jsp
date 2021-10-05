@@ -72,67 +72,108 @@ body {
 						<div class="col-sm-3">
 							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminMemberList.do">회원 목록</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminShowBoard.do">전체 글 목록 조회</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="adminShowReply.do">전체 댓글 목록</a></li>
-									<li class="nav-item"><a target="_blank" class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
-								</li>
+								<li class="nav-item"><a class="nav-link orange"
+									href="adminMemberList.do">회원 목록</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									href="adminShowBoard.do">전체 글 목록 조회</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									href="adminShowReply.do">전체 댓글 목록</a></li>
+								<li class="nav-item"><a target="_blank"
+									class="nav-link orange" href="adminPage.do">통계 페이지</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
 						<div class="col-sm-9">
+						<h2>관리자 권한으로 자유게시판의 글 관리를 하는 곳입니다</h2>
 
-							<div class="whole-wrap">
-								<div class="container box_1170">
+							<hr style="height: 5px;">
+							<table class="table">
+								<thead class="table-orange">
+									<tr style="text-align: center;">
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>관리</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${boardList }" var="board"
+										begin="${pageMap.min }" end="${pageMap.max }">
+										<tr style="text-align: center;">
+											<td style="vertical-align: middle;">${board.board_num }</td>
+											<td style="vertical-align: middle;"><a
+												class="freeboardAtag"
+												href="boardDetail.do?board_num=${board.board_num}"
+												style="color: black;">${board.board_title }</a></td>
+											<td style="vertical-align: middle;"><a
+												href="adminGetMember.do?user_id=${board.board_writer}"
+												style="color: black" class="memberListID">${board.board_writer }</a></td>
+											<td style="vertical-align: middle;"><a href="#"
+												class="genric-btn orange radius delete-btn">글 삭제</a></td>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="pagination-area text-center"
+								style="padding-bottom: 50px;">
+								<div class="container">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="single-wrap d-flex justify-content-center">
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-start " id="myDIV">
 
-									<div class="section-top-border">
-										<h3 class="mb-30">자유게시판 글 목록</h3>
-											<div class="progress-table">
-											<table style="width: 100%;text-align: center;">
-												<tr>
-													<th>번호</th>
-													<th>제목</th>
-													<th>작성자</th>
-													<th>관리</th>
-												</tr>
-												<c:forEach items="${boardList }" var="board">
-													<tr>
-														<td>${board.board_num }</td>
-														<td>
-															<a class="freeboardAtag"
-																href="boardDetail.do?board_num=${board.board_num}"  style="color:black;">${board.board_title }</a>
-														</td>
-														<td><a href="adminGetMember.do?user_id=${board.board_writer}" style="color:black" class="memberListID">${board.board_writer }</a></td>
-														<td><a href="#" class="genric-btn primary-border radius delete-btn">글 삭제</a></td>
-												</c:forEach>
-												</table>
+														<c:if test="${pageMap.minPage ne 1 }">
+															<!-- pageMap의 minpage가 1이 아닐때  -->
+															<li class="page-item"><a class="page-link"
+																href="adminShowBoard.do?page=${pageMap.currentPage-5} ">
+																	<span class="ti-angle-left"></span>
+															</a></li>
+														</c:if>
+
+														<c:forEach var="i" begin="${pageMap.minPage }"
+															end="${pageMap.maxPage }">
+
+															<c:if test="${pageMap.currentPage eq i }">
+																<li class="page-item active"><a class="page-link"
+																	href="#">${i}</a></li>
+															</c:if>
+
+															<c:if test="${pageMap.currentPage ne i }">
+																<li class="page-item"><a class="page-link"
+																	href="adminShowBoard.do?page=${i}">${i}</a></li>
+															</c:if>
+
+														</c:forEach>
+
+														<c:if test="${pageMap.maxPage ne pageMap.totPage }">
+															<li class="page-item"><a class="page-link"
+																href="adminShowBoard.do?page=${pageMap.currentPage+5}"><span
+																	class="ti-angle-right"></span></a></li>
+														</c:if>
+													</ul>
+												</nav>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+	</div>
+	</section>
 
-		<!-- E :본문 목록  -->
+	<!-- E :본문 목록  -->
 
-		<!-- E: 본문 영역 끝 -->
+	<!-- E: 본문 영역 끝 -->
 
-		<!-- S: 푸터 영역 시작 -->
-		<footer id="footer">
-			<div id="footer_box">
-				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
-			</div>
-		</footer>
+	<!-- S: 푸터 영역 시작 -->
+	<footer id="footer">
+		<div id="footer_box">
+			<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+		</div>
+	</footer>
 
 
 

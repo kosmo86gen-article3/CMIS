@@ -72,4 +72,9 @@ public class AdminServiceImpl implements AdminService {
 	public List<HashMap> getCategoryRatio() {
 		return adminDAO.getCategoryRatio();
 	}
+
+	@Override
+	public List<HashMap> getMemberWeekJoin() {
+		return adminDAO.getMemberWeekJoin();
+	}
 }

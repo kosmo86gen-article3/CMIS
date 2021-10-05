@@ -23,17 +23,19 @@ $(document).ready(function(){
 		loader.show();
 	});
 	
-	
+	$('#productSearch').click(function(){
+		$('#productSearchForm').submit();
+	});
 	
 	// 파라미터값 가져와서 변수로 저장
 	var keyword = getUrlParameter('keyword');
-	var select = getUrlParameter('select');
+	
 	
 	// 파라미터값이 있으면
-	if(keyword != '' || keyword != null){
+	if(keyword){
 		
 		// url에 포함할 parameter 값 저장
-		var href = "&keyword=" + keyword + "&select=" + select
+		var href = "&keyword=" + keyword
 		
 		// page-link 클래스 전부 각각 함수 실행
 		$('.page-link').each(function (index, item){
@@ -114,9 +116,11 @@ $(document).ready(function(){
 	        	}
 	        	
 	        	var okTable = "<a class='btn' id='modalOk' href='productdetails.do?product_code=" + data.product_code + "&lat=" + lat +"&lon=" + lon + "' onclick='loader()'>네</a>";
+	        	var compareTable = "<a class='btn' id='modalCompare' href='#' onclick='addProductCompare(&#39;"+ data.product_db_name +"&#39;)'>견적 담기</a>";
 	        	var	resetTable = "<a class='btn' id='modalNo' href='#' onclick='resetModal();'>아니요</a>";
 	        			
 	        	$('#okTable').append(okTable);
+	        	$('#compareTable').append(compareTable);
 	        	$('#resetTable').append(resetTable);
 	        },
 	        error:function(request,status,error){
@@ -144,7 +148,7 @@ function resetModal(){
 	
 	$('#modalOk').remove();
 	$('#modalNo').remove();
-	
+	$('#compareTable').empty();
 	$('.modal-body').empty();
 		
 	var	modalBody = "검색할 이미지를 첨부해주세요";
@@ -155,3 +159,18 @@ function resetModal(){
 	$("#imageUpload").show();
 	$('#modalSubmit').text("이미지 업로드");
 };
+
+function addProductCompare(product_name){
+	 $.ajax({
+	        type: "POST",
+	        url: "addProductCompare.do",
+		contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
+		dataType:"text",
+		data : {product_name:product_name},
+	        success: function(data) {
+	        	alert(data);
+	        	},error:function(request,status,error){
+	   				 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	   			 }
+	        });
+}

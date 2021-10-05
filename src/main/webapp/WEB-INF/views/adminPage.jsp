@@ -165,6 +165,31 @@ var chart = new google.visualization.PieChart(document.getElementById('chart_div
 chart.draw(data, options);
 }
 
+//1주간 신규 회원 가입 수
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawChart7);
+function drawChart7() {
+var data = new google.visualization.DataTable();
+
+data.addColumn('date');
+data.addColumn('number', '가입자 수');
+
+<c:forEach items="${memberWeekJoin}" var="memberJoinList">
+
+data.addRow([new Date(${memberJoinList.regdate}),${memberJoinList.cnt}]);
+
+
+</c:forEach>
+
+
+var options = {
+		 hAxis: {format: 'M월 d일'}
+};
+
+var chart = new google.visualization.LineChart(document.getElementById('chart_div7'));
+chart.draw(data, options);
+}
+
 </script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -327,6 +352,20 @@ chart.draw(data, options);
 						<div class="card-body">
 							<div class="row" style="text-align: center;">
 								<div id="chart_div4" class="chart"
+									style="width: 100%; min-height: 400px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fa fa-area-chart"></i>1주간 신규 회원 가입수
+						</div>
+						<div class="card-body">
+							<div class="row" style="text-align: center;">
+								<div id="chart_div7" class="chart"
 									style="width: 100%; min-height: 400px;"></div>
 							</div>
 						</div>

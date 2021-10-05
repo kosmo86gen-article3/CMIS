@@ -64,12 +64,24 @@ height: 75px;
 											action="priceList.do" class="search-box mb-100">
 											<input type="hidden" name="lat" id="lat" value=""> <input
 												type="hidden" name="lon" id="lon" value="">
-											<div class="input-form" style="width: 70%;">
-												<input name="keyword" id="product_name">
+											<div class="input-form" style="width: 50%%;">
+												<input name="keyword" id="product_name" placeholder="검색할 상품명을 입력해주세요">
 											</div>
 											<div class="search-form">
 												<!-- 모달 버튼 -->
-												<a href='#' id='productSearch'>상품 검색</a>
+												<a href='#' id='productSearch'><i class="ti-search"></i>상품 검색</a>
+											</div>
+											<div class="search-form">
+												
+												<!-- 모달 버튼 -->
+												<a href='#' id='imageSearch'><i class="ti-camera"></i>
+													이미지 검색</a>
+												<c:if test="${sessionScope.userId != null }">
+													<input type="hidden" value="${sessionScope.userId}"
+														id="memberName" />
+												</c:if>
+
+												
 											</div>
 										</form>
 									</div>
@@ -97,6 +109,45 @@ height: 75px;
 							</div>
 						</div>
 					</div>
+					
+					<!-- 모달 영역 -->
+					<div class="modal fade" id="imageSearchModal" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true" style="z-index: 1050;">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">이미지 검색</h5>
+									<button class="close" type="button" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">X</span>
+									</button>
+								</div>
+								<div class="modal-body">검색할 이미지를 첨부해주세요</div>
+								<div class="modal-footer" style="justify-content: center;">
+
+									<form id="imageSearchForm" action="imageSearch.do"
+										method="post" enctype="multipart/form-data">
+										<table style="width: 100%; box-sizing: border-box;">
+											<tbody>
+												<tr>
+													<td id="okTable"><input type="file" id="imageUpload"
+														name="imageUpload" style="width: 100%;" /></td>
+														<td id="compareTable" style="padding-left: 10px;padding-right: 10px;"></td>
+													<td id="resetTable"><a class="btn" id="modalSubmit"
+														href="#">이미지 업로드</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+
+
+								</div>
+
+							</div>
+						</div>
+					</div>
 
 
 					<!--? Start Align Area -->
@@ -108,10 +159,10 @@ height: 75px;
 								<div class="progress-table">
 									<table style="width: 100%; text-align: center;">
 									<c:if test="${empty compareList && not empty productList}">
-									<h3 class="text-heading">담은 상품을 전부 판매하는 매장이 없습니다</h3>
-									<a href='#' class="genric-btn primary-border radius" onclick='removeAllProductCompare();'>전체 삭제</a>
+									<h3 class="text-heading" style="float: left;margin-left: 20px;margin-bottom: 0px;">담은 상품을 전부 판매하는 매장이 없습니다</h3>
+									<a href='#' style="float: right;margin-right: 20px;margin-bottom: 0px;" class="genric-btn primary-border radius" onclick='removeAllProductCompare();'>전체 삭제</a>
 									</c:if>
-									<c:if test="${empty compareList }">
+									<c:if test="${empty compareList && empty productList}">
 									<h3 class="text-heading">비교할 상품을 담아주세요</h3>
 									</c:if>
 									<c:if test="${not empty compareList }">

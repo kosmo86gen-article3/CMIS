@@ -96,4 +96,14 @@
 	<select id="getCategoryRatio" resultType="hashmap">
 		select CATE.main_category_name, count(*) as cnt from CMIS_PRO left join (select distinct(main_category), main_category_name from CMIS_CATE) as CATE on CMIS_PRO.main_category = CATE.main_category group by CATE.main_category_name
 	</select>
+	
+	<!-- 1주간 신규 회원 가입 수 -->
+	<select id="getMemberWeekJoin" resultType="hashmap">
+		select date_format(B.regdate, '%Y,%m-1,%d') as regdate, B.cnt from(    
+select regdate, count(regdate) as cnt from CMIS_MEM where regdate between DATE_SUB(now(), INTERVAL 6 DAY) and now() group by regdate
+union
+select curdate() - INTERVAL (a.a) DAY as ragdate, 0 as cnt
+    from (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6) as a order by regdate)
+    as B group by regdate
+	</select>
 </mapper>

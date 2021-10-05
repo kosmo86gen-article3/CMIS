@@ -29,7 +29,7 @@ public class QnaController {
    @RequestMapping("qna_board.do")
    public String qnaBoard(Model m) {
       m.addAttribute("qnaBoardList", qnaService.getQnaBoardList());
-      return "qnaBoard";
+      return "qna_board";
    }
 
 

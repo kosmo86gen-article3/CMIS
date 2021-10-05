@@ -68,4 +68,5 @@ $(window).resize(function() {
 	drawChart4();
 	drawChart5();
 	drawChart6();
+	drawChart7();
 });

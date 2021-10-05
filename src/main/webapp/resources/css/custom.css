@@ -40,3 +40,75 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+#scrollUp, #back-top{
+	background: #f15d30 !important;
+}
+
+.btn:hover::before {
+	background: none;
+	
+}
+.btn::before{
+	background: none;
+}
+a:hover {
+	color : #f15d30 !important;
+}
+.btn:hover{
+	background-color: white;
+	color: #f15d30;
+	outline: 1px solid #f15d30;
+}
+
+.genric-btn.orange {
+	color: #fff;
+	background: #f15d30;
+	border: 2px solid transparent
+}
+
+.genric-btn.orange:hover {
+	color: #f15d30;
+	border: 2px solid #f15d30;
+	background: #fff
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active{
+	background-color: white;
+	color: #f15d30;
+	outline: 2px solid #f15d30;
+}
+
+.pagination-area .page-item.active .page-link{
+	background: #f15d30;
+	color: white !important;
+} 
+.pagination-area .page-link:hover{
+	background: #f15d30;
+	color: white !important;
+}
+#back-top:hover{
+	background: white !important;
+}
+
+.table-orange {
+	background: #f15d30;
+	color:white;
+}
+.table-orange:hover {
+	color: #f15d30;
+	background: white;
+	outline: 2px solid #f15d30;
+}
+
+.nav-link.orange{
+	margin-bottom : 10px;
+	background-color : #f15d30;
+	text-align: center;
+}
+
+.nav-link.orange:hover{
+	color : #f15d30;
+	background: white;
+	outline: 2px solid #f15d30;
+}

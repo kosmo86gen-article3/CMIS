@@ -62,6 +62,7 @@
 							<div class="area on" id="shopArea1" style="outline: none;overflow:scroll;height: 231.4px;"
 								tabindex="1">
 								<c:forEach items="${storeList}" var="storeList">
+								<div class="shopList">
 								<a href="#" id="${storeList.shopName }" class="route_map" target="_blank">
 										<img src="resources/img/elements/route_map_icon.png" style="float: right;margin-right: 25px;max-width: 50px;">
 										</a>
@@ -80,6 +81,7 @@
 									</a>
 									
 										<hr/>
+										</div>
 								</c:forEach>
 							</div>
 						</div>
@@ -91,7 +93,7 @@
 
 				</div>
 				<!-- 상품 목록 출력 컨테이너 -->
-				<div class="col-sm-12" style="margin-top: 15px">
+				<div class="col-sm-12" style="margin-top: 15px;margin-bottom: 70px">
 					<hr />
 					<div class="col-sm-12"
 						style="text-align: center; margin-bottom: 15px">
@@ -364,6 +366,7 @@ function storeMarker(lat,lng,shopName) {
 
 
 <!-- S: 푸터 영역 시작 -->
+
 </div>
 <!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 

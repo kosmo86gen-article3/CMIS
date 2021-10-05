@@ -60,7 +60,7 @@
       var options = {
     	title: '시세 변동 추이 및 예측',
     	titleTextStyle: {
-            color: 'black',    // any HTML string color ('red', '#cc00cc')
+            color: '#f15d30',    // any HTML string color ('red', '#cc00cc')
             fontSize: 18, // 12, 18 whatever you want (don't specify px)
             bold: true    // true or false
         },
@@ -102,7 +102,11 @@
 
       var options = {
         title: '업태별 판매가 평균',
-        legend: {position: 'none'}
+        titleTextStyle: {
+            color: '#f15d30'
+		},
+        legend: {position: 'none'},
+        colors:['#f15d30']
         /* vAxis: {minValue: 0} */
      };
 
@@ -128,7 +132,11 @@
 
       var options = {
         title: '전국 판매가 평균',
-        legend: {position: 'none'}
+        titleTextStyle: {
+            color: '#f15d30'
+},
+        legend: {position: 'none'},
+        colors:['#f15d30']
         /* vAxis: {minValue: 0} */
       };
 
@@ -155,8 +163,8 @@
 							<div class="col-lg-12">
 								<!-- Section Tittle -->
 								<div class="section-tittle text-center mb-80">
-									<h2>상품 상세 정보</h2>
-									<p>최적의 가격 정보와 가격 예측값, 시각화 자료를 제공하며 그래프를 통해 추이를 확인 할 수 있습니다.</p>
+									<h2 style="color: #f15d30;">상품 상세 정보</h2>
+									<p style="color: #f15d30;">최적의 가격 정보와 가격 예측값, 시각화 자료를 제공하며 그래프를 통해 추이를 확인 할 수 있습니다.</p>
 								</div>
 							</div>
 						</div>
@@ -167,11 +175,11 @@
 									style="margin: 0px auto; text-align: center">
 									<img
 										src="resources/img/images/${productDetail.product_code }.jpg"
-										style="width: 100%; height: 100%;">
+										style="width: 100%; height: 100%;border: 2px solid #f15d30;margin-bottom: 20px">
 								</div>
 								<div class="heart" style="text-align: center;">
 									<span class="widget_title"
-										style="color: #2d2d2d; margin-left: 10px; margin-right: 10px;">${productDetail.product_name }</span>
+										style="color: #f15d30; margin-left: 10px; margin-right: 10px;">${productDetail.product_name }</span>
 									<img src="resources/img/gallery/heart1.png" alt="">
 								</div>
 							</div>
@@ -191,7 +199,7 @@
 									class="table table-hover table-striped">
 									<thead>
 										<tr>
-											<th class="table-dark" scope="col" colspan="7"
+											<th class="table-orange" scope="col" colspan="7"
 												style="text-align: center">업태별 판매가 평균</th>
 										</tr>
 										<tr>
@@ -228,7 +236,7 @@
 									class="table table-hover table-striped">
 									<thead>
 										<tr>
-											<th class="table-dark" scope="col" colspan="4"
+											<th class="table-orange" scope="col" colspan="4"
 												style="text-align: center">전국 판매가 평균</th>
 										</tr>
 										<tr>
@@ -278,7 +286,7 @@
 							<div class="col-lg-6">
 								<div class="blog_right_sidebar">
 									<aside class="single_sidebar_widget popular_post_widget">
-										<h3 class="widget_title" style="color: #2d2d2d;">관련 상품</h3>
+										<h1 class="widget_title" style="color: #f15d30;">관련 상품</h1>
 
 										<c:forEach items="${productCateList}" var="cateList">
 											<div class="media post_item">
@@ -306,7 +314,7 @@
 							<div class="col-lg-6">
 								<div class="blog_right_sidebar">
 									<aside class="single_sidebar_widget popular_post_widget">
-										<h3 class="widget_title" style="color: #2d2d2d;">관련 뉴스</h3>
+										<h1 class="widget_title" style="color: #f15d30;">관련 뉴스</h1>
 
 										<c:forEach items="${productNewsList}" var="newsList">
 											<ul class="list cat-list">
@@ -330,12 +338,12 @@
 			<div class="whole-wrap">
 				<div class="container box_1170">
 					<div class="section-top-border">
-						<h3 class="mb-30">내 주변 할인 매장</h3>
+						<h1 class="mb-30" style="color:#f15d30">내 주변 할인 매장</h1>
 						<div class="row">
 							<c:forEach items="${lowestPriceStore}" var="lowestPriceStoreList">
 								<div class="col-md-4">
 									<div class="single-defination">
-										<h2 class="mb-20"><a href="https://www.google.com/maps/search/${lowestPriceStoreList.shopName }" target="_blank">${lowestPriceStoreList.shopName }</a></h4>
+										<h2 class="mb-20"><a href="https://www.google.com/maps/search/${lowestPriceStoreList.shopName }" target="_blank">${lowestPriceStoreList.shopName }</a></h2>
 											<p>주소 : ${lowestPriceStoreList.address }</p>
 											<div style="float: left;">
 											<p>가격 : ${lowestPriceStoreList.salePrice }원</p>

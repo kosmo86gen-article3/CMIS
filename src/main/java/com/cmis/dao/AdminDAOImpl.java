@@ -73,6 +73,11 @@ public class AdminDAOImpl implements AdminDAO {
 		System.out.println("Mybatis getCategoryRatio() 호출");
 		return mybatis.selectList("AdminDAO.getCategoryRatio");
 	}
+
+	public List<HashMap> getMemberWeekJoin() {
+		System.out.println("Mybatis getMemberWeekJoin() 호출");
+		return mybatis.selectList("AdminDAO.getMemberWeekJoin");
+	}
 	
 	
 }

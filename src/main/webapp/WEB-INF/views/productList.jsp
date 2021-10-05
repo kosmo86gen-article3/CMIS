@@ -9,13 +9,15 @@
 <meta charset="utf-8">
 <title>물품 리스트</title>
 </head>
+
 <body>
-<div class="loaderbase">
-	<div class="loader"></div>
-	<div class="loaderText"><h1 style="color: white;">상품 데이터를 분석중입니다</h1>
-	
+	<div class="loaderbase">
+		<div class="loader"></div>
+		<div class="loaderText">
+			<h1 style="color: white;">상품 데이터를 분석중입니다</h1>
+
+		</div>
 	</div>
-</div>
 	<div id="root">
 		<!-- S: Index(Home).jsp 의 div 총괄 시작 -->
 		<!-- S: 헤더 부분 시작 -->
@@ -23,6 +25,7 @@
 			<div id="header_box">
 				<jsp:include page="/WEB-INF/views/include/header.jsp" />
 				<script src="./resources/js/productList.js"></script>
+
 			</div>
 		</header>
 		<!-- E: 헤더 부분 끝 -->
@@ -33,34 +36,29 @@
 			<div id="container_box">
 				<main>
 					<!--? Hero Area Start-->
-					<div class="slider-area hero-bg2 hero-overly">
+					<%-- <div class="slider-area hero-bg2 hero-overly">
 						<div
 							class="single-slider hero-overly  slider-height2 d-flex align-items-center">
-							<div class="container">
+							<div class="container" style="max-height: 200px;">
 								<div class="row justify-content-center">
 									<div class="col-xl-10 col-lg-10">
 										<!-- Hero Caption -->
-										<div class="hero__caption hero__caption2 pt-200">
+										<div class="hero__caption hero__caption2">
 											<h1>원하는 상품을 검색하세요</h1>
 										</div>
 										<!--Hero form -->
-										<form name="form1" method="get" action="productList.do"
-											class="search-box mb-100">
-											<div class="input-form">
+										<form name="form1" method="get" id="productSearchForm"
+											action="productList.do" class="search-box mb-100">
+											<div class="input-form" style="width: 50%;">
 												<input name="keyword" value="${map.keyword }"
-													placeholder="What are you finding?">
-											</div>
-											<div class="select-form">
-												<div class="select-itms">
-													<select name="select" id="select1">
-														<option value="title"
-															<c:if test="${map.search_option == 'title'}">selected</c:if>>상품명</option>
-														<option value="">내용</option>
-													</select>
-												</div>
+													placeholder="검색할 상품명을 입력해주세요">
 											</div>
 											<div class="search-form">
-												<input type="submit" value="search">
+												<a href='#' id='productSearch'><i class="ti-search"></i>
+													상품 검색</a>
+											</div>
+											<div class="search-form">
+
 												<!-- 모달 버튼 -->
 												<a href='#' id='imageSearch'><i class="ti-camera"></i>
 													이미지 검색</a>
@@ -69,14 +67,14 @@
 														id="memberName" />
 												</c:if>
 
-												<!--  <a href="#"><i class="ti-search"></i>Search</a> -->
+
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --%>
 					<!-- 모달 영역 -->
 					<div class="modal fade" id="imageSearchModal" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
@@ -91,8 +89,8 @@
 										<span aria-hidden="true">X</span>
 									</button>
 								</div>
-								<div class="modal-body">검색할 이미지를 첨부해주세요</div>
-								<div class="modal-footer" style="justify-content: center;">
+								<div class="modal-body" style="color: #ff8d1e;">검색할 이미지를 첨부해주세요</div>
+								<div class="modal-footer" style="justify-content: center;color: #ff8d1e;">
 
 									<form id="imageSearchForm" action="imageSearch.do"
 										method="post" enctype="multipart/form-data">
@@ -101,6 +99,8 @@
 												<tr>
 													<td id="okTable"><input type="file" id="imageUpload"
 														name="imageUpload" style="width: 100%;" /></td>
+													<td id="compareTable"
+														style="padding-left: 10px; padding-right: 10px;"></td>
 													<td id="resetTable"><a class="btn" id="modalSubmit"
 														href="#">이미지 업로드</a></td>
 												</tr>
@@ -117,16 +117,15 @@
 
 
 					<!-- listing Area Start -->
-					
+
 					<div class="listing-area pt-120 pb-120">
 						<div class="container">
 							<div class="row">
-								<!--? Left content -->
 								<div class="col-xl-4 col-lg-4 col-md-6">
 									<div class="row">
 										<div class="col-12">
 											<div class="small-section-tittle2 mb-45">
-												<h4>Advanced Filter</h4>
+												
 											</div>
 										</div>
 									</div>
@@ -134,80 +133,30 @@
 									<div class="category-listing mb-50">
 										<!-- single one -->
 										<div class="single-listing">
-											<!-- Select City items start -->
-											<div class="select-job-items2">
-												<select name="select2">
-													<option value="">City</option>
-													<option value="">Dhaka</option>
-													<option value="">india</option>
-													<option value="">UK</option>
-													<option value="">US</option>
-													<option value="">Pakistan</option>
-												</select>
-											</div>
-											<!--  Select City items End-->
-											<!-- Select State items start -->
-											<div class="select-job-items2">
-												<select name="select2">
-													<option value="">State</option>
-													<option value="">Dhaka</option>
-													<option value="">Mirpur</option>
-													<option value="">Danmondi</option>
-													<option value="">Rampura</option>
-													<option value="">Htizill</option>
-												</select>
-											</div>
-											<!--  Select State items End-->
-											<!-- Select km items start -->
-											<div class="select-job-items2">
-												<select name="select2">
-													<option value="">Near 1 km</option>
-													<option value="">2 km</option>
-													<option value="">3 km</option>
-													<option value="">4 km</option>
-													<option value="">5 km</option>
-													<option value="">6 km</option>
-												</select>
-											</div>
-											<!--  Select km items End-->
-											<!-- select-Categories start -->
-											<div class="select-Categories pt-80 pb-30">
-												<div class="small-section-tittle2 mb-20">
-													<h4>Price range</h4>
+											<form name="form1" method="get" id="productSearchForm"
+												action="productList.do" class="search-box mb-100">
+												<div class="input-form">
+													<input name="keyword" value="${map.keyword }"
+														placeholder="상품명 입력">
 												</div>
-												<label class="container">$50 - $150 <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">$150 - $300 <input
-													type="checkbox" checked="checked active"> <span
-													class="checkmark"></span>
-												</label> <label class="container">$300 - $500 <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">$500 - $1000 <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">$1000 - Above <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label>
-											</div>
-											<!-- select-Categories End -->
-											<!-- select-Categories start -->
-											<div class="select-Categories">
-												<div class="small-section-tittle2 mb-20">
-													<h4>Tags</h4>
+												<div class="search-form" style="margin-bottom: 20px;text-align: center" >
+													<a href='#' id='productSearch' class="genric-btn orange radius"><i
+														class="ti-search"></i> 상품 검색</a>
 												</div>
-												<label class="container">Wireless Internet <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">Accepts Credit Cards <input
-													type="checkbox" checked="checked active"> <span
-													class="checkmark"></span>
-												</label> <label class="container">Smoking Allowed <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">Parking Street <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label> <label class="container">Coupons <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label>
-											</div>
-											<!-- select-Categories End -->
+												<div class="search-form" style="text-align: center;">
+
+													<!-- 모달 버튼 -->
+													<a href='#' id='imageSearch' class="genric-btn orange radius"><i
+														class="ti-camera"></i> 이미지 검색</a>
+													<c:if test="${sessionScope.userId != null }">
+														<input type="hidden" value="${sessionScope.userId}"
+															id="memberName" />
+													</c:if>
+
+
+												</div>
+											</form>
+
 										</div>
 									</div>
 									<!-- Job Category Listing End -->
@@ -235,11 +184,12 @@
 													<!-- Single -->
 													<div class="properties properties2 mb-30">
 														<div class="properties__card">
-															<div class="properties__img overlay1">
+															<div class="properties__img overlay1"
+																style="height: 280px; line-height:280px;text-align: center;">
 																<a
 																	href="productdetails.do?product_code=${proList.product_code}"><img
 																	src="resources/img/images/${proList.product_code }.jpg"
-																	alt=""></a>
+																	alt="" style="vertical-align:middle;max-width: 280px;max-height: 280px;margin-bottom: 20px;"></a>
 																<div class="img-text">
 																	<!-- <span>$$$</span>
                                                 <span>Closed</span> -->
@@ -254,6 +204,9 @@
 																		href="productdetails.do?product_code=${proList.product_code}">${proList.product_name}</a>
 																</h3>
 																<p>${proList.product_detail }</p>
+																<c:if test="${proList.product_detail == null}">
+																<p>&nbsp;</p>
+																</c:if>
 															</div>
 															<div
 																class="properties__footer d-flex justify-content-between align-items-center">
@@ -327,63 +280,7 @@
 					</div>
 					<!-- listing-area Area End -->
 
-					<!--? Want To work 02-->
-					<section class="wantToWork-area">
-						<div class="container">
-							<div class="wants-wrapper w-padding2">
-								<div class="row justify-content-between">
-									<div class="col-xl-8 col-lg-8 col-md-7">
-										<div class="wantToWork-caption wantToWork-caption2">
-											<img src="resources/img/logo/logo2_footer.png" alt=""
-												class="mb-20">
-											<p>Users and submit their own items. You can create
-												different packages and by connecting with your PayPal or
-												Stripe account charge users for registration to your
-												directory portal.</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-5">
-										<div class="footer-social f-right sm-left">
-											<a href="#"><i class="fab fa-twitter"></i></a> <a
-												href="https://bit.ly/sai4ull"><i
-												class="fab fa-facebook-f"></i></a> <a href="#"><i
-												class="fab fa-pinterest-p"></i></a> <a href="#"><i
-												class="fab fa-instagram"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!-- Want To work End -->
-					<!--? Want To work 01-->
-					<section class="wantToWork-area">
-						<div class="container">
-							<div class="wants-wrapper">
-								<div class="row align-items-center justify-content-between">
-									<div class="col-xl-7 col-lg-9 col-md-8">
-										<div class="wantToWork-caption wantToWork-caption2">
-											<div class="main-menu2">
-												<nav>
-													<ul>
-														<li><a href="index.html">Home</a></li>
-														<li><a href="explore.html">Explore</a></li>
-														<li><a href="pages.html">Pages</a></li>
-														<li><a href="blog.html">Blog</a></li>
-														<li><a href="contact.html">Contact</a></li>
-													</ul>
-												</nav>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-2 col-lg-3 col-md-4">
-										<a href="#" class="btn f-right sm-left">Add Listing</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!-- Want To work End -->
+
 				</main>
 			</div>
 		</section>
@@ -399,4 +296,9 @@
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>
+<style type="text/css">
+.overlay1::before {
+	background-color: white;
+}
+</style>
 </html>

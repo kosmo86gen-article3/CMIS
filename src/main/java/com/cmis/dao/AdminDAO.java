@@ -30,4 +30,6 @@ public interface AdminDAO {
 	public List<HashMap> getMemberAge();
 
 	public List<HashMap> getCategoryRatio();
+
+	public List<HashMap> getMemberWeekJoin();
 }

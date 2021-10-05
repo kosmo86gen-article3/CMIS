@@ -34,6 +34,8 @@ public interface AdminService {
 	List<HashMap> getMemberAge();
 
 	List<HashMap> getCategoryRatio();
+
+	List<HashMap> getMemberWeekJoin();
 	
 	
 	

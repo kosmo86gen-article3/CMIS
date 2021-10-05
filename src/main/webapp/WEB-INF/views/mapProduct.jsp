@@ -30,7 +30,7 @@
 
 		<!-- S: 본문 영역 시작 -->
 
-		<div class="container-fluid">
+		<div class="container-fluid" style="margin-bottom: 70px;">
 			<!-- 전체 Container -->
 			<h1 class="display-1" style="text-align: center; margin: 15px;">최저가
 				찾기</h1>
@@ -200,6 +200,11 @@ function storeMarker(lat,lng) {
 
 
 <!-- S: 푸터 영역 시작 -->
+		<footer id="footer">
+			<div id="footer_box">
+				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+			</div>
+		</footer>
 </div>
 <!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>

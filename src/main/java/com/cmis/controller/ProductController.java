@@ -37,12 +37,7 @@ public class ProductController {
 
 	// 상품 목록 페이지 요청
 	@RequestMapping("productList.do")
-	public void productlist(Model model, String page, @RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "title") String select // 기본 검색 옵션값을 작성자로 한다.
-	// 키워드의 기본값을 ""으로 한다.
-	)
-
-	{
+	public void productlist(Model model, String page, String keyword){
 
 		/*
 		 * //상품 목록 DB값 불러와 VIEW에 뿌려주는 MODEL,서비스 호출 model.addAttribute("productList",
@@ -55,12 +50,6 @@ public class ProductController {
 
 		HashMap searchMap = new HashMap();
 		searchMap.put("keyword", keyword);
-		System.out.println("select 값 : " + select);
-		if (select.equals("title")) {
-			searchMap.put("product_name", select);
-		} else if (select == "product_hot_sale_price") {
-			searchMap.put("product_hot_sale_price", select);
-		}
 		model.addAttribute("productList", productService.getSearchProductList(searchMap));
 
 		int maxNum = productService.getCountProduct(searchMap); // 상품테이블 갯수
@@ -76,7 +65,7 @@ public class ProductController {
 			pageNum = 1;
 
 		// 한 페이지에 몇 건 보여줄건지
-		int pageCount = 10;
+		int pageCount = 6;
 
 		// 출력할 첫번째 데이터
 		int min = (pageNum - 1) * pageCount;
@@ -276,6 +265,7 @@ public class ProductController {
 				List<ProductVO> list = productService.getSearchProductList(map);
 				
 				map.put("product_code", list.get(0).getProduct_code());
+				map.put("product_db_name", list.get(0).getProduct_name());
 				
 				// 소켓 연결 종료
 				socket.close();

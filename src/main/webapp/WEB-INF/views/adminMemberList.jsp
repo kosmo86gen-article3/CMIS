@@ -7,8 +7,9 @@
 <head>
 <meta charset="utf-8">
 <title>adminGetMember</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
 	$(function() {
 		$('.memberListID').hover(function() {
 			$(this).css("color", "#ff8d1e");
@@ -37,14 +38,6 @@ body {
 	font-size: 150%;
 	display: flex;
 }
-
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
-}
-
-
-
 </style>
 
 
@@ -72,16 +65,16 @@ body {
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
 						<div class="col-sm-3">
-							<h3 style="text-align:center">Menu</h3>
+							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active" id="navList"
+								<li class="nav-item"><a class="nav-link orange"
 									href="adminMemberList.do">회원 목록</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="adminShowBoard.do">전체 글 목록
-										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="adminShowReply.do">전체 댓글 목록</a>
-								</li>
-								<li class="nav-item"><a target="_blank" class="nav-link active" id="navList" href="adminPage.do">통계 페이지</a>
-								</li>
+								<li class="nav-item"><a class="nav-link orange"
+									href="adminShowBoard.do">전체 글 목록 조회</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									href="adminShowReply.do">전체 댓글 목록</a></li>
+								<li class="nav-item"><a target="_blank"
+									class="nav-link orange" href="adminPage.do">통계 페이지</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
@@ -91,43 +84,88 @@ body {
 							<hr style="height: 5px;">
 							<div id="container_box">
 
-				<table class="table">
-					<thead class="thead-dark">
-						<tr style="text-align: center;">
-							<th>아이디</th>
-							<th>이름</th>
-							<th>나이</th>
-							<th>연락처</th>
-							<th>가입일</th>
-							<th>권한</th>
-							<th>관리</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${memberList }" var="member">
-							<tr style="text-align: center;">
-								<td>${member.user_id}</td>
-								<td>${member.member_name}</td>
-								<td>${member.member_age}</td>
-								<td>${member.member_phone}</td>
-								<td>${member.regdate}</td>
-								<c:if test="${member.member_lv == 0}">
-								<td>정지된 회원</td>
-								</c:if>
-								<c:if test="${member.member_lv == 1}">
-								<td>일반 회원</td>
-								</c:if>
-								<c:if test="${member.member_lv == 9}">
-								<td>관리자</td>
-								</c:if>
-								<td><a href="adminGetMember.do?user_id=${member.user_id}" style="color:black" class="memberListID">회원 관리</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+								<table class="table">
+									<thead class="table-orange">
+										<tr style="text-align: center;">
+											<th>아이디</th>
+											<th>이름</th>
+											<th>나이</th>
+											<th>연락처</th>
+											<th>가입일</th>
+											<th>권한</th>
+											<th>관리</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${memberList }" var="member"
+											begin="${pageMap.min }" end="${pageMap.max }">
+											<tr style="text-align: center;">
+												<td>${member.user_id}</td>
+												<td>${member.member_name}</td>
+												<td>${member.member_age}</td>
+												<td>${member.member_phone}</td>
+												<td>${member.regdate}</td>
+												<c:if test="${member.member_lv == 0}">
+													<td>정지된 회원</td>
+												</c:if>
+												<c:if test="${member.member_lv == 1}">
+													<td>일반 회원</td>
+												</c:if>
+												<c:if test="${member.member_lv == 9}">
+													<td>관리자</td>
+												</c:if>
+												<td><a
+													href="adminGetMember.do?user_id=${member.user_id}"
+													style="color: black" class="memberListID">회원 관리</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
-			</div>
-							
+							</div>
+							<div class="pagination-area text-center" style="padding-bottom: 50px;">
+								<div class="container">
+									<div class="row">
+										<div class="col-xl-12">
+											<div class="single-wrap d-flex justify-content-center">
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-start " id="myDIV">
+
+														<c:if test="${pageMap.minPage ne 1 }">
+															<!-- pageMap의 minpage가 1이 아닐때  -->
+															<li class="page-item"><a class="page-link"
+																href="adminMemberList.do?page=${pageMap.currentPage-5} ">
+																	<span class="ti-angle-left"></span>
+															</a></li>
+														</c:if>
+
+														<c:forEach var="i" begin="${pageMap.minPage }"
+															end="${pageMap.maxPage }">
+
+															<c:if test="${pageMap.currentPage eq i }">
+																<li class="page-item active"><a class="page-link"
+																	href="#">${i}</a></li>
+															</c:if>
+
+															<c:if test="${pageMap.currentPage ne i }">
+																<li class="page-item"><a class="page-link"
+																	href="adminMemberList.do?page=${i}">${i}</a></li>
+															</c:if>
+
+														</c:forEach>
+
+														<c:if test="${pageMap.maxPage ne pageMap.totPage }">
+															<li class="page-item"><a class="page-link"
+																href="adminMemberList.do?page=${pageMap.currentPage+5}"><span
+																	class="ti-angle-right"></span></a></li>
+														</c:if>
+													</ul>
+												</nav>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -144,11 +182,11 @@ body {
 				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 			</div>
 		</footer>
-		
-		
-		
-		
-		
+
+
+
+
+
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>
