@@ -159,49 +159,53 @@ height: 75px;
 								<div class="progress-table">
 									<table style="width: 100%; text-align: center;">
 									<c:if test="${empty compareList && not empty productList}">
-									<h3 class="text-heading" style="float: left;margin-left: 20px;margin-bottom: 0px;">담은 상품을 전부 판매하는 매장이 없습니다</h3>
-									<a href='#' style="float: right;margin-right: 20px;margin-bottom: 0px;" class="genric-btn primary-border radius" onclick='removeAllProductCompare();'>전체 삭제</a>
+									<h3 class="text-heading">담은 상품을 전부 판매하는 매장이 없습니다</h3>
+									<a href='#' class="genric-btn orange radius" onclick='removeAllProductCompare();'>목록 비우기</a>
 									</c:if>
-									<c:if test="${empty compareList && empty productList}">
+									<c:if test="${empty compareList }">
 									<h3 class="text-heading">비교할 상품을 담아주세요</h3>
 									</c:if>
 									<c:if test="${not empty compareList }">
 										<tr>
-											<th>상품 정보/수량</th>
+											<th bgcolor="#f15d30">상품 정보/수량</th>
 											<c:forEach items="${storeList}" var="store">
-											<th>${store }</th>
+											<th style= "background-color:#f36f46; color:white; border:1px solid; border-top:none;">${store }</th>
 											</c:forEach>
-											<th>삭제</th>
+											<th bgcolor="#f15d30">삭제</th>
 										</tr>
 										
 										<c:forEach items="${productList}" var="proList">
 										<tr>
-											<th>${proList }</th>
+											<th style="background-color:#f36f46; color:white">${proList }</th>
 											<c:set var="i" value="1"/>
 											<c:forEach items="${compareList }" var="comList">
 											
 											<c:forEach items="${comList }" var="com" varStatus="status">
 											<c:if test="${com.product_name == proList }">
-											<td class="store${i }">${com.sale_price }</td>
+											<td style="border:1px solid; border-top:none; border-bottom:none" class="store${i }">${com.sale_price }</td>
 											</c:if>
 											
 											</c:forEach>
 											<c:set var="i" value="${i+1}"/>
 											</c:forEach>
-											<td><a href='#' class="genric-btn primary-border radius" onclick='removeProductCompare(&#39${proList}&#39);'>삭제</a></td>
+											<td><a href='#' class="genric-btn orange radius" onclick='removeProductCompare(&#39${proList}&#39);'>삭제</a></td>
 										</tr>
 										</c:forEach>
 										<tr>
-											<th>전체</th>
+											<th bgcolor="#f15d30">합계</th>
 											<c:forEach items="${storeList}" var="store">
-											<td class="sum"></td>
+											<td style="border:1px solid; border-top:double; border-bottom:none" class="sum"></td>
 											</c:forEach>
-											<td><a href='#' class="genric-btn primary-border radius" onclick='removeAllProductCompare();'>전체 삭제</a></td>
+											<td style="border:1px solid; border-top:double; border-bottom:none; border-right:none"><a href='#' class="genric-btn orange radius" onclick='removeAllProductCompare();'>전체 삭제</a></td>
 										</tr>
 										</c:if>
 									</table>
+									
 								</div>
 
+									<div>
+									 <h1> 나열된 매장은 회원님의 위치 기반 근거리 순서 입니다.</h1>
+									</div>
 								
 							</div>
 						</div>

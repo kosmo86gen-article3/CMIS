@@ -166,8 +166,14 @@ function addProductCompare(product_name){
  		dataType:"text",
  		data : {product_name:product_name},
 	        success: function(data) {
-	        	alert(data);
-	        	location.reload();
+		        	if(data=="상품을 견적서에 추가했습니다"){
+		        	$('#productSearchModal').modal("hide");
+		        	$('#imageSearchModal').modal("hide");
+		        	alert(data);
+		        	location.reload();
+	        	}else{
+	        		alert(data);
+	        	}
 	        	},error:function(request,status,error){
 	   				 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	   			 }

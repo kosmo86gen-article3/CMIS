@@ -19,12 +19,13 @@
 }
 
 .qna .box.text > h2 {
+	
   text-align: center;
   position: relative;
 }
 
 .qna .box.text > h2:after {
-  content: "\f054";
+  content: url("../img/elements/triangle-icon-24.png");
   font-family: "Font Awesome 5 Pro";
   position: absolute;
   right: 0;

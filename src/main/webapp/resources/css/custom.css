@@ -112,3 +112,14 @@ a:hover {
 	background: white;
 	outline: 2px solid #f15d30;
 }
+
+.slider-area form.search-box .search-form a{
+	background:#f15d30;
+}
+.slider-area form.search-box .search-form a:hover{
+	background:#fff;
+}
+
+.slider-area form.search-box .search-form a:hover i{
+	color:#f15d30;
+}

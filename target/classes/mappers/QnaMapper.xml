@@ -54,6 +54,7 @@
 		CMIS_QNA_BOARD A
 		LEFT OUTER JOIN CMIS_QNA_REPLY B
 		ON A.QNA_BOARD_NUM = B.QNA_BOARD_NUM
+	ORDER BY QNA_BOARD_NUM DESC
 </select>
 
 <delete id="deleteQnaBoard" parameterType="qnaboard">

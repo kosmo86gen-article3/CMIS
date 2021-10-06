@@ -87,7 +87,7 @@ $(document).ready(function(){
    });
    
    $('.replyQna').click(function(){
-		$(this).next().toggle();
+		$(this).parent().next().toggle();
 	})
 
 	$('.replyQnaSubmit').click(function(){
