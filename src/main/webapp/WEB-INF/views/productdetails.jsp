@@ -60,7 +60,7 @@
       var options = {
     	title: '시세 변동 추이 및 예측',
     	titleTextStyle: {
-            color: '#f15d30',    // any HTML string color ('red', '#cc00cc')
+            color: 'black',    // any HTML string color ('red', '#cc00cc')
             fontSize: 18, // 12, 18 whatever you want (don't specify px)
             bold: true    // true or false
         },
@@ -92,7 +92,7 @@
         ['전체', <fmt:formatNumber type="number" pattern="0" value="${productDetail.product_last_average_price }"/>],
         <c:forEach items="${productStorePrice}" var="storePriceList" varStatus="status">
   	  		<c:if test="${!status.last}">
-  	  			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />],
+  	  			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />, color],
   	   		</c:if>
   	   <c:if test="${status.last}">
   	 			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />]
@@ -103,10 +103,10 @@
       var options = {
         title: '업태별 판매가 평균',
         titleTextStyle: {
-            color: '#f15d30'
+            color: 'black'
 		},
         legend: {position: 'none'},
-        colors:['#f15d30']
+        colors:['red']
         /* vAxis: {minValue: 0} */
      };
 
@@ -133,7 +133,7 @@
       var options = {
         title: '전국 판매가 평균',
         titleTextStyle: {
-            color: '#f15d30'
+            color: 'black'
 },
         legend: {position: 'none'},
         colors:['#f15d30']

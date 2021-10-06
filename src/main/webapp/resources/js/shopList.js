@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	var distric_code = "*";
 	var shop_kind_code= "*";
 	    
@@ -24,8 +25,8 @@ $(document).ready(function(){
     	    		setInfowindows(null);  
     	    		var content ="";   	    		
     	    		for(var i =0; i< data.length; i++){
-    	    			content += "<hr/>"
     	    			content += "<div>"
+   	    				content += "<hr class='listLine'/>"
     	    			content += "<div>[" + data[i].shop_name +"]</div>";
     	    			content += "<div>" + data[i].location_name +"</div>";
     	    			content += "<div>" + data[i].shop_kind_name +"</div>";
@@ -65,8 +66,9 @@ $(document).ready(function(){
     	    		setInfowindows(null);  
     	    		var content ="";   	    		
     	    		for(var i =0; i< data.length; i++){
-    	    			content += "<hr/>"
+    	    			
     	    			content += "<div>"
+    	    			content += "<hr style='border:solid 1px #f15d30;'/>"
     	    			content += "<div>[" + data[i].shop_name +"]</div>";
     	    			content += "<div>" + data[i].location_name +"</div>";
     	    			content += "<div>" + data[i].shop_kind_name +"</div>";

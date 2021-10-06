@@ -79,7 +79,7 @@
                               <ul class="submenu">
                                  <li><a href="board.do">자유 게시판</a></li>
                                  <li><a href="newsBoard.do">뉴스 / Hot issue</a></li>
-                                 <li><a href="listing.html">실시간 채팅</a></li>
+                                 <li><a href="chat.do">실시간 채팅</a></li>
                                  <li><a href="qna_board.do">Q/A</a></li>
                               </ul></li>
                           <!--  <li><a href="myPage.do">마이페이지</a>

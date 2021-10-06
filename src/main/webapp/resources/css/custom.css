@@ -132,3 +132,12 @@ a:hover {
 ::-webkit-scrollbar-thumb:hover { background: #f15d30; } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
 ::-webkit-scrollbar-thumb:active { background: #f15d30; } /* 실질적 스크롤 바를 클릭할 때 */
 ::-webkit-scrollbar-button { display: none; } /* 스크롤 바 상 하단 버튼 */
+
+ .countShopList{
+ text-align: right; 
+ color:#f15d30;
+ }
+ 
+ .listLine{
+ border:solid 1px #f15d30;
+ }
