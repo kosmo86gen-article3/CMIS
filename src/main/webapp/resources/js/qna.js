@@ -99,12 +99,8 @@ $(document).ready(function(){
 		var reply_content = $(this).parent().parent().children(2).children('.reply_content').val();
 		
 		var reply_board_num = $(this).parent().parent().parent().parent().children('.qnaNum').val();
-		
-		alert(reply_writer)
-		alert(reply_content)
-		alert(reply_board_num)
-		
-		if(reply_writer == null){
+				
+		if(reply_writer == null || reply_writer == ''){
 			alert("로그인이 필요합니다")
 		}else{
 			

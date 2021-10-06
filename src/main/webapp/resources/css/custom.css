@@ -123,3 +123,12 @@ a:hover {
 .slider-area form.search-box .search-form a:hover i{
 	color:#f15d30;
 }
+.category-listing{
+   border:solid 2px #f15d30;
+   border-radius: 5px;
+}
+::-webkit-scrollbar { width: 5.2px; } /* 스크롤 바 */
+::-webkit-scrollbar-thumb { background: #f15d30; } /* 실질적 스크롤 바 */
+::-webkit-scrollbar-thumb:hover { background: #f15d30; } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+::-webkit-scrollbar-thumb:active { background: #f15d30; } /* 실질적 스크롤 바를 클릭할 때 */
+::-webkit-scrollbar-button { display: none; } /* 스크롤 바 상 하단 버튼 */

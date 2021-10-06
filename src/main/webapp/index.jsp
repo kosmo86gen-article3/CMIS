@@ -225,7 +225,7 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
-	;
+	
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>
