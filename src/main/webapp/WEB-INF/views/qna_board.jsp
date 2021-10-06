@@ -309,7 +309,7 @@
 										<div class="comment-date" style="color: lightslategray;padding-left: 20px;">${list.qna_board_date }</div>
 										<div class="bottom-comment" style="margin: 20px auto;width: 100%;">
 										
-											<ul class="comment-actions" style="width: 100%;text-align: end;">
+											<ul class="comment-actions" style="width: 100%;text-align: end;height: 60px;">
 
 												<c:if test="${sessionScope.userId == list.user_id }">
 
@@ -343,7 +343,7 @@
 												<div class="col-md-2">
 													<c:if test="${sessionScope.userId == reply.reply_user_id }">
 														<a href="#" onclick="deleteReply(${reply.qna_reply_num});"
-															class="genric-btn orange radius delete">삭제</a>
+															class="genric-btn orange radius delete" style="float:right;">댓글삭제</a>
 												</c:if>
 												</div>
 												</div>
@@ -376,7 +376,7 @@
 												</c:forEach>
 											
 											</c:if>
-											<div style="width: 100%; height: 90px;">
+											<div style="width: 100%; height: 120px;">
 											<a href="#" onclick="return false;" class="replyQna genric-btn orange radius modify" style="margin: 10px;float: right;">댓글(${list.qna_reply_count})</a>
 											</div>
 											<div class="replyArea row" style="margin: 20px auto;">

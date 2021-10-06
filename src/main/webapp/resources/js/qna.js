@@ -59,7 +59,7 @@ $(document).ready(function(){
    
    // 삭제 버튼 클릭시
    $('.deleteQna').click(function() {
-	   
+	   if (confirm("글을 삭제하시겠습니까?") == true){
 	   	  // 글번호
 	      var qnaNum = $(this).parent().parent().parent().children('.qnaNum').val();
 	      // 회원 아이디
@@ -84,25 +84,31 @@ $(document).ready(function(){
 	             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	          }
 	       });
+	   }
    });
    
    $('.replyQna').click(function(){
 		$(this).parent().next().toggle();
 	})
 
+	// 댓글 등록 버튼
 	$('.replyQnaSubmit').click(function(){
 		
 		var reply_writer = $(this).parent().parent().children().first().children('.reply_writer').val();
 		
 		var reply_content = $(this).parent().parent().children(2).children('.reply_content').val();
 		
-		var reply_board_num = $(this).parent().parent().parent().parent().parent().parent().parent().children('.qnaNum').val();
+		var reply_board_num = $(this).parent().parent().parent().parent().children('.qnaNum').val();
+		
+		alert(reply_writer)
+		alert(reply_content)
+		alert(reply_board_num)
 		
 		if(reply_writer == null){
 			alert("로그인이 필요합니다")
 		}else{
 			
-			data = { "user_id" : reply_writer, "qna_board_num" : reply_board_num, "qna_reply_content" : reply_content}
+			data = { "reply_user_id" : reply_writer, "qna_board_num" : reply_board_num, "qna_reply_content" : reply_content}
 			
 			 // ajax 호출
 		       $.ajax({

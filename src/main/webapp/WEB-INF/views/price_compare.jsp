@@ -39,6 +39,24 @@
 table > tbody > tr{
 height: 75px;
 }
+.table td, .table th{
+	vertical-align: middle !important;
+	border-top:none !important;
+	
+}
+.table thead th{
+	border-bottom:none !important;
+	border:2px solid white;
+}
+.table thead:hover th{
+	border:2px solid #f15d30;
+}
+.hero-overly{
+	background-color: #f15d30;
+}
+.hero-overly::before{
+    background-color: rgba(0, 1, 2, 0.35) !important;
+    }
 </style>
 		<!-- E: 헤더 부분 끝 -->
 
@@ -48,20 +66,19 @@ height: 75px;
 			<div id="container_box">
 				<main>
 					<!--? Hero Area Start-->
-					<div class="slider-area hero-bg2 hero-overly">
+					<div class="slider-area">
 						<div
-							class="single-slider hero-overly  slider-height2 d-flex align-items-center"
-							style="min-height: 200px;">
+							class="single-slider hero-overly d-flex align-items-center" style="padding: 50px 0 50px 0;">
 							<div class="container">
 								<div class="row justify-content-center">
 									<div class="col-xl-10 col-lg-10">
 										<!-- Hero Caption -->
-										<div class="hero__caption hero__caption2 pt-200">
+										<div class="hero__caption hero__caption2">
 											<h1>견적 비교할 상품을 검색하세요</h1>
 										</div>
 										<!--Hero form -->
 										<form onsubmit="return false" name="form1" method="get"
-											action="priceList.do" class="search-box mb-100">
+											action="priceList.do" class="search-box">
 											<input type="hidden" name="lat" id="lat" value=""> <input
 												type="hidden" name="lon" id="lon" value="">
 											<div class="input-form" style="width: 50%%;">
@@ -156,7 +173,7 @@ height: 75px;
 
 							<div class="section-top-border">
 								<h3 class="mb-30">최저가 비교 결과</h3>
-								<div class="progress-table">
+								<div class="table">
 									<table style="width: 100%; text-align: center;">
 									<c:if test="${empty compareList && not empty productList}">
 									<h3 class="text-heading">담은 상품을 전부 판매하는 매장이 없습니다</h3>
@@ -166,23 +183,24 @@ height: 75px;
 									<h3 class="text-heading">비교할 상품을 담아주세요</h3>
 									</c:if>
 									<c:if test="${not empty compareList }">
+									<thead class="table-orange">
 										<tr>
-											<th bgcolor="#f15d30">상품 정보/수량</th>
+											<th>상품 정보/수량</th>
 											<c:forEach items="${storeList}" var="store">
-											<th style= "background-color:#f36f46; color:white; border:1px solid; border-top:none;">${store }</th>
+											<th>${store }</th>
 											</c:forEach>
-											<th bgcolor="#f15d30">삭제</th>
+											<th>삭제</th>
 										</tr>
-										
+										</thead>
 										<c:forEach items="${productList}" var="proList">
-										<tr>
-											<th style="background-color:#f36f46; color:white">${proList }</th>
+										<tr style="border-bottom: 1px solid #f15d30;">
+											<th>${proList }</th>
 											<c:set var="i" value="1"/>
 											<c:forEach items="${compareList }" var="comList">
 											
 											<c:forEach items="${comList }" var="com" varStatus="status">
 											<c:if test="${com.product_name == proList }">
-											<td style="border:1px solid; border-top:none; border-bottom:none" class="store${i }">${com.sale_price }</td>
+											<td class="store${i }">${com.sale_price }</td>
 											</c:if>
 											
 											</c:forEach>
@@ -190,13 +208,14 @@ height: 75px;
 											</c:forEach>
 											<td><a href='#' class="genric-btn orange radius" onclick='removeProductCompare(&#39${proList}&#39);'>삭제</a></td>
 										</tr>
+										
 										</c:forEach>
-										<tr>
-											<th bgcolor="#f15d30">합계</th>
+										<tr style="border-bottom: 1px solid #f15d30;">
+											<th>합계</th>
 											<c:forEach items="${storeList}" var="store">
-											<td style="border:1px solid; border-top:double; border-bottom:none" class="sum"></td>
+											<td class="sum"></td>
 											</c:forEach>
-											<td style="border:1px solid; border-top:double; border-bottom:none; border-right:none"><a href='#' class="genric-btn orange radius" onclick='removeAllProductCompare();'>전체 삭제</a></td>
+											<td><a href='#' class="genric-btn orange radius" onclick='removeAllProductCompare();'>전체 삭제</a></td>
 										</tr>
 										</c:if>
 									</table>
@@ -204,7 +223,7 @@ height: 75px;
 								</div>
 
 									<div>
-									 <h1> 나열된 매장은 회원님의 위치 기반 근거리 순서 입니다.</h1>
+									 <h4> 추천 매장은 접속 위치 기반 저렴한 매장 순서입니다 </h4>
 									</div>
 								
 							</div>

@@ -123,6 +123,8 @@ public class PriceCompareController {
 		String product_list = (String) session.getAttribute("product_list");
 
 		String[] list = product_list.split("#");
+		
+		
 
 		product_list = "";
 		// 배열 중복 확인
@@ -137,8 +139,13 @@ public class PriceCompareController {
 			
 
 			session.setAttribute("product_list", product_list);
+			
 			System.out.println("현재 상품 세션 : " + product_list);
 
+			if(list.length == 1) {
+				session.removeAttribute("product_list");
+			}
+			
 			return "상품을 삭제하였습니다";
 		
 	}
