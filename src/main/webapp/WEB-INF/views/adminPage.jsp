@@ -16,18 +16,20 @@
 	<script src="./resources/js/admin.js"></script>
 <script type="text/javascript">
 
+var colors = ['#007bff',	'#dc3545','#fd7e14','#28a745','#6f42c1','#e83e8c'];
+
 // 최다 조회 상품 그래프
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart1);
 function drawChart1() {
   var data = google.visualization.arrayToDataTable([
-    ['상품명', '조회수'],
+    ['상품명', '조회수',  { role: 'style' }],
     <c:forEach items="${productViewRank}" var="productList" varStatus="status">
 	  		<c:if test="${!status.last}">
-	  			['${productList.product_name}', ${productList.product_views_count}],
+	  			['${productList.product_name}', ${productList.product_views_count}, colors[${status.index}]],
 	   		</c:if>
 	   <c:if test="${status.last}">
-	   ['${productList.product_name}', ${productList.product_views_count}]
+	   ['${productList.product_name}', ${productList.product_views_count}, colors[${status.index}]]
 		</c:if>
 	</c:forEach>
   ]);
@@ -46,13 +48,13 @@ google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart2);
 function drawChart2() {
   var data = google.visualization.arrayToDataTable([
-    ['상품명', '관심물품 등록 건수'],
+    ['상품명', '관심물품 등록 건수',{ role: 'style' }],
     <c:forEach items="${productWishRank}" var="productList" varStatus="status">
 	  		<c:if test="${!status.last}">
-	  			['${productList.product_name}', ${productList.cnt}],
+	  			['${productList.product_name}', ${productList.cnt},colors[${status.index}]],
 	   		</c:if>
 	   <c:if test="${status.last}">
-	   ['${productList.product_name}', ${productList.cnt}]
+	   ['${productList.product_name}', ${productList.cnt},colors[${status.index}]]
 		</c:if>
 	</c:forEach>
   ]);
@@ -72,13 +74,13 @@ google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart3);
 function drawChart3() {
 var data = google.visualization.arrayToDataTable([
-  ['회원 아이디', '글 등록 건수'],
+  ['회원 아이디', '글 등록 건수',{ role: 'style' }],
   <c:forEach items="${communityRank}" var="communityRankList" varStatus="status">
 	  		<c:if test="${!status.last}">
-	  			['${communityRankList.user_id}', ${communityRankList.cnt_sum}],
+	  			['${communityRankList.user_id}', ${communityRankList.cnt_sum},colors[${status.index}]],
 	   		</c:if>
 	   <c:if test="${status.last}">
-	   ['${communityRankList.user_id}', ${communityRankList.cnt_sum}]
+	   ['${communityRankList.user_id}', ${communityRankList.cnt_sum},colors[${status.index}]]
 		</c:if>
 	</c:forEach>
 ]);
@@ -97,13 +99,13 @@ google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart4);
 function drawChart4() {
 var data = google.visualization.arrayToDataTable([
-  ['매장명', '핫딜 상품 건수'],
+  ['매장명', '핫딜 상품 건수',{ role: 'style' }],
   <c:forEach items="${hotPriceShopRank}" var="hotPriceShopRankList" varStatus="status">
 	  		<c:if test="${!status.last}">
-	  			['${hotPriceShopRankList.shop_name}', ${hotPriceShopRankList.cnt}],
+	  			['${hotPriceShopRankList.shop_name}', ${hotPriceShopRankList.cnt},colors[${status.index}]],
 	   		</c:if>
 	   <c:if test="${status.last}">
-	   ['${hotPriceShopRankList.shop_name}', ${hotPriceShopRankList.cnt}]
+	   ['${hotPriceShopRankList.shop_name}', ${hotPriceShopRankList.cnt},colors[${status.index}]]
 		</c:if>
 	</c:forEach>
 ]);

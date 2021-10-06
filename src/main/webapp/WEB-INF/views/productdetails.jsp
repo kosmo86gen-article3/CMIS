@@ -32,6 +32,9 @@
 					src="https://www.gstatic.com/charts/loader.js"></script>
 				<script src="./resources/js/productDetail.js"></script>
 				<script type="text/javascript">
+				
+				var colors = ['#007bff',	'#dc3545','#fd7e14','#28a745','#6f42c1','#e83e8c'];
+				
       google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -60,7 +63,7 @@
       var options = {
     	title: '시세 변동 추이 및 예측',
     	titleTextStyle: {
-            color: 'black',    // any HTML string color ('red', '#cc00cc')
+                // any HTML string color ('red', '#cc00cc')
             fontSize: 18, // 12, 18 whatever you want (don't specify px)
             bold: true    // true or false
         },
@@ -88,25 +91,23 @@
     google.setOnLoadCallback(drawChart1);
     function drawChart1() {
       var data = google.visualization.arrayToDataTable([
-        ['업태', '평균가'],
-        ['전체', <fmt:formatNumber type="number" pattern="0" value="${productDetail.product_last_average_price }"/>],
+        ['업태', '평균가',{ role: 'style' }],
+        ['전체', <fmt:formatNumber type="number" pattern="0" value="${productDetail.product_last_average_price }"/>,colors[0]],
         <c:forEach items="${productStorePrice}" var="storePriceList" varStatus="status">
   	  		<c:if test="${!status.last}">
-  	  			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />, color],
+  	  			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />, colors[${status.count}]],
   	   		</c:if>
   	   <c:if test="${status.last}">
-  	 			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />]
+  	 			['${storePriceList.shopKindName}', <fmt:formatNumber type="number" pattern="0" value="${storePriceList.avgPrice }" />, colors[${status.count}]]
   		</c:if>
   	</c:forEach>
       ]);
 
       var options = {
         title: '업태별 판매가 평균',
-        titleTextStyle: {
-            color: 'black'
-		},
+        
         legend: {position: 'none'},
-        colors:['red']
+        is3D: true
         /* vAxis: {minValue: 0} */
      };
 
@@ -118,23 +119,21 @@
     google.setOnLoadCallback(drawChart2);
     function drawChart2() {
       var data = google.visualization.arrayToDataTable([
-    	['지역', '평균가'],
-        ['전체', <fmt:formatNumber type="number" pattern="0" value="${productDetail.product_last_average_price }"/>],
+    	['지역', '평균가',{ role: 'style' }],
+        ['전체', <fmt:formatNumber type="number" pattern="0" value="${productDetail.product_last_average_price }"/>,colors[5]],
         <c:forEach items="${productLocationPrice}" var="locationPriceList" varStatus="status">
 	  		<c:if test="${!status.last}">
-	  			['${locationPriceList.locationName }', <fmt:formatNumber type="number" pattern="0" value="${locationPriceList.locationAvgPrice }" />],
+	  			['${locationPriceList.locationName }', <fmt:formatNumber type="number" pattern="0" value="${locationPriceList.locationAvgPrice }" />, colors[${status.index}%6]],
 	   		</c:if>
 	   <c:if test="${status.last}">
-	 			['${locationPriceList.locationName }', <fmt:formatNumber type="number" pattern="0" value="${locationPriceList.locationAvgPrice }" />]
+	 			['${locationPriceList.locationName }', <fmt:formatNumber type="number" pattern="0" value="${locationPriceList.locationAvgPrice }" />, colors[${status.index}%6]]
 		</c:if>
 	</c:forEach>
       ]);
 
       var options = {
         title: '전국 판매가 평균',
-        titleTextStyle: {
-            color: 'black'
-},
+        
         legend: {position: 'none'},
         colors:['#f15d30']
         /* vAxis: {minValue: 0} */
