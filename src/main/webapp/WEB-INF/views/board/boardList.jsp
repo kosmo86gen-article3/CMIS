@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>테스트</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>자유게시판</title>
 
 </head>
 <body>
@@ -24,16 +26,17 @@
 			<!--? Hero Start -->
 
 
-			<div
-				class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="margin-bottom: 50px !important;">
-				<div class="col-md-5 p-lg-5 mx-auto my-5">
-					<h1 class="display-4 font-weight-normal">자유게시판</h1>
-					<p class="lead font-weight-normal">마음껏 소통하세요</p>
-				</div>
-				<div class="product-device shadow-sm d-none d-md-block"></div>
-				<div
-					class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-			</div>
+			   <div
+            class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+             style="margin-bottom: 50px !important; height:220px; background: #494343 !important">
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+               <h1 class="display-4 font-weight-normal" style="color:white">자유게시판</h1>
+               <p class="lead font-weight-normal" style="color:white">마음껏 소통하세요</p>
+            </div>
+            <div class="product-device shadow-sm d-none d-md-block"></div>
+            <div
+               class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+         </div>
 
 
 

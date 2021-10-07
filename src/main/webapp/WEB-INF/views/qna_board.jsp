@@ -10,7 +10,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Index 홈페이지</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>Q / A</title>
 </head>
 
 <c:if test="${sessionScope.user_id != null }">

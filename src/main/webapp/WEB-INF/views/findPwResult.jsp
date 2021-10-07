@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 <title>이메일 절차</title>
 
 <script

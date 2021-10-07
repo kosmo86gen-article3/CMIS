@@ -7,6 +7,8 @@
 <title>CMIS</title>
 <!-- only index page style -->
 <link rel="stylesheet" href="resources/css/indexstyle.css">
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 </head>
 <body>
    <div id="root">

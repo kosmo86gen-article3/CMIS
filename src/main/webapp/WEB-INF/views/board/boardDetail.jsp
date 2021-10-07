@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>테스트</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>${boardDetail.board_title }</title>
 </head>
 <body>
 <div id = "root"> <!-- S: Index(Home).jsp 의 div 총괄 시작 -->

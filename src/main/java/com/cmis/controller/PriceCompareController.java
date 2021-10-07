@@ -27,6 +27,11 @@ public class PriceCompareController {
 
 	@RequestMapping("price_compare.do")
 	public String compareList(Model model, HttpSession session, String lat, String lon) {
+		// 위도 경도가 없을 경우 학원 위도 경도로 설정
+		if (lat == null || lat == "") {
+			lat = "37.478687034753904";
+			lon = "126.87865557160939";
+		}
 		// 세션 상품목록이 비어있지 않을 경우
 		if (session.getAttribute("product_list") != null) {
 			// 상품 목록을 String으로 받음
@@ -123,8 +128,6 @@ public class PriceCompareController {
 		String product_list = (String) session.getAttribute("product_list");
 
 		String[] list = product_list.split("#");
-		
-		
 
 		product_list = "";
 		// 배열 중복 확인
@@ -136,17 +139,15 @@ public class PriceCompareController {
 			}
 		}
 
-			
+		session.setAttribute("product_list", product_list);
 
-			session.setAttribute("product_list", product_list);
-			
-			System.out.println("현재 상품 세션 : " + product_list);
+		System.out.println("현재 상품 세션 : " + product_list);
 
-			if(list.length == 1) {
-				session.removeAttribute("product_list");
-			}
-			
-			return "상품을 삭제하였습니다";
-		
+		if (list.length == 1) {
+			session.removeAttribute("product_list");
+		}
+
+		return "상품을 삭제하였습니다";
+
 	}
 }

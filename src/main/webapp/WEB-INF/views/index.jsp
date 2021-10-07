@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 <title>CMIS</title>
 <!-- only index page style -->
 <link rel="stylesheet" href="resources/css/indexstyle.css">

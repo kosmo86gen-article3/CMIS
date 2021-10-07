@@ -6,56 +6,45 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>wishList</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>관심 물품</title>
+<div class="loaderbase">
+	<div class="loader"></div>
+	<div class="loaderText">
+		<h1 style="color: white;">상품 데이터를 분석중입니다</h1>
+
+	</div>
+</div>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('.memberListID').hover(function() {
-			$(this).css("color", "#717D7E");
-		}, function() {
-			$(this).css("color", "black");
-		});
-	})
+   $(function() {
+      $('.memberListID').hover(function() {
+         $(this).css("color", "#717D7E");
+      }, function() {
+         $(this).css("color", "black");
+      });
+      
+      
+      var loader = $("div.loaderbase");
+  	loader.hide();
+  	
+  	$('#container_box table a').click(function(){
+  		loader.show();
+  	});
+      
+   })
 </script>
 <style type="text/css">
-@import
-	url(https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,800)
-	;
-
-body {
-	font-size: 16px;
-	line-height: 22px;
-	color: #555;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
-}
-
-#myPageAtag {
-	color: black;
-	font-size: 150%;
-	display: flex;
-}
-
-#navList {
-	margin-bottom: 10px;
-	background-color: #050d15;
-}
-tbody a img{
-	max-width: 100px; 
+tbody a img {
+	max-width: 100px;
 	max-height: 100px;
 }
-tbody a:hover { color: #8c59b9; }
-a:link { color:#4b70fd; }
-a:visited { color: #8c59b9; }
 
-.buttons-cart a:hover{
-	color: #ffffff;
-	background-color:#8c59b9;
-
+.delTotal {
+	color: #f15d30;
 }
-
 </style>
 
 
@@ -73,7 +62,8 @@ a:visited { color: #8c59b9; }
 
 
 		<!-- S: 본문 영역 시작 -->
-		<section id="section-feature" class="container">
+		<section id="section-feature" class="container"
+			style="margin-bottom: 100px;">
 			<div id="container">
 				<h1 class="display-1" style="text-align: center;">마이페이지</h1>
 				<h2 style="text-align: center;">${sessionScope.memberName}님
@@ -82,28 +72,28 @@ a:visited { color: #8c59b9; }
 
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-							<li class="nav-item"><a class="nav-link active" id="navList"
-									href="modifyMember.do">회원정보수정</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showBoard.do">등록글
-										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">등록댓글보기</a>
-								</li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
-								</li>
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="modifyMember.do">회원 정보 수정</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="showBoard.do">등록글 조회</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="showReply.do">등록 댓글 보기</a></li>
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="wishList.do">관심 물품</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-9">
 							<h2 style="text-align: center">관심 물품 조회</h2>
 
 							<hr style="height: 5px;">
 							<div id="container_box">
 
-								<table class="table"  style="text-align: center; " >
-									<thead class="thead-dark">
+								<table class="table" style="text-align: center;">
+									<thead class="table-orange">
 										<tr>
 											<th>상품 이미지</th>
 											<th>상품명</th>
@@ -115,27 +105,38 @@ a:visited { color: #8c59b9; }
 									<tbody>
 										<c:if test="${not empty wishList }">
 											<c:forEach items="${wishList}" var="wish">
-											<input type="hidden" value="${wish.member_id}" name="member_id"/>
-											<input type="hidden" value="${wish.wish_num}" name="wish_num"/>
+												<input type="hidden" value="${wish.member_id}"
+													name="member_id" />
+												<input type="hidden" value="${wish.wish_num}"
+													name="wish_num" />
 												<tr>
 													<td class="product-thumbnail"><a
-														href="product.do?product_code=${wish.product_code }"><img
+														href="productdetails.do?product_code=${wish.product_code }"><img
 															src="resources/img/images/${wish.product_code}.jpg"
-															alt="${wish.product_name }"  /></a></td>
-													<td class="product-name"><a
-														href="product.do?product_code=${wish.product_code }">${wish.product_name }</a></td>
-													<td class="product-price"><span class="amount">${wish.product_last_average_price}원</span></td>
-													<td class="product-min-price"><span class="amount">${wish.product_last_min_price}원</span></td>
-													<td class="product-remove"><a href="#" class="remove"
+															alt="${wish.product_name }" /></a></td>
+													<td class="product-name" style="vertical-align: middle;">
+
+														<a
+														href="productdetails.do?product_code=${wish.product_code}"
+														style="color: black;">${wish.product_name }</a>
+
+													</td>
+													<td class="product-price" style="vertical-align: middle;"><span
+														class="amount">${wish.product_last_average_price}원</span></td>
+													<td class="product-min-price"
+														style="vertical-align: middle;"><span class="amount">${wish.product_last_min_price}원</span></td>
+													<td class="product-remove" style="vertical-align: middle;"><a
+														href="#" class="remove" style="color: black"
 														id="${wish.wish_num }">X</a></td>
 												</tr>
 											</c:forEach>
 										</c:if>
 									</tbody>
 								</table>
-								<div class="buttons-cart" style="text-align: right">
+								<div class="btn float-right delTotal">
 									<a href="#" onclick="drop_wishlist()">전체 삭제</a>
 								</div>
+
 							</div>
 
 						</div>

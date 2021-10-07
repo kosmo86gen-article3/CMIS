@@ -9,6 +9,11 @@
 <title>404 not found</title>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+         setTimeout(function(){
+            window.location.href = 'index.do';
+         }, 5000);
+      </script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 

@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>productdetails</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>${productDetail.product_name }</title>
 </head>
 <body>
 	<div class="loaderbase">
@@ -63,7 +65,7 @@
       var options = {
     	title: '시세 변동 추이 및 예측',
     	titleTextStyle: {
-                // any HTML string color ('red', '#cc00cc')
+            color : 'black',    // any HTML string color ('red', '#cc00cc')
             fontSize: 18, // 12, 18 whatever you want (don't specify px)
             bold: true    // true or false
         },
@@ -148,7 +150,17 @@
 			</div>
 		</header>
 		<!-- E: 헤더 부분 끝 -->
-
+<div
+			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+			style="margin-bottom: 0px !important; height: 220px; background: #494343 !important">
+			<div class="col-md-5 p-lg-5 mx-auto my-5">
+				<h1 class="display-4 font-weight-normal" style="color: white">상품 상세 정보</h1>
+				<p class="lead font-weight-normal" style="color: white">최적의 가격 정보와 가격 예측값, 시각화 자료를 제공하며 그래프를 통해 추이를 확인 할 수 있습니다</p>
+			</div>
+			<div class="product-device shadow-sm d-none d-md-block"></div>
+			<div
+				class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+		</div>
 
 		<!-- S: 본문 영역 시작 -->
 
@@ -156,17 +168,8 @@
 			<div id="container_box">
 				<!--? Popular Locations Start 01-->
 				<div class="popular-location border-bottom section-padding40"
-					style="padding-bottom: 10px;">
+					style="padding-bottom: 10px;border-bottom: 1px solid #f15d30!important;">
 					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<!-- Section Tittle -->
-								<div class="section-tittle text-center mb-80">
-									<h2 style="color: #f15d30;">상품 상세 정보</h2>
-									<p style="color: #f15d30;">최적의 가격 정보와 가격 예측값, 시각화 자료를 제공하며 그래프를 통해 추이를 확인 할 수 있습니다.</p>
-								</div>
-							</div>
-						</div>
 						<div class="row">
 							<div class="col-lg-4"
 								style="margin-left: auto; margin-right: auto;">
@@ -284,8 +287,8 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="blog_right_sidebar">
-									<aside class="single_sidebar_widget popular_post_widget">
-										<h1 class="widget_title" style="color: #f15d30;">관련 상품</h1>
+									<aside class="single_sidebar_widget popular_post_widget" style="background: #fdece7 !important">
+										<h1 class="widget_title" style="color: #f15d30;border-bottom: 1px solid #f15d30;">관련 상품</h1>
 
 										<c:forEach items="${productCateList}" var="cateList">
 											<div class="media post_item">
@@ -295,7 +298,7 @@
 												<div class="media-body">
 													<a
 														href="productdetails.do?product_code=${cateList.product_code }">
-														<h3 style="color: #2d2d2d;">${cateList.product_name }</h3>
+														<h3>${cateList.product_name }</h3>
 													</a>
 													<p>
 														평균가격 :
@@ -311,9 +314,9 @@
 								</div>
 							</div>
 							<div class="col-lg-6">
-								<div class="blog_right_sidebar">
-									<aside class="single_sidebar_widget popular_post_widget">
-										<h1 class="widget_title" style="color: #f15d30;">관련 뉴스</h1>
+								<div class="blog_right_sidebar" >
+									<aside class="single_sidebar_widget popular_post_widget" style="background: #fdece7 !important">
+										<h1 class="widget_title" style="color: #f15d30;border-bottom: 1px solid #f15d30;">관련 뉴스</h1>
 
 										<c:forEach items="${productNewsList}" var="newsList">
 											<ul class="list cat-list">
@@ -340,7 +343,10 @@
 						<h1 class="mb-30" style="color:#f15d30">내 주변 할인 매장</h1>
 						<div class="row">
 							<c:forEach items="${lowestPriceStore}" var="lowestPriceStoreList">
-								<div class="col-md-4">
+							
+								<div class="col-md-4" style="background: #fdece7 !important;border: 5px solid white;">
+								<div class="blog_right_sidebar">
+									<aside class="single_sidebar_widget popular_post_widget" style="background: #fdece7 !important">
 									<div class="single-defination">
 										<h2 class="mb-20"><a href="https://www.google.com/maps/search/${lowestPriceStoreList.shopName }" target="_blank">${lowestPriceStoreList.shopName }</a></h2>
 											<p>주소 : ${lowestPriceStoreList.address }</p>
@@ -353,13 +359,16 @@
 												m
 											</p>
 											</div>
-											<div style="float: right;margin-right: 100px;">
+											<div style="float: right;margin-right: 50px;">
 											<a href="#" id="${lowestPriceStoreList.shopName }" class="route_map" target="_blank">
 										<img src="resources/img/elements/route_map_icon.png" style="max-width: 50px;">
 										</a>
 										</div>
 									</div>
+									</aside>
+									</div>
 								</div>
+								
 							</c:forEach>
 							<c:if test="${lowestPriceStore == null }">
 							<div class="col-md-4">

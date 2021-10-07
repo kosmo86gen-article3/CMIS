@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>상품 가격 비교</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>상품 가격 견적 비교</title>
 </head>
 <body>
 	<div id="root">
@@ -52,10 +54,10 @@ height: 75px;
 	border:2px solid #f15d30;
 }
 .hero-overly{
-	background-color: #f15d30;
+	background-color: #494343 !important;
 }
 .hero-overly::before{
-    background-color: rgba(0, 1, 2, 0.35) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
     }
 </style>
 		<!-- E: 헤더 부분 끝 -->

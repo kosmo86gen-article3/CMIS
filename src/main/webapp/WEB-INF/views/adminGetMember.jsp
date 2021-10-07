@@ -6,9 +6,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>adminGetMember</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
+<link rel="shortcut icon" href="resources/img/favicon.png"
+	type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>회원 관리 페이지</title>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
 	$(function() {
 		$('.nav-link active').hover(function() {
 			$(this).css("color", "gray");
@@ -37,14 +41,14 @@ body {
 	display: flex;
 }
 
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
-}
-.InputArea *{
-	padding: 7px;
+#navList {
+	margin-bottom: 10px;
+	background-color: #050d15;
 }
 
+.InputArea * {
+	padding: 7px;
+}
 </style>
 
 
@@ -72,7 +76,7 @@ body {
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
 						<div class="col-sm-3">
-							<h3 style="text-align:center">Menu</h3>
+							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
 								<li class="nav-item"><a class="nav-link orange"
 									href="adminMemberList.do">회원 목록</a></li>
@@ -87,64 +91,71 @@ body {
 						</div>
 						<div class="col-sm-9" style="padding-bottom: 40px;">
 							<div id="container_box">
-				<!-- S :회원 수정 폼  -->
-				<div class="InputArea" id="memberUpdateform" style="display:flex;justify-content: center;">
-					<form method="post" action="adminMemberUpdate.do">
-					<table>
-					<tr>
-						<input name ="user_id" class="hidden" type="hidden" value="${member.user_id }"/>
-						
-							<td><label for ="user_id">ID</label></td>
-							<td><label>${member.user_id }</label></td>
-						
-						</tr>
-						<tr>
-						
-							<td><label for ="member_name">이름 </label></td>
-							<td><input type="text" id="member_name" name="member_name"
-							value = "${member.member_name }"/></td>
-						
-						</tr>
-						<tr>
-						
-							<td><label for ="member_age">나이</label></td>
-							<td><input type="text" id="member_age" name="member_age"
-							value = "${member.member_age }"/></td>
-				
-						</tr>
-						<tr>
-					
-							<td><label for ="member_phone">연락처</label></td>
-							<td><input type="text" id="member_phone" name="member_phone"
-							value = "${member.member_phone }"/></td>
-				
-						</tr>
-						<tr>
-	
-							<td><label for ="regdate">가입일</label></td>
-							<td><label>${member.regdate }</label></td>
-	
-						</tr>
-						<tr>
-						
-							<td><label for="member_lv">권한</label></td>
-							<td><select id="member_lv" name="member_lv">
-							    <option value="0" <c:if test="${member.member_lv eq '0'}">selected="selected"</c:if>>회원 정지</option>
-							    <option value="1" <c:if test="${member.member_lv eq '1'}">selected="selected"</c:if>>일반 회원</option>
-							    <option value="9" <c:if test="${member.member_lv eq '9'}">selected="selected"</c:if>>관리자</option>
-							</select>
-							</td>
-		
-						</tr>
-						<tr>
-							<td colspan="2" style="text-align: center;"><input type="submit"class="btn btn-warning" value="수정"></td>
-							</tr>
-						</table>	
-					</form>
-					<!-- E :회원 수정 폼 -->
-				</div>
-				</div>
-							
+								<!-- S :회원 수정 폼  -->
+								<div class="InputArea" id="memberUpdateform"
+									style="display: flex; justify-content: center;">
+									<form method="post" action="adminMemberUpdate.do">
+										<table>
+											<tr>
+												<input name="user_id" class="hidden" type="hidden"
+													value="${member.user_id }" />
+
+												<td><label for="user_id">ID</label></td>
+												<td><label>${member.user_id }</label></td>
+
+											</tr>
+											<tr>
+
+												<td><label for="member_name">이름 </label></td>
+												<td><input type="text" id="member_name"
+													name="member_name" value="${member.member_name }" /></td>
+
+											</tr>
+											<tr>
+
+												<td><label for="member_age">나이</label></td>
+												<td><input type="text" id="member_age"
+													name="member_age" value="${member.member_age }" /></td>
+
+											</tr>
+											<tr>
+
+												<td><label for="member_phone">연락처</label></td>
+												<td><input type="text" id="member_phone"
+													name="member_phone" value="${member.member_phone }" /></td>
+
+											</tr>
+											<tr>
+
+												<td><label for="regdate">가입일</label></td>
+												<td><label>${member.regdate }</label></td>
+
+											</tr>
+											<tr>
+
+												<td><label for="member_lv">권한</label></td>
+												<td><select id="member_lv" name="member_lv">
+														<option value="0"
+															<c:if test="${member.member_lv eq '0'}">selected="selected"</c:if>>회원
+															정지</option>
+														<option value="1"
+															<c:if test="${member.member_lv eq '1'}">selected="selected"</c:if>>일반
+															회원</option>
+														<option value="9"
+															<c:if test="${member.member_lv eq '9'}">selected="selected"</c:if>>관리자</option>
+												</select></td>
+
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align: center;"><input
+													type="submit" class="btn btn-warning" value="수정"></td>
+											</tr>
+										</table>
+									</form>
+									<!-- E :회원 수정 폼 -->
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -160,12 +171,12 @@ body {
 				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 			</div>
 		</footer>
-		
-		
-		
+
+
+
 		<!-- S: 파이어 베이스 스크립트 -->
 
-<script type="module">
+		<script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
@@ -187,13 +198,14 @@ body {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-</script>;
+</script>
+		;
 
-<!--  E : 파이어 베이스 스크립트 -->
-		
-		
-		
-		
+		<!--  E : 파이어 베이스 스크립트 -->
+
+
+
+
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
 </body>

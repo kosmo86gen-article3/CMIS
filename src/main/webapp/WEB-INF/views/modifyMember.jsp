@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 <title>CMIS MY PAGE</title>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,7 +35,6 @@ body {
 
 #navList {
 	margin-bottom: 10px;
-	background-color: #050d15;
 }
 </style>
 
@@ -52,7 +53,7 @@ body {
 
 
 		<!-- S: 본문 영역 시작 -->
-		<section id="section-feature" class="container">
+		<section id="section-feature" class="container" style="margin-bottom: 100px;">
 			<div id="container">
 				<h1 class="display-1" style="text-align: center;">마이페이지</h1>
 				<h2 style="text-align: center;">${sessionScope.memberName}님
@@ -61,21 +62,21 @@ body {
 
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="modifyMember.do">회원정보수정</a></li>
-								<li class="nav-item"><a class="nav-link active"
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="modifyMember.do">회원 정보 수정</a></li>
+								<li class="nav-item"><a class="nav-link orange"
 									id="navList" href="showBoard.do">등록글 조회</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									id="navList" href="showReply.do">등록댓글보기</a></li>
-								<li class="nav-item"><a class="nav-link active"
+								<li class="nav-item"><a class="nav-link orange"
+									id="navList" href="showReply.do">등록 댓글 보기</a></li>
+								<li class="nav-item"><a class="nav-link orange"
 									id="navList" href="wishList.do">관심 물품</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-9">
 							<h2>회원이신 고객님의 개인정보를 관리하는 공간입니다.</h2>
 
 							<hr style="height: 5px;">
@@ -89,7 +90,7 @@ body {
 											<input type="text" id="user_id" name="user_id" placeholder="아이디"
 												onfocus="this.placeholder = ''"
 												onblur="this.placeholder = '아이디'" required
-												class="single-input" value="${member.user_id }" readonly>
+												class="single-input" value="${member.user_id }" readonly style="background: #fdece7;">
 												<hr></td>
 												
 										</tr>
@@ -98,7 +99,7 @@ body {
 											<th scope="row">비밀번호</th>
 											<td><input type="password" id="member_pw" name="member_pw" placeholder="비밀번호"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호'" required
-										class="single-input" >
+										class="single-input" style="background: #fdece7;">
 										<div class="valid">비밀번호를 입력하세요<br/> (영문 대소문자, 숫자만 입력 가능)</div>
 										<hr></td>
 										</tr>
@@ -107,7 +108,7 @@ body {
 											
 											<td colspan="2"><input type="password" id="member_pw1" name="member_pw2" placeholder="비밀번호 확인"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '비밀번호 확인'" required
-										class="single-input" >
+										class="single-input" style="background: #fdece7;">
 										<hr></td>
 										</tr>
 										<tr>
@@ -115,7 +116,7 @@ body {
 											
 											<td colspan="2"><input type="text" name="member_name" placeholder="이름"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '이름'" required
-										class="single-input" value="${member.member_name }" readonly>
+										class="single-input" value="${member.member_name }" readonly style="background: #fdece7;">
 									
 										<hr>
 										</td>
@@ -127,7 +128,7 @@ body {
 											<input type="text" name="member_age" placeholder="나이"
 												onfocus="this.placeholder = '나이'"
 												onblur="this.placeholder = '나이'" 
-												class="single-input" value="${member.member_age }">
+												class="single-input" value="${member.member_age }" style="background: #fdece7;">
 												<hr></td>
 												
 										</tr>
@@ -136,7 +137,7 @@ body {
 											<th scope="row">휴대폰</th>
 											<td><input type="text" id="member_phone" name="member_phone" placeholder="휴대폰"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '휴대폰'" 
-										class="single-input" value="${member.member_phone }" >
+										class="single-input" value="${member.member_phone }"  style="background: #fdece7;">
 										<hr></td>
 										</tr>
 										<tr>
@@ -144,7 +145,7 @@ body {
 											
 											<td colspan="2"><input type="text" name="member_address" placeholder="주소"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '주소'"
-										class="single-input"  value="${member.member_address}">
+										class="single-input"  value="${member.member_address}" style="background: #fdece7;">
 										<hr></td>
 										</tr>
 										

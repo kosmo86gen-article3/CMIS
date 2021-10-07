@@ -7,7 +7,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>물품 리스트</title>
+<link rel="shortcut icon" href="resources/img/favicon.png"
+	type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>상품 목록</title>
 </head>
 
 <body>
@@ -29,6 +32,17 @@
 			</div>
 		</header>
 		<!-- E: 헤더 부분 끝 -->
+		<div
+			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+			style="margin-bottom: 0px !important; height: 220px; background: #494343 !important">
+			<div class="col-md-5 p-lg-5 mx-auto my-5">
+				<h1 class="display-4 font-weight-normal" style="color: white">상품 목록</h1>
+				<p class="lead font-weight-normal" style="color: white">다양한 상품의 정보를 확인해보세요</p>
+			</div>
+			<div class="product-device shadow-sm d-none d-md-block"></div>
+			<div
+				class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+		</div>
 
 
 		<!-- S: 본문 영역 시작 -->
@@ -89,8 +103,10 @@
 										<span aria-hidden="true">X</span>
 									</button>
 								</div>
-								<div class="modal-body" style="color: #ff8d1e;">검색할 이미지를 첨부해주세요</div>
-								<div class="modal-footer" style="justify-content: center;color: #ff8d1e;">
+								<div class="modal-body" style="color: #ff8d1e;">검색할 이미지를
+									첨부해주세요</div>
+								<div class="modal-footer"
+									style="justify-content: center; color: #ff8d1e;">
 
 									<form id="imageSearchForm" action="imageSearch.do"
 										method="post" enctype="multipart/form-data">
@@ -124,9 +140,7 @@
 								<div class="col-xl-4 col-lg-4 col-md-6">
 									<div class="row">
 										<div class="col-12">
-											<div class="small-section-tittle2 mb-45">
-												
-											</div>
+											<div class="small-section-tittle2 mb-45"></div>
 										</div>
 									</div>
 									<!-- Job Category Listing start -->
@@ -139,15 +153,18 @@
 													<input name="keyword" value="${map.keyword }"
 														placeholder="상품명 입력">
 												</div>
-												<div class="search-form" style="margin-bottom: 20px;text-align: center" >
-													<a href='#' id='productSearch' class="genric-btn orange radius"><i
-														class="ti-search"></i> 상품 검색</a>
+												<div class="search-form"
+													style="margin-bottom: 20px; text-align: center">
+													<a href='#' id='productSearch'
+														class="genric-btn orange radius"><i class="ti-search"></i>
+														상품 검색</a>
 												</div>
 												<div class="search-form" style="text-align: center;">
 
 													<!-- 모달 버튼 -->
-													<a href='#' id='imageSearch' class="genric-btn orange radius"><i
-														class="ti-camera"></i> 이미지 검색</a>
+													<a href='#' id='imageSearch'
+														class="genric-btn orange radius"><i class="ti-camera"></i>
+														이미지 검색</a>
 													<c:if test="${sessionScope.userId != null }">
 														<input type="hidden" value="${sessionScope.userId}"
 															id="memberName" />
@@ -180,16 +197,17 @@
 											<c:forEach items="${productList}" var="proList"
 												begin="${pageMap.min }" end="${pageMap.max }">
 
-												<div class="col-lg-6">
+												<div class="col-lg-3">
 													<!-- Single -->
 													<div class="properties properties2 mb-30">
 														<div class="properties__card">
 															<div class="properties__img overlay1"
-																style="height: 280px; line-height:280px;text-align: center;">
+																style="height: 120px; line-height: 120px; text-align: center;">
 																<a
 																	href="productdetails.do?product_code=${proList.product_code}"><img
 																	src="resources/img/images/${proList.product_code }.jpg"
-																	alt="" style="vertical-align:middle;max-width: 280px;max-height: 280px;margin-bottom: 20px;"></a>
+																	alt=""
+																	style="vertical-align: middle; max-width: 280px; max-height: 280px; margin-bottom: 20px;"></a>
 																<div class="img-text">
 																	<!-- <span>$$$</span>
                                                 <span>Closed</span> -->
@@ -205,7 +223,7 @@
 																</h3>
 																<p>${proList.product_detail }</p>
 																<c:if test="${proList.product_detail == null}">
-																<p>&nbsp;</p>
+																	<p>&nbsp;</p>
 																</c:if>
 															</div>
 															<div

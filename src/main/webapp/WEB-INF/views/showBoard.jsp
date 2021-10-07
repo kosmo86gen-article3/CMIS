@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>showBoard</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>등록글 조회</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function() {
@@ -17,35 +19,6 @@
 		});
 	})
 </script>
-<style type="text/css">
-@import
-	url(https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,800)
-	;
-
-body {
-	font-size: 16px;
-	line-height: 22px;
-	color: #555;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
-}
-
-#myPageAtag {
-	color: black;
-	font-size: 150%;
-	display: flex;
-}
-
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
-}
-
-
-</style>
-
-
 </head>
 <body>
 	<div id="root">
@@ -60,7 +33,7 @@ body {
 
 
 		<!-- S: 본문 영역 시작 -->
-		<section id="section-feature" class="container">
+		<section id="section-feature" class="container" style="margin-bottom: 100px;">
 			<div id="container">
 				<h1 class="display-1" style="text-align: center;">마이페이지</h1>
 				<h2 style="text-align: center;">${sessionScope.memberName}님
@@ -69,29 +42,29 @@ body {
 
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<h3 style="text-align:center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active" id="navList"
+								<li class="nav-item"><a class="nav-link orange" id="navList"
 									href="modifyMember.do">회원 정보 수정</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showBoard.do">등록글
+								<li class="nav-item"><a class="nav-link orange" id="navList" href="showBoard.do">등록글
 										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">등록 댓글 보기</a>
+								<li class="nav-item"><a class="nav-link orange" id="navList" href="showReply.do">등록 댓글 보기</a>
 								</li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
+								<li class="nav-item"><a class="nav-link orange" id="navList" href="wishList.do">관심 물품</a>
 								</li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-9">
 							<h2>회원이신 고객님의 게시글을 관리하는 공간입니다.</h2>
 
 							<hr style="height: 5px;">
 							<div id="container_box">
 
 				<table class="table">
-					<thead class="thead-dark">
-						<tr>
+					<thead class="table-orange" >
+						<tr style="text-align: center;">
 							<th>번호</th>
 							<th>글 제목</th>
 							<th>조회수</th>
@@ -100,7 +73,7 @@ body {
 					</thead>
 					<tbody>
 						<c:forEach items="${boardList }" var="boardList">
-							<tr>
+							<tr style="text-align:center">
 								<td class = "board">${boardList.board_num}</td>
 								<td class = "board"><a href="boardDetail.do?board_num=${boardList.board_num}" style="color:black" class="memberListID">${boardList.board_title}</a></td>
 								<td class = "board">${boardList.board_hits}</td>

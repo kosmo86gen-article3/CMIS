@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>매장 목록</title>
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
+<title>전국 매장 정보</title>
 <style>
 	::-webkit-scrollbar-thumb {
                 background-color: #f15d30; /*스크롤바의 색상*/
