@@ -99,7 +99,7 @@
 				</div>
 				<div class="col-sm-9 col-md-6 col-lg-8">
 					<!-- 오른쪽 컨테이너 -->
-					<div id="map" style="width: 100%; height: 100%;"></div>
+					<div id="map" class="category-listing" style="width: 100%; height: 100%;"></div>
 
 				</div>
 				<!-- 상품 목록 출력 컨테이너 -->

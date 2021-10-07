@@ -10,6 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 
+
 .white-bg {
 	background: #ffffff
 }
@@ -138,10 +139,12 @@
 }
 
 body {
+	margin: 0;
 	font-family: 'Jua', sans-serif;
 	font-weight: normal;
 	font-style: normal;
 	font-size: 16px
+	
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2859,7 +2862,7 @@ keyframes zoom { 0%{
 }
 
 .mobile_menu .slicknav_menu .slicknav_btn .slicknav_icon-bar {
-	background-color: #f15d30 !important
+   background-color: #f15d30 !important
 }
 
 .mobile_menu .slicknav_menu .slicknav_nav {
@@ -3794,9 +3797,6 @@ keyframes zoom { 0%{
 	color: #B367FF
 }
 
-.our-services .single-services:hover .services-ion span {
-	color: #B367FF
-}
 
 .wantToWork-area {
 	padding-bottom: 40px
@@ -6263,14 +6263,7 @@ keyframes zoom { 0%{
 	justify-content: start
 }
 
-.popular-location .single-location .location-img::before {
-	background-image: -moz-linear-gradient(90deg, #010a27 0%, #010a27 0%, rgba(6, 31, 120, 0.3
-		) 70%, rgba(11, 52, 201, 0.01) 100%, #0b34c9 100%);
-	background-image: -webkit-linear-gradient(90deg, #010a27 0%, #010a27 0%, rgba(6, 31, 120,
-		0.3) 70%, rgba(11, 52, 201, 0.01) 100%, #0b34c9 100%);
-	background-image: -ms-linear-gradient(90deg, #010a27 0%, #010a27 0%, rgba(6, 31, 120, 0.3)
-		70%, rgba(11, 52, 201, 0.01) 100%, #0b34c9 100%)
-}
+
 
 .sample-text-area {
 	background: #fff;
@@ -7375,124 +7368,4 @@ b, sup, sub, u, del {
 
 .switch-wrap {
 	margin-bottom: 10px
-}
-
-/* 이 부분  CSS 안쓰는 부분 주석처리함. 문성원 21-09-16 */
-.single-post-area .navigation-area {
-	/* border-bottom: 1px solid #eee; */
-	padding-bottom: 30px;
-	margin-top: 55px
-}
-
-
-
-
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 16 문성원 */
-.progress-table .country a:link {
-	color: black;
-	text-decoration: none;
-}
-
-
-
-
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .freeboardCnt {
-	width: 11.83%;
-	padding-right: 30px
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .freeboardDate {
-	width: 19.74%
-}
-
-
-
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .table-head .serial, .progress-table .table-head .country,
-	.progress-table .table-head .visit, .progress-table .table-head .percentage, 
-	.progress-table .table-head .freeboardDate, .progress-table .table-head .freeboardCnt 
-	{
-	color: #415094;
-	line-height: 40px;
-	text-transform: uppercase;
-	font-weight: 500
-}
-
-
-
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .table-row .serial, .progress-table .table-row .country,
-	.progress-table .table-row .visit, .progress-table .table-row .percentage, 
-	.progress-table .table-row .freeboardDate, .progress-table .table-row .freeboardCnt 
-	{
-	display: flex;
-	align-items: center
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 16 문성원 */
-.progress-table .country a:link {
-   color: black;
-   text-decoration: none;
-}
-.progress-table .country a:visited {
-   color: #000055;
-   text-decoration: none;
-}
-.progress-table .country a:hover {
-   color: #595959;
-   text-decoration: none;
-}
-.progress-table .country a:active {
-   color: #414141;
-   text-decoration: none;
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .freeboardCnt {
-   width: 11.83%;
-   padding-right: 30px
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .freeboardDate {
-   width: 19.74%
-}
-
-/* 이 부분  CSS 안쓰는 부분 주석처리함. 문성원 21-09-16 */
-.single-post-area .navigation-area {
-   /* border-bottom: 1px solid #eee; */
-   padding-bottom: 30px;
-   margin-top: 55px
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .table-head .serial, .progress-table .table-head .country,
-   .progress-table .table-head .visit, .progress-table .table-head .percentage, 
-   .progress-table .table-head .freeboardDate, .progress-table .table-head .freeboardCnt 
-   {
-   color: #415094;
-   line-height: 40px;
-   text-transform: uppercase;
-   font-weight: 500
-}
-
-.progress-table .table-row {
-   padding: 15px 0;
-   border-top: 1px solid #edf3fd;
-   display: flex
-}
-
-/* 여기에 추가로 커스텀 CSS 추가함 2021 09 15 문성원 */
-.progress-table .table-row .serial, .progress-table .table-row .country,
-   .progress-table .table-row .visit, .progress-table .table-row .percentage, 
-   .progress-table .table-row .freeboardDate, .progress-table .table-row .freeboardCnt 
-   {
-   display: flex;
-   align-items: center
 }

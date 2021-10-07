@@ -49,49 +49,48 @@
 
 		<!-- 전체 Container -->
 		<div class="container">
-			<div class="our-services  border-bottom" style="margin: 20px">
-
-				<div class="row">
-					<div class=" col-lg-4 col-md-4 col-sm-4">
-						<div class="single-services mb-30">
-							<div class="services-ion">
-								<span>01</span>
-							</div>
-							<div class="services-cap">
-								<h5>
-									<a href="#">원하는 상품을 검색합니다.</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div class=" col-lg-4 col-md-4 col-sm-4">
-						<div class="single-services mb-30">
-							<div class="services-ion">
-								<span>02</span>
-							</div>
-							<div class="services-cap">
-								<h5>
-									<a href="#">상품과 매장을 확인합니다.</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div class=" col-lg-4 col-md-4 col-sm-4">
-						<div class="single-services mb-30">
-							<div class="services-ion">
-								<span>03</span>
-							</div>
-							<div class="services-cap">
-								<h5>
-									<a href="#">매장 출력</a>
-								</h5>
-								<p>최저가 순으로 매장을 정렬해줍니다.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+         <div class="our-services  border-bottom" style="margin:20px">
+         
+            <div class="row">
+               <div class=" col-lg-4 col-md-4 col-sm-4">
+                  <div class="single-services mb-30" style="background: #fd7e1475;border-radius: 20px;">
+                     <div class="services-ion">
+                        <span>01</span>
+                     </div>
+                     <div class="services-cap">
+                        <h5>
+                           <a href="#">원하는 상품을 검색합니다.</a>
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class=" col-lg-4 col-md-4 col-sm-4">
+                  <div class="single-services mb-30" style="background: #fd7e1475;border-radius: 20px;">
+                     <div class="services-ion">
+                        <span>02</span>
+                     </div>
+                     <div class="services-cap">
+                        <h5>
+                           <a href="#">상품과 매장을 확인합니다.</a>
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+               <div class=" col-lg-4 col-md-4 col-sm-4">
+                  <div class="single-services mb-30" style="background: #fd7e1475;border-radius: 20px;">
+                     <div class="services-ion">
+                        <span>03</span>
+                     </div>
+                     <div class="services-cap">
+                        <h5>
+                           <a href="#">최저가 기준 매장을 정렬합니다.</a>
+                        </h5>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+         </div>
 	</div>
 	<div class="container">
 	<div class="row" style="margin-bottom: 100px;">
@@ -128,7 +127,7 @@
 		</div>
 		<div class="col-sm-9 col-md-6 col-lg-8">
 			<!-- 지도를 출력할 div 선언 -->
-			<div id="map" style="width: 100%; height: 100%;"></div>
+			<div id="map" class="category-listing" style="width: 100%; height: 100%;"></div>
 		</div>
 
 		<!-- E: 본문 영역 끝 -->
