@@ -1,9 +1,13 @@
 package com.cmis.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cmis.domain.BoardVO;
+import com.cmis.domain.CommentVO;
 import com.cmis.domain.MemberVO;
 
 @Repository("memberDAO")
@@ -43,6 +47,36 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println("Mybatis updateMember() 호출");
 		mybatis.update("MemberDAO.updateMember", vo);
 	}
+
+	//아이디 찾기
+	public MemberVO idFind(MemberVO vo) {
+		System.out.println("Mybatis idFind() 호출");
+		return mybatis.selectOne("MemberDAO.idFind", vo);
+	}
+
+	//비밀번호 찾기
+	public MemberVO pwFind(MemberVO vo) {
+		System.out.println("Mybatis pwFind() 호출");
+		return mybatis.selectOne("MemberDAO.pwFind", vo);
+	}
+
+	//패스워드 변경
+	public int resetMember(MemberVO vo) {
+		System.out.println("Mybatis resetMember() 호출");
+		return mybatis.update("MemberDAO.resetMember", vo);
+	}
+
+	//해당하는 회원의 작성 글 목록
+	public List<BoardVO> getMemberBoardList(BoardVO vo) {
+		System.out.println("Mybatis getMemberBoardList() 호출");
+		return mybatis.selectList("MemberDAO.getMemberBoardList", vo);
+	}
+	//해당하는 회원의 작성 댓글 목록
+	public List<CommentVO> getMemberComment(CommentVO vo) {
+		System.out.println("Mybatis getMemberComment() 호출");
+		return mybatis.selectList("MemberDAO.getMemberComment", vo);
+	}
+	
 
 	
 

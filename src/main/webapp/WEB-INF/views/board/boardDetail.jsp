@@ -124,7 +124,7 @@
                         <div class="row">
                            <div class="col-12">
                               <div class="form-group">
-                                 <textarea class="form-control w-100" name="comment_content" id="comment_content" cols="30" rows="9" placeholder="댓글 내용을 입력하세요"></textarea>
+                                 <textarea class="form-control w-100" name="comment_content" id="comment_content" cols="30" rows="9" placeholder="댓글 내용을 입력하세요" required="required"></textarea>
                               </div>
                            </div>
                         </div>

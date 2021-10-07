@@ -1,5 +1,12 @@
 package com.cmis.service;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.cmis.domain.BoardVO;
+import com.cmis.domain.CommentVO;
 import com.cmis.domain.MemberVO;
 
 public interface MemberService {
@@ -18,4 +25,25 @@ public interface MemberService {
 	
 	//회원 정보 수정 (UPDATE)
 	public void updateMember(MemberVO vo);
+	
+	//구글회원가입
+	public void joinMemberByGoogle(MemberVO vo);
+		
+	//구글로그인
+	public MemberVO loginMemberByGoogle(MemberVO vo);
+	
+	//아이디 찾기
+	public MemberVO idFind(MemberVO vo);
+	
+	//비밀번호 찾기
+	public MemberVO pwFind(MemberVO vo);
+	
+	//비밀번호 변경
+	public int resetMember(MemberVO vo);
+	
+	//회원의 등록 글 목록 조회
+	public List<BoardVO> getMemberBoardList(BoardVO vo);
+	
+	//회원의 등록 댓글 목록 조회
+	public List<CommentVO> getMemberComment(CommentVO vo);
 }

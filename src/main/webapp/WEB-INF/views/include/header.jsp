@@ -10,8 +10,10 @@
 <title>DirectoryListing</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.ico">
+<link rel="icon" type="image/png" href="resources/images/favicon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="icon" href="resources/img/favicon.ico" type="image/x-icon" sizes="16x16">
+
 
 <!-- CSS here -->
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">

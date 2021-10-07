@@ -3,7 +3,7 @@ $(document).ready(function(){
 	// 자유게시판 글 삭제
 	$('.delete-btn').click(function(){
 		
-		var result = confirm('이 글을 삭제하시겠습니꽈?');
+		var result = confirm('이 글을 삭제하시겠습니까?');
 		
 		var board_num = $(this).parent().parent().children(':nth-child(1)').text();
 		

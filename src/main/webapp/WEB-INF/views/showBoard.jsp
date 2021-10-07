@@ -84,23 +84,31 @@ body {
 							<hr class="d-sm-none">
 						</div>
 						<div class="col-sm-8">
-							<h2>등록글 조회</h2>
-							<h5>Title description, Dec 7, 2017</h5>
-							<div class="fakeimg">Fake Image</div>
-							<p>Some text..</p>
-							<p>Sunt in culpa qui officia deserunt mollit anim id est
-								laborum consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco.</p>
-							<br>
-							<h2>TITLE HEADING</h2>
-							<h5>Title description, Sep 2, 2017</h5>
-							<div class="fakeimg">Fake Image</div>
-							<p>Some text..</p>
-							<p>Sunt in culpa qui officia deserunt mollit anim id est
-								laborum consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco.</p>
+							<h2>회원이신 고객님의 게시글을 관리하는 공간입니다.</h2>
+
+							<hr style="height: 5px;">
+							<div id="container_box">
+
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th>번호</th>
+							<th>글 제목</th>
+							<th>조회수</th>
+							<th>작성일자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${boardList }" var="boardList">
+							<tr>
+								<td class = "board">${boardList.board_num}</td>
+								<td class = "board"><a href="boardDetail.do?board_num=${boardList.board_num}" style="color:black" class="memberListID">${boardList.board_title}</a></td>
+								<td class = "board">${boardList.board_hits}</td>
+								<td class = "board">${boardList.board_date}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 						</div>
 					</div>
 				</div>

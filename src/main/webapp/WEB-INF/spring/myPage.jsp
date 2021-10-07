@@ -6,16 +6,24 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>showReply</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	$(function() {
-		$('#navList').hover(function() {
-			$(this).css("color", "gray");
-		}, function() {
-			$(this).css("color", "white");
-		});
-	})
+<title>CMIS MY PAGE</title>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function clip(){
+	
+	var url = '';
+	var textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	url = "http://localhost:8000/zFinalProejct/loginPage.do"
+	textarea.value = url;
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	alert("URL이 복사되었습니다.")
+}
+
 </script>
 <style type="text/css">
 @import
@@ -37,12 +45,10 @@ body {
 	display: flex;
 }
 
-#navList{
-	margin-bottom : 10px;
-	background-color : #050d15;
+#navList {
+	margin-bottom: 10px;
+	background-color: #050d15;
 }
-
-
 </style>
 
 
@@ -66,47 +72,31 @@ body {
 				<h2 style="text-align: center;">${sessionScope.memberName}님
 					안녕하세요</h2>
 				<hr />
-				</div>
+
 				<div class="container" style="margin-top: 30px">
 					<div class="row">
 						<div class="col-sm-4">
-							<h3 style="text-align:center">Menu</h3>
+							<h3 style="text-align: center">Menu</h3>
 							<ul class="nav nav-pills flex-column">
-								<li class="nav-item"><a class="nav-link active" id="navList"
-									href="modifyMember.do">회원 정보 수정</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showBoard.do">등록글
-										조회</a></li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="showReply.do">등록 댓글 보기</a>
-								</li>
-								<li class="nav-item"><a class="nav-link active" id="navList" href="wishList.do">관심 물품</a>
-								</li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="modifyMember.do">회원정보수정</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="showBoard.do">등록글 조회</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="showReply.do">등록댓글보기</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									id="navList" href="wishList.do">관심 물품</a></li>
 							</ul>
 							<hr class="d-sm-none">
 						</div>
 						<div class="col-sm-8">
-							<h2>회원이신 고객님의 댓글을 관리하는 공간입니다.</h2>
-
-							<hr style="height: 5px;">
-							<div id="container_box">
-
-				<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th>번호</th>
-							<th>댓글 내용</th>
-							<th>작성일자</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${commentList }" var="commentList">
-							<tr>
-								<td class = "board">${commentList.comment_num}</td>
-								<td class = "board">${commentList.comment_content }</td>
-								<td class = "board">${commentList.comment_date}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+							<div class="jumbotron">
+								<h1 class="display-4">회원 정보 관리, 내 커뮤니티 활동</h1>
+								<p class="lead">개인 정보는 1년간 보관되며 고객에게 먼저 알려드립니다.</p>
+								<hr class="my-4">
+								<p>아직 저희 사이트를 이용하지 않는 친구가 있다면 초대해주세요 !</p>
+								<a class="btn btn-primary btn-lg"  href="loginPage.do" onclick="clip(); return false;"  role="button" id="invitation">초대 링크 복사</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -121,6 +111,8 @@ body {
 			<div id="footer_box">
 				<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 			</div>
+
+
 		</footer>
 	</div>
 	<!-- E: Index(Home).jsp 의 div 총괄 끝  -->
