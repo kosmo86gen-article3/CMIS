@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 <title>CMIS</title>
 <!-- only index page style -->
 <link rel="stylesheet" href="resources/css/indexstyle.css">
-<link rel="shortcut icon" href="resources/img/favicon.png" type="image/png">
-<link rel="icon" href="resources/img/favicon.png" type="image/png">
 </head>
 <body>
    <div id="root">
@@ -104,11 +104,9 @@
             </div>
          </div>
       </div>
-      <!-- E: 2.메인 소개 -->
+      <!-- E: 3.메인 소개 -->
 
-   
-
-      <!-- S 4:다양한 접근성 소개 -->
+      <!-- S: 4:다양한 접근성 소개 -->
 
       <div class="container-fluid"
          style="padding: initial; background-color: black;">
@@ -129,7 +127,6 @@
                             </div>
                             <div class="location-details">
                                 <p>실시간 채팅</p>
-                                
                             </div>
                         </div>
                     </div>
@@ -151,7 +148,6 @@
                             </div>
                             <div class="location-details">
                                 <p>상품 견적 비교</p>
-                                
                             </div>
                         </div>
                     </div>
@@ -162,7 +158,6 @@
 
       <!-- E 4:다양한 접근성 소개 -->
 
-   
       <!-- S 5:사이트 가치 소개 -->
       
       <div class="our-services  border-bottom" style="margin:20px">
@@ -202,24 +197,22 @@
                      </div>
                      <div class="services-cap">
                         <h5>
-                           <a href="#">Make a Reservation</a>
+                           <a href="#">실시간 뉴스</a>
                         </h5>
-                        <p>Discover & connect with great local businesses in your
-                           local neighborhood like dentists, hair stylists and more.</p>
+                        <p>상품 상세 페이지에서 해당 상품의 실시간 뉴스기사를 제공합니다.</p>
                      </div>
                   </div>
                </div>
                <div class=" col-lg-3 col-md-3 col-sm-3">
                   <div class="single-services mb-30">
                      <div class="services-ion">
-                        <span>03</span>
+                        <span>04</span>
                      </div>
                      <div class="services-cap">
                         <h5>
-                           <a href="#">Make a Reservation</a>
+                           <a href="#">이미지 검색이 가능합니다!</a>
                         </h5>
-                        <p>Discover & connect with great local businesses in your
-                           local neighborhood like dentists, hair stylists and more.</p>
+                        <p>원하는 상품의 사진을 업로드 하여 상품을 검색해보세요!</p>
                      </div>
                   </div>
                </div>
@@ -231,16 +224,15 @@
       
       <!--S: 6.Q/A 연결 시작 -->
       <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-md-12 text-center">
-                  <div class="img" style="background-image: url(resources/img/index/wishlist.png);">
-                     <div class="overlay"></div>
-                     <h2>We Are Pacific A Travel Agency</h2>
-                     <p>We can manage your dream building A small river named Duden flows by their place</p>
-                     <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
-                  </div>
-               </div>
-            </div>
+         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">궁금한 사항이 있으신가요 ? </h1>
+    <p class="lead font-weight-normal">저희 FAQ를 확인하시고 방명록도 남겨주세요 :)</p>
+    <a class="btn btn-outline-secondary" href="qna_board.do">방명록 남기러 가기</a>
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>
          </div>
       
       <!--E: 6.Q/A 연결 시작 -->
