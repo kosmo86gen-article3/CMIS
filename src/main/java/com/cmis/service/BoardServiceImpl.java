@@ -55,4 +55,9 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteComment(CommentVO vo) {
 		boardDAO.deleteComment(vo);
 	}
+
+	@Override
+	public void boardViewCount(BoardVO bvo) {
+		boardDAO.boardViewCount(bvo);		
+	}
 }

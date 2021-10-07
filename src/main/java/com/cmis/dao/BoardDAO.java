@@ -30,4 +30,7 @@ public interface BoardDAO {
 	
 	// 자유게시판 댓글 삭제
 	public void deleteComment(CommentVO vo);
+	
+	// 자유게시판 조회수 증가
+	public void boardViewCount(BoardVO bvo);
 }

@@ -22,37 +22,25 @@
       <main>
       
         <!--? Hero Start -->
-        <div class="slider-area2">
-            <div class="slider-height3  hero-overly hero-bg4 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap2 pt-20 text-center">
-                                <h2>자유 게시판 글 작성</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div
+				class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="margin-bottom: 50px !important;">
+				<div class="col-md-5 p-lg-5 mx-auto my-5">
+					<h1 class="display-4 font-weight-normal">자유게시판</h1>
+					<p class="lead font-weight-normal">마음껏 소통하세요</p>
+				</div>
+				<div class="product-device shadow-sm d-none d-md-block"></div>
+				<div
+					class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+			</div>
         
 		<!--? Start Sample Area -->
-		<section class="sample-text-area">
-			<div class="container box_1200">
-				<h3 class="text-heading">자유 게시판</h3>
-				<p class="sample-text">
-					자유 게시판 글쓰기 페이지입니다.
-				</p>
-				<a href="board.do" class="genric-btn info-border radius">글 목록으로 돌아가기</a>
-			</div>
-		</section>
 		<!-- End Sample Area -->
 		
 		<!--? Start Align Area -->
 		<div class="whole-wrap">
 			<div class="container box_1170">
 				
-				<div class="section-top-border">
+				
 					<div class="row">
 						<div class="col-lg-12">
 							<h3 class="mb-30">글 작성</h3>
@@ -60,28 +48,29 @@
 								<div class="mt-10">
 									<input type="text" name="board_title" placeholder="제목"
 										onfocus="this.placeholder = ''" onblur="this.placeholder = '제목'" required
-										class="single-input">
+										class="single-input" style="background:#fdece7">
 								</div>
 								<div class="mt-10">
 									<textarea class="single-textarea" name="board_content" placeholder="내용" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '내용'" required></textarea>
+										onblur="this.placeholder = '내용'" required style="height: 400px;background:#fdece7"></textarea>
 								</div>
   								<div class="mt-20">
-  									<button type="button" id="btn-freeboard-upload" class="genric-btn success-border radius">이미지 업로드</button>
+  									<button type="button" id="btn-freeboard-upload" class="genric-btn orange radius">이미지 업로드</button>
 									<input id="input-freeboard-file" name="board_img" type="file" style="display:none;">
-									<input type="text" id='input-freeboard-txt' class="single-input mt-10" value="이미지 이름" disabled>
+									<input type="text" id='input-freeboard-txt' class="single-input mt-10" value="이미지 이름" disabled style="background:#fdece7">
 								</div>
-  								<div class="mt-30">
+  								<div class="mt-30" style="text-align: center;">
 									<img style="width: 400px; height: 400px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
 								</div>
 							</form>
-								<div class="mt-30">
-									<button class="genric-btn primary-border radius" type="submit" form="boardInput">글 등록</button>
+								<div class="mt-30" style="text-align: center;margin-bottom: 50px;">
+									<button class="genric-btn orange radius" type="submit" form="boardInput">글 등록</button>
+									<a href="board.do" class="genric-btn orange radius">돌아가기</a>
 								</div>
 						</div>
 						
 					</div>
-				</div>
+				
 			</div>
 		</div>
 		<!-- End Align Area -->

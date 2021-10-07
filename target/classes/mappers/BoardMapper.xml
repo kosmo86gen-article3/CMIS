@@ -18,7 +18,7 @@
 	
 	<insert id="writeBoard" parameterType="board">
 		INSERT INTO CMIS_BOARD (board_title, board_content, board_writer, board_date, board_img_name, board_hits) 
-		VALUES (#{board_title}, #{board_content}, 'ttester', sysdate(), #{board_img_name}, 0)
+		VALUES (#{board_title}, #{board_content}, #{board_writer}, sysdate(), #{board_img_name}, 0)
 	</insert>
 	
 	<update id="modifyBoard" parameterType="board">
@@ -34,7 +34,7 @@
 	
 	<insert id="writeComment" parameterType="comment">
 		INSERT INTO CMIS_COMMENT (board_num, comment_content, comment_writer, comment_date) 
-		VALUES (#{board_num}, #{comment_content}, 'ttester', sysdate())
+		VALUES (#{board_num}, #{comment_content},#{comment_writer} , sysdate())
 	</insert>
 	
 	<select id="selectComment" parameterType="comment"  resultType="hashmap">
@@ -50,5 +50,10 @@
 		DELETE FROM CMIS_COMMENT 
 		WHERE board_num = #{board_num} AND comment_num = #{comment_num} AND comment_writer = #{comment_writer}
 	</delete>
+	
+	<!-- 조회수 증가  -->
+	<update id="boardViewCount" parameterType="board">
+		UPDATE CMIS_BOARD SET board_hits = board_hits + 1 WHERE board_num = #{board_num}
+	</update>
 	
 </mapper>

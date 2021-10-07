@@ -55,4 +55,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public void deleteComment(CommentVO vo) {
 		mybatis.delete("BoardDAO.deleteComment",vo);
 	}
+
+	public void boardViewCount(BoardVO bvo) {
+		mybatis.update("BoardDAO.boardViewCount", bvo);
+		
+	}
 }

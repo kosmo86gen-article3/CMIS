@@ -47,7 +47,7 @@ public class MemberController {
 		vo.setMember_lv(Integer.parseInt("1"));
 		memberService.userReg(vo);
 
-		return "redirect:/test.do";
+		return "redirect:/index.do";
 	}
 
 	// 회원가입 아이디 중복 체크
@@ -132,7 +132,7 @@ public class MemberController {
 			session.setAttribute("loginSns", result.getMember_sns());
 			System.out.println("sns로그인 값" + result.getMember_sns());
 			System.out.println("일반:1 / 관리자 :9 ->" + result.getMember_lv());
-			return "redirect:/test.do";
+			return "redirect:/index.do";
 		} else {
 			return "redirect:/loginPage.do";
 		}
@@ -144,7 +144,7 @@ public class MemberController {
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/test.do";
+		return "redirect:/index.do";
 	}
 
 	/* 구글아이디로 로그인 */	
@@ -180,7 +180,7 @@ public class MemberController {
 			session.setAttribute("memberLv", returnVO.getMember_lv());		
 			rttr.addFlashAttribute("mvo", returnVO);
 			
-			return "redirect:/test.do"; 
+			return "redirect:/index.do"; 
 		}else {//아이디가 DB에 존재하지 않는 경우
 			
 
@@ -193,7 +193,7 @@ public class MemberController {
 			rttr.addFlashAttribute("mvo", returnVO);
 		}
 		
-		return "redirect:/test.do";
+		return "redirect:/index.do";
     }
 	/*
 	 * My PAGE
