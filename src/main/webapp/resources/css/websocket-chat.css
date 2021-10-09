@@ -1,0 +1,87 @@
+.comment-form {
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #eee !important;
+	border-radius: 10px;
+}
+
+.comment-form h4 {
+	line-height: 50px;
+	font-size: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+	justify-content: center;
+}
+
+.comment-form .form-control {
+    border: 1px solid #f5ac76 !important;
+    border-radius: 5px;
+    height: 60px;
+    padding-left: 18px;
+    font-size: 13px;
+    background: transparent;
+}
+
+.comment-form .form-control::placeholder {
+	font-weight: bold !important;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { 
+/* WebKit browsers */ color:transparent !important; 
+} 
+input:focus:-moz-placeholder, textarea:focus:-moz-placeholder { 
+/* Mozilla Firefox 4 to 18 */ color:transparent !important; 
+} 
+input:focus::-moz-placeholder, textarea:focus::-moz-placeholder { 
+/* Mozilla Firefox 19+ */ color:transparent !important; 
+} 
+input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder { 
+/* Internet Explorer 10+ */ color:transparent !important; 
+}
+
+.comment-form .form-group {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.boxed-btn {
+    background: #fff;
+    color: #eb6e10 !important;
+    display: inline-block;
+    padding: 18px 44px;
+    font-family: "Rubik", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border: 0;
+    border: 1px solid #f5ac76 !important;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #B367FF;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.desc {
+	border-radius: 10px;
+}
+
+#chat-submit-btn {
+	
+}
+
+#chat-reset-btn {
+	
+}
+
+#chat-quit-btn {
+	
+}

@@ -34,14 +34,12 @@ public class WebSocketChat {
 	@OnOpen
 	public void onOpen(Session session) {
 		logger.info("Open session id : "+session.getId());
-		
 		try {
 			final Basic basic = session.getBasicRemote();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		sessionList.add(session);
-		// 사용자 입장 메시지 보내야함 ***************************************
 	}
 	
 	// 모든 사용자들에게 메세지 전달함

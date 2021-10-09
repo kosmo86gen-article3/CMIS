@@ -40,23 +40,17 @@
 			<div id="container_box">
 				<main>
 					<!--? Hero Area Start-->
-					<div class="slider-area hero-bg2 hero-overly">
-						<div
-							class="single-slider hero-overly  slider-height2 d-flex align-items-center">
-							<div class="container">
-								<div class="row justify-content-center">
-									<div class="col-xl-10 col-lg-10">
-										<!-- Hero Caption -->
-										<div class="hero__caption hero__caption2 pt-200">
-											<h1>매장 목록</h1>
-										</div>
-										<!--Hero form -->
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div
+			class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+			style="margin-bottom: 0px !important; height: 220px; background: #494343 !important">
+			<div class="col-md-5 p-lg-5 mx-auto my-5">
+				<h1 class="display-4 font-weight-normal" style="color: white">매장 목록</h1>
+				<p class="lead font-weight-normal" style="color: white">전국의 매장 정보를 확인해보세요</p>
+			</div>
+			<div class="product-device shadow-sm d-none d-md-block"></div>
+			<div
+				class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+		</div>
 
 					<!-- listing Area Start -->
 					
@@ -174,63 +168,6 @@
 					</div>
 					<!-- listing-area Area End -->
 
-					<!--? Want To work 02-->
-					<section class="wantToWork-area">
-						<div class="container">
-							<div class="wants-wrapper w-padding2">
-								<div class="row justify-content-between">
-									<div class="col-xl-8 col-lg-8 col-md-7">
-										<div class="wantToWork-caption wantToWork-caption2">
-											<img src="resources/img/logo/logo2_footer.png" alt=""
-												class="mb-20">
-											<p>Users and submit their own items. You can create
-												different packages and by connecting with your PayPal or
-												Stripe account charge users for registration to your
-												directory portal.</p>
-										</div>
-									</div>
-									<div class="col-xl-4 col-lg-4 col-md-5">
-										<div class="footer-social f-right sm-left">
-											<a href="#"><i class="fab fa-twitter"></i></a> <a
-												href="https://bit.ly/sai4ull"><i
-												class="fab fa-facebook-f"></i></a> <a href="#"><i
-												class="fab fa-pinterest-p"></i></a> <a href="#"><i
-												class="fab fa-instagram"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!-- Want To work End -->
-					<!--? Want To work 01-->
-					<section class="wantToWork-area">
-						<div class="container">
-							<div class="wants-wrapper">
-								<div class="row align-items-center justify-content-between">
-									<div class="col-xl-7 col-lg-9 col-md-8">
-										<div class="wantToWork-caption wantToWork-caption2">
-											<div class="main-menu2">
-												<nav>
-													<ul>
-														<li><a href="index.html">Home</a></li>
-														<li><a href="explore.html">Explore</a></li>
-														<li><a href="pages.html">Pages</a></li>
-														<li><a href="blog.html">Blog</a></li>
-														<li><a href="contact.html">Contact</a></li>
-													</ul>
-												</nav>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-2 col-lg-3 col-md-4">
-										<a href="#" class="btn f-right sm-left">Add Listing</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!-- Want To work End -->
 				</main>
 			</div>
 		</section>

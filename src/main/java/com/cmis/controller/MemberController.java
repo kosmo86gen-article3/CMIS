@@ -247,10 +247,18 @@ public class MemberController {
 
       MemberVO result = memberService.userLogin(vo);
       System.out.println("고객이 로그인할떄 입력한 아이디 : " + vo.getUser_id());
+      // 멤버 레벨이 0이면 정지된 회원
+      if(result.getMember_lv() == 0) {
+    	  response.setContentType("text/html; charset=UTF-8");
+          PrintWriter out = response.getWriter();
+          out.println("<script>alert('정지된 회원입니다'); </script>");
+          out.flush();
+          return "loginPage";
+      }
       // 만약 가져온 result 값이 null 이거나 id값이 없거나 그 아이디 값이 result에 있는 값과 같지 않거나 Password값이
       // TRUE!!! 이면 if문 안의 구문 실행
       // TRUE이면 성공했으며 return이 마지막으로 실행되어 test.do로 리다이렉트
-      if (result != null && vo.getUser_id().equals(result.getUser_id())
+      else if (result != null && vo.getUser_id().equals(result.getUser_id())
             && vo.getMember_pw().equals(result.getMember_pw())) {
          
          // 로그인 시 session에 set, "userID" key값에 MemberVO result.getUser_id 값을 (즉 로그인 한 회원
@@ -286,7 +294,7 @@ public class MemberController {
    /* 구글계정으로 로그인 */   
     @ResponseBody
    @RequestMapping(value = "loginGoogle.do", method = RequestMethod.POST)
-   public String loginGooglePOST(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+   public String loginGooglePOST(MemberVO vo, HttpSession session, RedirectAttributes rttr, HttpServletResponse response) throws Exception{
       MemberVO returnVO = memberService.userLogin(vo);
       String mvo_ajaxid = vo.getUser_id();
       String mvo_ajaxemail = vo.getMember_email();
@@ -318,7 +326,15 @@ public class MemberController {
          rttr.addFlashAttribute("mvo", returnVO);
          
          return "redirect:/index.do"; 
-      }else {//아이디가 DB에 존재하지 않는 경우
+      }// 멤버 레벨이 0이면 정지된 회원
+      else if(returnVO.getMember_lv() == 0) {
+    	  response.setContentType("text/html; charset=UTF-8");
+          PrintWriter out = response.getWriter();
+          out.println("<script>alert('정지된 회원입니다'); </script>");
+          out.flush();
+          return "loginPage";
+      }
+      else {//아이디가 DB에 존재하지 않는 경우
          
          //구글 로그인
          memberService.userLogin(vo);

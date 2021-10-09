@@ -195,7 +195,7 @@ public class ProductController {
 	    }		
 	   
 		// 소켓 연결 종료
-		socket.close();
+		socket2.close();
 		
 		// 상품 뉴스 모델
 		model.addAttribute("productNewsList", newsList);

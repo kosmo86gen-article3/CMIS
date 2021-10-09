@@ -5,10 +5,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="resources/img/favicon.png"
-	type="image/png">
-<link rel="icon" href="resources/img/favicon.png" type="image/png">
-<title>채팅</title>
+<title>C-MIS 채팅</title>
+<link rel="stylesheet" href="resources/css/websocket-chat.css">
 </head>
 <body>
 	<div id="root">
@@ -20,30 +18,95 @@
 				<jsp:include page="/WEB-INF/views/include/header.jsp" />
 			</div>
 		</header>
+		<style type="text/css">
+
+/* 21-10-07 문경식 */
+.boxed-btn {
+	background: #fff !important;
+	color: bold #eb6e10 !important;
+	display: inline-block !important;
+	padding: 18px 44px !important;
+	font-family: "Rubik", sans-serif !important;
+	font-size: 14px !important;
+	font-weight: 400 !important;
+	border: 0 !important;
+	border: 1px solid #B367FF !important;
+	letter-spacing: 3px !important;
+	text-align: center !important;
+	color: #B367FF !important;
+	text-transform: uppercase !important;
+	cursor: pointer !important;
+}
+
+/* 21-10-07 문경식 */
+.boxed-btn:hover {
+	background: #eb6e10;
+	color: #fff !important;
+	border: 1px solid #eb6e10;
+}
+
+/* 21-10-07 문경식 */
+.comments-area {
+	background: #b2c7d9 !important;
+	border-top: 1px solid #eee !important;
+	padding: 20px 0 !important;
+	margin-top: 30px !important;
+	height: 500px !important;
+	border-top-left-radius: 5px !important;
+	border-top-right-radius: 5px !important;
+	box-shadow: 0px 1px 10px 5px rgb(16 15 15/ 12%) !important;
+}
+
+/* 21-10-07 문경식 */
+.comments-area .comment-list {
+	padding-bottom: 10px !important;
+	border-radius: 10px !important;
+	margin-top: 5px !important;
+}
+
+/* 21-10-07 문경식 */
+.comments-area .date {
+	font-size: 14px;
+	color: black;
+	margin-bottom: 0;
+	margin-left: 20px
+}
+
+/* 21-10-07 문경식 */
+.comments-area .comment {
+	margin-left: 5px;
+	margin-bottom: 10px;
+	color: black;
+	font-size: 18px
+}
+
+/* 21-10-07 문경식 */
+.sample-text-area {
+	background: #fff;
+	padding: 0 0 70px 0
+}
+</style>
 		<!-- E: 헤더 부분 끝 -->
 
+
 		<main>
-			<!--? Hero Start -->
-			<div class="slider-area2">
-				<div
-					class="slider-height3  hero-overly hero-bg4 d-flex align-items-center">
-					<div class="container">
-						<div class="row">
-							<div class="col-xl-12">
-								<div class="hero-cap2 pt-20 text-center">
-									<h2>채팅 게시판</h2>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div
+				class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light"
+				style="margin-bottom: 50px !important; height: 220px; background: #494343 !important">
+				<div class="col-md-5 p-lg-5 mx-auto my-5">
+					<h1 class="display-4 font-weight-normal" style="color: white">실시간
+						채팅</h1>
+					<p class="lead font-weight-normal" style="color: white">회원이
+						아니어도 가능합니다.</p>
 				</div>
+				<div class="product-device shadow-sm d-none d-md-block"></div>
+				<div
+					class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 			</div>
 
-			<!--? Start Align Area -->
 			<div class="whole-wrap">
-				<div class="container box_1170">
-
-					<div id="connectUserCnt"></div>
+				<div class="container box_1170"
+					style="max-width: 1000px !important;">
 
 					<div class="comment-form">
 						<h4>닉네임 입력</h4>
@@ -62,28 +125,30 @@
 						</div>
 					</div>
 					<div class="comments-area" id="chat-comments-area"
-						style="background-color: #acb3db3b;"></div>
+						style="display: block; overflow-x: hidden;"></div>
 				</div>
 			</div>
-			<!-- End Align Area -->
 
-			<!--? Start Sample Area -->
 			<section class="sample-text-area" id="chat-tools-div">
-				<div class="container box_1170">
-					<div>
-						<textarea class="single-textarea" placeholder="Message"
-							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Message'" id="messageInput"></textarea>
-						<button type="button" class="genric-btn primary-border radius"
-							onclick="send();">입력</button>
-						<button type="button" class="genric-btn primary-border small"
+				<div class="container box_1170"
+					style="max-width: 1000px !important;">
+					<textarea class="single-textarea" placeholder="메시지를 입력하세요"
+						onfocus="this.placeholder = ''"
+						onblur="this.placeholder = '메시지를 입력하세요'" id="messageInput"
+						style="box-shadow: 0px 2px 10px 5px rgb(16 15 15/ 38%);"></textarea>
+					<div class="mt-25 d-flex flex-row">
+						<button type="button" id="chat-submit-btn"
+							class="genric-btn primary-border radius mr-40" onclick="send();">입력</button>
+						<button type="button" id="chat-reset-btn"
+							class="genric-btn success-border radius"
 							onclick="javascript:clearText();">대화내용 지우기</button>
-						<button type="button" class="genric-btn primary-border small"
-							onclick="closeSocket();">나가기</button>
+						<div class="ml-auto">
+							<button type="button" id="chat-quit-btn"
+								class="genric-btn info-border radius" onclick="closeSocket();">나가기</button>
+						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End Sample Area -->
 
 		</main>
 

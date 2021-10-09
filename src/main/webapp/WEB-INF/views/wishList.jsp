@@ -30,7 +30,11 @@
       var loader = $("div.loaderbase");
   	loader.hide();
   	
-  	$('#container_box table a').click(function(){
+  	$('.product-thumbnail a').click(function(){
+  		loader.show();
+  	});
+  	
+  	$('.product-name a').click(function(){
   		loader.show();
   	});
       

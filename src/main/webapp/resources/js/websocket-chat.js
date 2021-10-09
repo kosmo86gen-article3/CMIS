@@ -40,7 +40,7 @@ function send2(){
 };
 
 function send(){
-	if($('#messageInput')==null){
+	if($('#messageInput').val() == ""){
 		return false;
 	}else if($('#messageInput').val().includes('님이 입장하셨습니다.') || $('#messageInput').val().includes('님이 퇴장하셨습니다.')){
 		alert("'님이 입장하셨습니다.'와 '님이 퇴장하셨습니다.'는 쓸 수 없습니다");
@@ -79,13 +79,11 @@ function writeResponse(text){
 		var printHTML = '<div class="comment-list">';
 		printHTML += '<div class="single-comment justify-content-between d-flex">';
 		printHTML += '<div class="user justify-content-between d-flex">';
-		printHTML += '<div class="desc">';
+		printHTML += '<div class="desc" style="word-break: break-all; background-color: white;">';
 		printHTML += '<p class="comment">'+messagesAll[1]+'</p>';
 		printHTML += '<div class="d-flex justify-content-between">';
-		printHTML += '<div class="d-flex align-items-center">';
-		printHTML += '<h5>';
-		printHTML += '<a>'+messagesAll[0]+'</a>';
-		printHTML += '</h5>';
+		printHTML += '<div class="d-flex align-items-center" style="margin-left: 5px;">';
+		printHTML += '<h5>'+messagesAll[0]+'</h5>';
 		printHTML += '<p class="date">'+messagesAll[2]+'</p>';
 		printHTML += '</div> ';
 		printHTML += '</div> ';
@@ -96,12 +94,12 @@ function writeResponse(text){
 		
 		$('#chat-comments-area').append(printHTML);
 	} else if(sessionid !== undefined && messagesAll[1].includes('님이 입장하셨습니다.') == false && messagesAll[1].includes('님이 퇴장하셨습니다.') == false) {
-		var printHTML = '<div class="comment-list" style="background-color: #8080804a;">';
+		var printHTML = '<div class="comment-list">';
 		printHTML += '<div class="single-comment justify-content-end d-flex">';
 		printHTML += '<div class="user justify-content-between d-flex">';
-		printHTML += '<div class="desc">';
-		printHTML += '<p class="comment" style="text-align: right;">'+messagesAll[1]+'</p>';
-		printHTML += '<div class="d-flex justify-content-end">';
+		printHTML += '<div class="desc" style="word-break: break-all; background-color: #ffeb33;">';
+		printHTML += '<p class="comment" style="text-align: right;margin-right: 5px;">'+messagesAll[1]+'</p>';
+		printHTML += '<div class="d-flex justify-content-end" style="margin-left: 5px; margin-right: 5px;">';
 		printHTML += '<div class="d-flex align-items-center">';
 		printHTML += '<h5>';
 		printHTML += '<a>'+messagesAll[0]+'</a>';
@@ -115,9 +113,10 @@ function writeResponse(text){
 		printHTML += '</div> ';
 		
 		$('#chat-comments-area').append(printHTML);
+		$('#chat-comments-area').scrollTop($('#chat-comments-area')[0].scrollHeight);
 	} else if(messagesAll[1].includes('님이 입장하셨습니다.') == true){
 		var printHTML = '<div class="comment-list">';
-		printHTML += '<div class="single-comment justify-content-between d-flex">';
+		printHTML += '<div class="single-comment justify-content-center d-flex">';
 		printHTML += '<div class="user justify-content-between d-flex">';
 		printHTML += '<div class="desc">';
 		printHTML += '<p class="comment">'+messagesAll[0]+messagesAll[1]+'</p>';
@@ -129,7 +128,7 @@ function writeResponse(text){
 		$('#chat-comments-area').append(printHTML);
 	} else if(messagesAll[1].includes('님이 퇴장하셨습니다.') == true){
 		var printHTML = '<div class="comment-list">';
-		printHTML += '<div class="single-comment justify-content-between d-flex">';
+		printHTML += '<div class="single-comment justify-content-center d-flex">';
 		printHTML += '<div class="user justify-content-between d-flex">';
 		printHTML += '<div class="desc">';
 		printHTML += '<p class="comment">'+messagesAll[0]+messagesAll[1]+'</p>';

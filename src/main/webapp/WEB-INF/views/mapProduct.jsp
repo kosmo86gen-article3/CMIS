@@ -210,7 +210,7 @@
       // setMarkers에 null을 입력하여 기존 마커 삭제
       setMarkers(null);
 
-      var imageSrc = 'resources/img/map/map-marker-icon.png';
+      var imageSrc = 'resources/img/map/map-marker-icon-red.png';
       var imageSize = new kakao.maps.Size(42, 42); // 마커이미지의 크기입니다
       var imageOption = {
          offset : new kakao.maps.Point(27, 69)

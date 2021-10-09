@@ -1,9 +1,11 @@
 package com.cmis.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,14 @@ public class MapController {
 	
 	// 로그인 작동
 	@RequestMapping("map.do")
-	public String searchShopList(String lat, String lon, Model model) {
+	public String searchShopList(String lat, String lon, Model model,HttpServletResponse response) throws Exception {
 						
-		if(lon == null) {
-			return "redirect:test.do";
+		if((lon == null)||(lon == "")) {
+			response.setContentType("text/html; charset=UTF-8");
+	         PrintWriter out = response.getWriter();
+	         out.println("<script>alert('위치 정보를 불러올수가 없습니다'); </script>");
+	         out.flush();
+			return "redirect:index.do";
 		}
 		else {
 		
