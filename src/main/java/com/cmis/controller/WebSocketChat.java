@@ -27,6 +27,7 @@ public class WebSocketChat {
 	private static final List<Session> sessionList = new ArrayList<Session>();
 	//  사용자들 IP 담기 위한 변수 선언
 	private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
+	
 	public WebSocketChat() {
 		System.out.println("웹소켓(서버) 객체 생성");
 	}

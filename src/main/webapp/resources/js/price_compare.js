@@ -111,7 +111,7 @@ $(document).ready(function(){
 	        	
 	        	var src = data.userId + ".jpg?time=" + time 
 
-	        	var content = "<img src='resources/img/searchImage/" + src +" alt='' style='max-width: 100%;max-height: 100%;'>"
+	        	var content = "<img src='resources/img/searchImage/" + src +"' style='max-width: 100%;max-height: 100%;'>"
 	        		content += "<p/><p class='subject'> 검색 결과는 "+data.keyword +" 입니다</p>"
 	        		
 	        	$("#imageSearchModal .modal-body").append(content);

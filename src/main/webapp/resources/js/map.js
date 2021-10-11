@@ -111,8 +111,6 @@ $(document).ready(function(){
                    content += "<h3>매장가격 : " + price + "원</h3>";
                    content += "</div><div class='heart'><img src='resources/img/gallery/heart1.png' alt=''>";
                    content += "</div></div></div></div></div>";
-
-               
             
              }
              content += "</div></div>";

@@ -49,6 +49,8 @@ function send(){
 	}
 	var uid = $('#nickname').val();
 	var text = document.getElementById("messageInput").value+","+uid;
+	
+	안녕하세요,문경식
 	ws.send(text);
 	text="";
 	$('#messageInput').val("");
