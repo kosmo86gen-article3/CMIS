@@ -55,12 +55,13 @@
 	color: #B367FF
 }
 
+/* 21-10-07 문경식 */
 .boxed-btn {
 	background: #fff;
-	color: #B367FF !important;
+	color: bold #eb6e10;
 	display: inline-block;
 	padding: 18px 44px;
-	font-family: 'Jua', sans-serif;
+	font-family: "Rubik", sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	border: 0;
@@ -69,13 +70,14 @@
 	text-align: center;
 	color: #B367FF;
 	text-transform: uppercase;
-	cursor: pointer
+	cursor: pointer;
 }
 
+/* 21-10-07 문경식 */
 .boxed-btn:hover {
-	background: #B367FF;
+	background: #eb6e10;
 	color: #fff !important;
-	border: 1px solid #B367FF
+	border: 1px solid #eb6e10;
 }
 
 .boxed-btn:focus {
@@ -2007,7 +2009,7 @@ to {
 	position: relative;
 	border-style: solid;
 	border-width: 1px;
-	border-top-color: #B367FF;
+	border-top-color: #f15d30;
 	border-bottom-color: transparent;
 	border-left-color: transparent;
 	border-right-color: transparent;
@@ -6267,7 +6269,7 @@ keyframes zoom { 0%{
 
 .sample-text-area {
 	background: #fff;
-	padding: 100px 0 70px 0
+	padding: 0 0 70px 0
 }
 
 .text-heading {

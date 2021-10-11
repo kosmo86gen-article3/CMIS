@@ -16,10 +16,10 @@
 		WHERE news_num = #{news_num}
 	</update>
 	
-	<!-- <select id="getNewsBoardList" resultType="newsboard">
+	<select id="getMiniNewsBoardList" resultType="newsboard">
 		SELECT * 
 		FROM CMIS_NEWS
 		ORDER BY news_hits DESC LIMIT 5
-	</select> -->
+	</select>
 	
 </mapper>

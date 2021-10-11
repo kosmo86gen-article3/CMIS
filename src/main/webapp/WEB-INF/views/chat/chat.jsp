@@ -20,30 +20,7 @@
 		</header>
 		<style type="text/css">
 
-/* 21-10-07 문경식 */
-.boxed-btn {
-	background: #fff !important;
-	color: bold #eb6e10 !important;
-	display: inline-block !important;
-	padding: 18px 44px !important;
-	font-family: "Rubik", sans-serif !important;
-	font-size: 14px !important;
-	font-weight: 400 !important;
-	border: 0 !important;
-	border: 1px solid #B367FF !important;
-	letter-spacing: 3px !important;
-	text-align: center !important;
-	color: #B367FF !important;
-	text-transform: uppercase !important;
-	cursor: pointer !important;
-}
 
-/* 21-10-07 문경식 */
-.boxed-btn:hover {
-	background: #eb6e10;
-	color: #fff !important;
-	border: 1px solid #eb6e10;
-}
 
 /* 21-10-07 문경식 */
 .comments-area {

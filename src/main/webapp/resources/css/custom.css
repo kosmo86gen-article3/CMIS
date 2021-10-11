@@ -74,7 +74,7 @@ a:hover {
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active{
-	background-color: white;
+	background-color: white !important;
 	color: #f15d30;
 	outline: 2px solid #f15d30;
 }

@@ -119,11 +119,9 @@ tbody a img {
 															src="resources/img/images/${wish.product_code}.jpg"
 															alt="${wish.product_name }" /></a></td>
 													<td class="product-name" style="vertical-align: middle;">
-
 														<a
 														href="productdetails.do?product_code=${wish.product_code}"
 														style="color: black;">${wish.product_name }</a>
-
 													</td>
 													<td class="product-price" style="vertical-align: middle;"><span
 														class="amount">${wish.product_last_average_price}원</span></td>
@@ -137,12 +135,13 @@ tbody a img {
 										</c:if>
 									</tbody>
 								</table>
-								<div class="btn float-right delTotal">
-									<a href="#" onclick="drop_wishlist()">전체 삭제</a>
-								</div>
-
+								<div class="float-right"
+													style="margin-bottom: 20px; text-align: center">
+													<a href='#' id='drop_wishlist'
+														class="genric-btn orange radius"><i class="ti-search"></i>
+														전체 삭제</a>
+								</div>		
 							</div>
-
 						</div>
 					</div>
 				</div>

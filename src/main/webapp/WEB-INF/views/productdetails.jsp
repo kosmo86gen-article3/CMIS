@@ -61,6 +61,8 @@
     	data.addRow([new Date(2021,08,17),null,${productFuturePrices[2] }]);
     	data.addRow([new Date(2021,08,24),null,${productFuturePrices[3] }]);
     	data.addRow([new Date(2021,08,30),null,${productFuturePrices[4] }]);
+    	data.addRow([new Date(2021,09,08),null,${productFuturePrices[5] }]);
+    	data.addRow([new Date(2021,09,15),null,${productFuturePrices[6] }]);
 
       var options = {
     	title: '시세 변동 추이 및 예측',

@@ -127,7 +127,7 @@
 		</div>
 		<div class="col-sm-9 col-md-6 col-lg-8">
 			<!-- 지도를 출력할 div 선언 -->
-			<div id="map" class="category-listing" style="width: 100%; height: 100%;"></div>
+			<div id="map" class="category-listing" style="width: 100%; height: 430px;"></div>
 		</div>
 
 		<!-- E: 본문 영역 끝 -->

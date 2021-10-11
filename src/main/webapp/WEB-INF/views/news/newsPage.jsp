@@ -8,6 +8,7 @@
 <link rel="shortcut icon" href="resources/img/favicon.png"
 	type="image/png">
 <link rel="icon" href="resources/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/> <!-- 21-10-09 문경식 추가 -->
 <title>뉴스 / Hot Issue</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
    <header id= "header">
       <div id = "header_box">
          <jsp:include page="/WEB-INF/views/include/header.jsp"/>
+         
       </div>
    </header>
 <!-- E: 헤더 부분 끝 -->
@@ -40,54 +42,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mb-5 mb-lg-0">
-                    <h1 style="text-align:center">카드뉴스</h1>
-                        <div class="blog_left_sidebar">
-                        
-                          <c:forEach items="${newsBoardList }" var="board">
-                            <article class="blog_item">
-                                <div class="blog_item_img rounded" style="border-radius: 10px !important; background: gainsboro;">
-                                <c:if test="${board.news_img != null}">
-                                    <img class="card-img rounded" src="${board.news_img }" alt="" style="width:35%; margin-left:35%;
-                                    border-radius:10px !important">
-                                    </c:if>
-
-                                </div>
-                                <div class="blog_details">
-                                   <input type="hidden" id="nwsNmValue" value="${board.news_num }">
-                                    <a class="d-inline-block nwsSrchBtn" href="${board.news_link }" target='_blank'>
-                                        <h2 class="blog-head" style="color: #2d2d2d;">${board.news_title }</h2>
-                                    </a>
-                                    <p>${board.news_content }</p>
-                                    <ul class="blog-info-link">
-                                        <li>${board.news_press }</li>
-                                        <li>조회수 : ${board.news_hits }</li>
-                                        <li>키워드 : ${board.news_keyword }</li>
-                                    </ul>
-                                </div>
-                            </article>
-                          </c:forEach>
-                            
-                            <nav class="blog-pagination justify-content-center d-flex">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Previous">
-                                            <i class="ti-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link">1</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a href="#" class="page-link">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a href="#" class="page-link" aria-label="Next">
-                                            <i class="ti-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                        <h1 style="text-align:center">카드뉴스</h1>
+                        <div class="blog_left_sidebar" id="data-container"></div>
+                        <div id="pagination"></div>
                     </div>
                     <div class="col-lg-4">
                         <div class="blog_right_sidebar">
@@ -127,17 +84,19 @@
                             </aside>
                             <aside class="single_sidebar_widget popular_post_widget" style="border-radius: 20px;background: #9ebdf2a6;">
                                 <h3 class="widget_title" style="color: #2d2d2d;">많이 본 뉴스</h3>
-                                
-                                <div class="media post_item">
-                                    <img src="resources/img/post/post_1.png" alt="post">
+                                <c:forEach items="${miniNewsBoardList }" var="miniboard">
+                                  <div class="media post_item">
+                                   <c:if test="${miniboard.news_img != null}">
+                                    <img src="${miniboard.news_img }" alt="" style="width:26%;">
+                                   </c:if>
                                     <div class="media-body">
-                                        <a href="blog_details.html">
-                                            <h3 style="color: #2d2d2d;">From life was you fish...</h3>
+                                        <a href="${miniboard.news_link }">
+                                            <h3 style="color: #2d2d2d;">${fn:substring(miniboard.news_title,0,15) }...</h3>
                                         </a>
-                                        <p>January 12, 2019</p>
+                                        <p>키워드 : ${miniboard.news_keyword }</p>
                                     </div>
-                                </div>
-                                
+                                  </div>
+                                </c:forEach>
                             </aside>
                         </div>
                     </div>
@@ -150,18 +109,14 @@
 </main>
 
 <script type="text/javascript">
+// 뉴스 페이징 하기 위한 데이터 불러오기
+var arr = new Array();
+<c:forEach items="${newsBoardList }" var="board">
+	arr.push({news_img:"${board.news_img}", news_num:"${board.news_num}", news_link:"${board.news_link}", news_title:"${board.news_title}", news_content:"${board.news_content}"
+		, news_press:"${board.news_press}", news_hits:"${board.news_hits}", news_keyword:"${board.news_keyword}"});
+</c:forEach>
+
 $(function(){
-   // 키워드별 기사 갯수 출력 시작
-   var newsKeyword = ["물가", "소비자", "인상"];
-   
-   for (let i=1; i < 4; i++) {
-      
-      let temp = $(".blog_item > .blog_details > ul > li:nth-child(3):contains('"+newsKeyword[i-1]+"')");
-      
-      $('#newsKeywordUl > li:nth-child('+i+') > a > p').append("("+temp.length+")")
-   }
-   // 키워드별 기사 갯수 출력 끝
-   
    // 뉴스 조회수 증가 시작
    $('.nwsSrchBtn').click(cntUp);
      function cntUp() {
@@ -192,20 +147,113 @@ $(function(){
    });
    // 뉴스 검색 jquery 끝
    
-   // 뉴스 키워드별 조회 시작
+   // 뉴스 페이징 처리 시작
+   var container = $('#pagination');
+        container.pagination({
+            dataSource: arr,
+            callback: function (data, pagination) {
+                var dataHtml = '';
+
+                $.each(data, function (index, item) {
+                    dataHtml += '<article class="blog_item">';
+                    dataHtml += '<div class="blog_item_img rounded" style="border-radius: 10px !important; background: gainsboro;">';
+                    if(item.news_img != null){
+                    	dataHtml += '<img class="card-img rounded" src="'+item.news_img+'" alt="" style="width:35%; margin-left:35%; border-radius:10px !important">';
+                    }
+                    dataHtml += '</div>';
+                    dataHtml += '<div class="blog_details">';
+                    dataHtml += '<input type="hidden" id="nwsNmValue" value="'+item.news_num+'">';
+                    dataHtml += '<a class="d-inline-block nwsSrchBtn" href="'+item.news_link+'" target=_blank">';
+                    dataHtml += '<h2 class="blog-head" style="color: #2d2d2d;">'+item.news_title+'</h2>';
+                    dataHtml += '</a>';
+                    dataHtml += '<p>'+item.news_content+'</p>';
+                    dataHtml += '<ul class="blog-info-link">';
+                    dataHtml += '<li>'+item.news_press+'</li>';
+                    dataHtml += '<li>조회수 : '+item.news_hits+'</li>';
+                    dataHtml += '<li>키워드 : '+item.news_keyword+'</li>';
+                    dataHtml += '</ul>';
+                    dataHtml += '</div>';
+                    dataHtml += '</article>';
+                });
+
+                $("#data-container").html(dataHtml);
+            }
+    })
+    // 뉴스 페이징 처리 끝
+    
+    // 키워드별 기사 갯수 출력 시작
+    var newsKeyword1 = 0;
+    var newsKeyword2 = 0;
+    var newsKeyword3 = 0;
+    
+   	for( let z=0; z<arr.length; z++){
+   		if(arr[z].news_keyword == "물가"){
+   			newsKeyword1 += 1;
+   		}else if(arr[z].news_keyword == "소비자"){
+   			newsKeyword2 += 1;
+   		}else if(arr[z].news_keyword == "인상"){
+   			newsKeyword3 += 1;
+   		}
+   	}
+    
+    $('#newsKeywordUl > li:nth-child(1) > a > p').append("("+newsKeyword1+")")
+    $('#newsKeywordUl > li:nth-child(2) > a > p').append("("+newsKeyword2+")")
+    $('#newsKeywordUl > li:nth-child(3) > a > p').append("("+newsKeyword3+")")
+	// 키워드별 기사 갯수 출력 끝
+	
+	//뉴스 키워드별 조회 시작
+	var arr2 = new Array();
+	
    $('#newsKeywordUl > li > a').on('click', function(e){
       e.preventDefault();
-      var keyword = $(this).children().text();
+      var keyword = $(this).children().text().split("(")[0];
       /* alert(keyword); */
+   
+      $('.blog_item').remove();
+      $('#pagination').empty();
       
-      $('.blog_item').hide();
+      arr2 = [];
       
-      var temp = $(".blog_item > .blog_details > ul > li:nth-child(3):contains('"+keyword+"')");
-      /* alert(temp.length); */
+      for(let y=0; y<arr.length; y++){
+     		if(arr[y].news_keyword == keyword){
+     			arr2.push(arr[y])
+     		}
+      }
+   
+      container.pagination({
+          dataSource: arr2,
+          callback: function (data, pagination) {
+              var dataHtml = '';
+
+              $.each(data, function (index, item) {
+                  dataHtml += '<article class="blog_item">';
+                  dataHtml += '<div class="blog_item_img rounded" style="border-radius: 10px !important; background: gainsboro;">';
+                  if(item.news_img != null){
+                  	dataHtml += '<img class="card-img rounded" src="'+item.news_img+'" alt="" style="width:35%; margin-left:35%; border-radius:10px !important">';
+                  }
+                  dataHtml += '</div>';
+                  dataHtml += '<div class="blog_details">';
+                  dataHtml += '<input type="hidden" id="nwsNmValue" value="'+item.news_num+'">';
+                  dataHtml += '<a class="d-inline-block nwsSrchBtn" href="'+item.news_link+'" target=_blank">';
+                  dataHtml += '<h2 class="blog-head" style="color: #2d2d2d;">'+item.news_title+'</h2>';
+                  dataHtml += '</a>';
+                  dataHtml += '<p>'+item.news_content+'</p>';
+                  dataHtml += '<ul class="blog-info-link">';
+                  dataHtml += '<li>'+item.news_press+'</li>';
+                  dataHtml += '<li>조회수 : '+item.news_hits+'</li>';
+                  dataHtml += '<li>키워드 : '+item.news_keyword+'</li>';
+                  dataHtml += '</ul>';
+                  dataHtml += '</div>';
+                  dataHtml += '</article>';
+              });
+
+              $("#data-container").html(dataHtml);
+          }
+  })
       
-      $(temp).parent().parent().parent().show();
    })
    // 뉴스 키워드별 조회 끝
+   
 }); // document ready 끝
 </script>
 
@@ -217,5 +265,6 @@ $(function(){
 </footer>
 <!-- E: 푸터 영역 끝 -->
 </div> <!-- E: Index(Home).jsp 의 div 총괄 끝  -->
+<script src="./resources/js/pagination.min.js"></script>
 </body>
 </html>

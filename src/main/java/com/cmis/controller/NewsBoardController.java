@@ -21,7 +21,8 @@ public class NewsBoardController {
 	public String newsBoard(Model model) {
 		model.addAttribute("newsBoardList", newsBoardService.getNewsBoardList());
 		
-		//model.addAttribute("miniNewsBoardList", newsBoardService.getMiniNewsBoardList());
+		// 뉴스게시판에 많이 본 뉴스
+		model.addAttribute("miniNewsBoardList", newsBoardService.getMiniNewsBoardList());
 		
 		return "/news/newsPage";
 	}
