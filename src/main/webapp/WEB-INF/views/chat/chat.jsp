@@ -6,6 +6,9 @@
 <head>
 <meta charset="utf-8">
 <title>C-MIS 채팅</title>
+<link rel="shortcut icon" href="resources/img/favicon.png"
+	type="image/png">
+<link rel="icon" href="resources/img/favicon.png" type="image/png">
 <link rel="stylesheet" href="resources/css/websocket-chat.css">
 </head>
 <body>
