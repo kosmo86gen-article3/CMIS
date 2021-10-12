@@ -91,7 +91,6 @@
                                  <li><a href="showReply.do">등록댓글 조회</a></li>
                                  <li><a href="elements.html">관심물품 조회</a></li>
                               </ul></li> -->
-                           <li><a href="error.do">Contact</a></li>
                            
                            <li class="hideDesk">
                            <c:if test="${sessionScope.userId != null && sessionScope.memberLv == 1}">

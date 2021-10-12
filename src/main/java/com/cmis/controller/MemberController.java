@@ -154,7 +154,7 @@ public class MemberController {
           
           System.out.println("쿼리 결과 값 : " + result);
           /* 이메일 보내기*/
-          String setFrom = "aysangtest@naver.com"; //root-context.xml에 삽입한 자신의 이메일 계정의 이메일 주소
+          String setFrom = "aysantest@naver.com"; //root-context.xml에 삽입한 자신의 이메일 계정의 이메일 주소
           String toMail = vo.getMember_email(); //수신받을 이메일 view 단의 입력받은 이메일 주소 변수 사용
           String title= "비밀번호 안내 이메일 입니다.";  //자신이 보낼 이메일 제목
           String content = //자신이 보낼 이메일 내용
