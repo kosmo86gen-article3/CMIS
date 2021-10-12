@@ -5,7 +5,7 @@ public class CommentVO {
 	private String comment_num;
 	private String comment_content;
 	private String comment_writer;
-	private String board_date;
+	private String comment_date;
 	
 	public int getBoard_num() {
 		return board_num;
@@ -31,11 +31,11 @@ public class CommentVO {
 	public void setComment_writer(String comment_writer) {
 		this.comment_writer = comment_writer;
 	}
-	public String getBoard_date() {
-		return board_date;
+	public String getComment_date() {
+		return comment_date;
 	}
-	public void setBoard_date(String board_date) {
-		this.board_date = board_date;
+	public void setBoard_date(String comment_date) {
+		this.comment_date = comment_date;
 	}
 	
 }
