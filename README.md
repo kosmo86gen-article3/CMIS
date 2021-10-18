@@ -5,13 +5,12 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-## Stack
+## Stack / Tech
 
-- Spring 3 version mvc2 model
+- Spring
 - ✨python ML - CNN, Tensorflow ✨
 - python crawling
 - Java Socket
-
 
 ## 요점
 
@@ -23,5 +22,3 @@
 - 마이페이지 관리자페이지 CRUD 기초 구성, 원하는 상품 찜 목록
 - 관리자 페이지 구글 차트 API 사용 통계 출력, 파이어베이스 스크립트 활용 사이트 세부 통계 및 태그액션 추적 가능
 - 반응형 UI/UX, JavaScript / JSTL / jQuery / Bootstrap 적극사용
-
-
