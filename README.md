@@ -7,10 +7,10 @@
 
 ## Stack
 
--Spring 3 version mvc2 model
--✨python ML - CNN, Tensorflow ✨
--python crawling
--Java Socket
+- Spring 3 version mvc2 model
+- ✨python ML - CNN, Tensorflow ✨
+- python crawling
+- Java Socket
 
 
 ## 요점
